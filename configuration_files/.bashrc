@@ -48,6 +48,7 @@ bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
 # Default editor
-export EDITOR='vi'
-export VISUAL='vi'
+export EDITOR='/usr/bin/vi'
+export VISUAL=$EDITOR
+
 
