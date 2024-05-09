@@ -8,14 +8,17 @@ function src {
 
 
 function activatev {
+  env_location='./venv/bin/activate'
   if [[ -d ./venv ]]; then
-    source ./venv/bin/activate;
+    true
   elif [[ -d ../venv ]]; then
-    source ../venv/bin/activate;
+    env_location="../venv/bin/activate"
   else
-    echo "'venv' folder was not found in the current and parent directory";
-    return 1
+    echo "'venv/' was not found in the current or parent directory";
+    echo "Creating one in the current directory...";
+    python -m venv venv;
   fi;
+  source $env_location
   echo "Virtual environment was activated"
   return 0
 }
@@ -29,6 +32,7 @@ function prj {
 
   if [[ $? == 0 ]]; then
     cd $target; 
+    activatev;
     target_name=$(echo $target | sed -E 's/(.*)\/(.*$)/\2/')
     tmux_session="prj_$target_name";
     tmux ls | grep "$tmux_session": &>/dev/null
@@ -77,3 +81,9 @@ function prjfzf {
   nvim .
 }
 
+
+function _wacomsetup {
+  stylus_id=$(xinput | grep stylus | sed -E 's/.+id=([0-9]+).*/\1/')
+  output_device=$(xrandr | grep -E '\bconnected' | fzf --header='Pick output device' | awk '{print $1}')
+  xinput map-to-output $stylus_id $output_device
+}
