@@ -13,10 +13,13 @@ function activatev {
     true
   elif [[ -d ../venv ]]; then
     env_location="../venv/bin/activate"
-  else
+  elif [[ ! -z $(find . -maxdepth 2 -name '*.py') ]]; then 
     echo "'venv/' was not found in the current or parent directory";
     echo "Creating one in the current directory...";
     python -m venv venv;
+  else
+    echo "This folder doesn't contain python files."
+    return 1
   fi;
   source $env_location
   echo "Virtual environment was activated"
