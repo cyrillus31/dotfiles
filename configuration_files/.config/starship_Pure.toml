@@ -1,0 +1,99 @@
+# PURE
+#
+# Installation: starship preset pure-preset -o ~/.config/starship.toml
+
+format = """
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_state\
+$git_status\
+$cmd_duration\
+$python\
+$fill\
+$time
+$character"""
+
+# $line_break\
+
+[directory]
+format = '[\[󰝰 $path\]]($style)'
+style = "blue"
+truncation_length = 1
+truncation_symbol = "…/"
+
+[character]
+success_symbol = "[❯](purple)"
+error_symbol = "[❯](red)"
+vimcmd_symbol = "[❮](green)"
+
+[git_branch]
+# _󰊢_     
+symbol = ''
+format = '[\[$symbol $branch\]]($style)'
+# style = "bright-black"
+style = "bright-yellow"
+
+[git_status]
+format = "[[ (*$conflicted$untracked$modified$staged$renamed$deleted)](218) ($ahead_behind$stashed)]($style)"
+style = "cyan"
+conflicted = "​"
+untracked = "​"
+modified = "​"
+staged = "​"
+renamed = "​"
+deleted = "​"
+stashed = "≡"
+
+[git_state]
+format = '\([$state( $progress_current/$progress_total)]($style)\) '
+style = "bright-black"
+
+[cmd_duration]
+format = "[$duration]($style) "
+style = "yellow"
+
+[python]
+symbol = ""
+format = '[$symbol $virtualenv]($style)'
+# style = "bright-black"
+style = "green"
+
+[fill]
+disabled = false
+symbol = " "
+style = "fg:color_yellow"
+
+[time]
+disabled = false
+time_format = "%R"
+style = "bright-black"
+format = '[  $time ]($style)'
+
+[os]
+disabled = false
+style = "bright-blue"
+format = '[$symbol ]($style)'
+
+[os.symbols]
+Windows = "󰍲"
+Ubuntu = "󰕈"
+SUSE = ""
+Raspbian = "󰐿"
+Mint = "󰣭"
+Macos = "󰀵"
+Manjaro = ""
+Linux = "󰌽"
+Gentoo = "󰣨"
+Fedora = "" # 󰣛
+Alpine = ""
+Amazon = ""
+Android = ""
+Arch = "󰣇"
+Artix = "󰣇"
+CentOS = ""
+Debian = "󰣚"
+Redhat = "󱄛"
+RedHatEnterprise = "󱄛"
