@@ -6,6 +6,12 @@ function src {
   return 0
 }
 
+function _dactyl () {
+  for device in /dev/hidraw*; do
+    sudo chown $USER:$USER $device; 
+    echo Dactyl chmod done!
+  done;
+}
 
 function activatev {
   env_location='./venv/bin/activate'
@@ -89,4 +95,50 @@ function _wacomsetup {
   stylus_id=$(xinput | grep stylus | sed -E 's/.+id=([0-9]+).*/\1/')
   output_device=$(xrandr | grep -E '\bconnected' | fzf --header='Pick output device' | awk '{print $1}')
   xinput map-to-output $stylus_id $output_device
+}
+
+function rv {
+  if [[ -z $1 ]]; then
+    kill $(ps aux | grep '[r]ustyvibes' | awk '{print $2}') &>/dev/null
+    FOLDER=/home/cyrillus/Documents/Keyboard_Soundpacks
+    SOUNDPACK=$(ls $FOLDER | fzf)
+    if [[ -z $SOUNDPACK ]]; then
+      echo "You have to pick a soundpack" >&2
+      return 1
+    fi
+    (rustyvibes $FOLDER/$SOUNDPACK &)
+    echo "Rustyvibes is running!"
+  else
+    case $1 in
+    -k|--kill)
+      process_id=$(ps aux | grep '[r]ustyvibes' | awk '{print $2}')
+      if [[ -z $process_id ]]; then
+        echo "Rustyvibes is not running"
+        return 0
+      fi
+      kill $process_id 2>/dev/null
+      echo "RUSTYVIBES process was terminated."
+      return 0
+      ;;
+    -h|--help)
+      cat << EOF
+Usage: rv [OPTIONS]
+
+Options:
+  -k, --kill      Kill the process
+  -h, --help      Show this help message and exit
+
+Examples:
+  rv -k     
+  rv --help 
+
+Run 'rv [OPTION]' to run RUSTYVIBES.
+EOF
+      ;;
+    *)
+      echo "Invalid option $1. Use -h or --help for an overview of the commands." >&2
+      return 1
+      ;;
+    esac
+  fi
 }

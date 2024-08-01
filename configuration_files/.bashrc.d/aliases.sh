@@ -10,3 +10,8 @@ alias sysd="cd /etc/systemd/system/"
 alias open="gnome-open"
 alias wacomsetup='_wacomsetup' # see functions.sh
 
+alias dactyl=_dactyl
+
+
+# NeoVim
+alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'

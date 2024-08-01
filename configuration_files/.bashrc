@@ -52,3 +52,4 @@ export EDITOR='/usr/bin/vi'
 export VISUAL=$EDITOR
 
 
+. "$HOME/.cargo/env"
