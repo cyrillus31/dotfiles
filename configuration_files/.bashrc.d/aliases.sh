@@ -1,12 +1,19 @@
-#!/bin/bash
-
-# Import aliases that are not for sharing in version control
-source $HOME/.bashrc.d/private_aliases.sh
-
-# alias prj="cd $HOME/Projects/; ls"
-# alias prj="cd $(find ~/Projects/ -maxdepth 2 -type d -not -name '.*' -and -not -name 'Projects' |  fzf); nvim .;"
+alias src="source ~/.bashrc && echo '~/.bashrc file was succesfully reloaded.'"
+alias enter_docker="_enter_docker"
 
 alias sysd="cd /etc/systemd/system/"
-alias open="gnome-open"
-alias wacomsetup='_wacomsetup' # see functions.sh
 
+alias ll="ls -l --color=auto"
+alias la="ls -A --color=auto"
+alias lla="ls -lA --color=auto"
+
+# alias python="/usr/local/bin/python3.10"
+# alias pip="/usr/local/bin/pip3.10"
+alias amend="git add .; git commit --amend"
+
+
+# NeoVim
+alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'
+
+# Wacom Drawing Tablet Setup
+alias wacomsetup="wacomsetup_function"

@@ -1,4 +1,21 @@
-#!/bin/bash
+function _enter_docker {
+
+	# if [[ -z $1 ]]; then 
+	# 	echo "Pass a name of the container as an argument"
+	# 	return 1
+	# fi;
+
+	container_name=$(\
+			sudo docker ps |\
+			awk 'NR > 1 { print $2 }' |\
+			fzf --preview 'sudo docker ps | grep {}'\
+			)
+
+	container_id=$(sudo docker ps | grep $container_name | awk '{ print $1 }')
+
+	sudo docker exec -it $container_id sh
+
+}
 
 function src {
   source $HOME/.bashrc
@@ -47,46 +64,84 @@ function prj {
   fi;
 }
 
-function prjfzf {
-  OPTIND=1
-  root="$HOME/Projects/"
-  while getopts :n:r:h opt; do
-    case $opt in 
-      n)
 
-        new_folder=${OPTARG}
-        mkdir -p "$root"/"$new_folder"
-        cd "$root"/"$new_folder"
-        return 0
-        ;;
-
-      r)
-        0=${OPTARG}
-        # cd $root
-        return 0
-        ;;
-
-      h)
-        o=$OPTARG
-        help="DESCRIPTION\nprj - A tool to manage all your projects\n\nOPTIONS\n\t-h    Display help\n
-  -n    Create new folder and enter it\n
-  -r    cd into the root folder for your porjects\n
-        "
-        printf $help
-        return 0
-        ;;
-
-    esac
-  done
-  echo ENDING!!!
-  target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf)
-  cd $target
-  nvim .
+function notes () {
+  folder="$HOME/Documents/Obsidian Vault/Notes/"
+  file=$(find $folder -type f -name '*.txt' -o -name '*.md' | fzf) 
+  if [[ $? -eq 0 ]]; then
+    nvim $file
+  fi;
 }
 
 
-function _wacomsetup {
+function neofetch_hello () {
+  cache=$HOME/.cache/neofetch.cache
+  neofetch_binary=$(find /usr/bin/ -name '*neofetch*')
+
+  if [[ -f $cache ]]; then
+    cat $cache
+    ($neofetch_binary > $cache && \
+    echo "                        *cached at $(date)" >> $cache &)
+    echo '                        *cache_updated'
+
+  else
+    $neofetch_bin | tee $cache
+  fi
+}
+
+function wacomsetup_function {
   stylus_id=$(xinput | grep stylus | sed -E 's/.+id=([0-9]+).*/\1/')
   output_device=$(xrandr | grep -E '\bconnected' | fzf --header='Pick output device' | awk '{print $1}')
   xinput map-to-output $stylus_id $output_device
+}
+
+# Function for configuring RUSTYVIBES
+function rv {
+  if [[ -z $1 ]]; then
+    kill $(ps aux | grep '[r]ustyvibes' | awk '{print $2}') &>/dev/null
+    FOLDER=$HOME/Documents/Keyboard_Soundpacks
+    echo $FOLDER
+    SOUNDPACK=$(ls $FOLDER | fzf --reverse --prompt 'Pick a soundpack> ' --header 'RUSTYVIBES Soundpacks: ')
+    if [[ -z $SOUNDPACK ]]; then
+      echo "You need to pick a soundpack" >&2
+      return 1
+    fi
+    (rustyvibes $FOLDER/$SOUNDPACK &)
+    echo "Rustyvibes is running!"
+  else
+    case $1 in
+    -k|--kill)
+      process_id=$(ps aux | grep '[r]ustyvibes' | awk '{print $2}')
+      if [[ -z $process_id ]]; then
+        echo "Rustyvibes is not running"
+        return 0
+      fi
+      kill $process_id 2>/dev/null
+      echo "RUSTYVIBES process was terminated."
+      return 0
+      ;;
+    -h|--help)
+      cat << EOF
+RUSTYVIBES WRAPPER 
+(by cyrillus31)
+
+Usage: rv [OPTIONS]
+
+Options:
+  -k, --kill      Kill the process
+  -h, --help      Show this help message and exit
+
+Examples:
+  rv -k     
+  rv --help 
+
+Run 'rv [OPTION]' to run RUSTYVIBES.
+EOF
+      ;;
+    *)
+      echo "Invalid option $1. Use -h or --help for an overview of the commands." >&2
+      return 1
+      ;;
+    esac
+  fi
 }
