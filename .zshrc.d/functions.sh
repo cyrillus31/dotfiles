@@ -81,3 +81,36 @@ dockerfix ()
 }
 
 
+function _nvim_update() {
+  NVIM_FOLDER='nvim'
+  SRC_BRANCH='custom-astra'
+  (
+    cd $HOME/.config/$NVIM_FOLDER
+    git fetch; git rebase origin/${SRC_BRANCH} >/dev/null
+  )
+  echo "Nvim was updated from branch: '$SRC_BRANCH'"
+}
+
+function _run_and_update_nvim() {
+  nvim_binary="/opt/homebrew/bin/nvim"
+  if [[ ! -z $1 ]]; then
+    case $1 in
+      -h|--help)
+        $nvim_binary $1
+        echo '\nFrom alias:'
+        echo "  -u, --update          Update local Nvim setup"
+        return 0
+        ;;
+      -u|--update)
+        _nvim_update
+        return 0
+        ;;
+      *)
+        echo Wrong argument: \"$1\"
+        return 1
+        ;;
+    esac
+  else
+    $nvim_binary
+  fi
+}

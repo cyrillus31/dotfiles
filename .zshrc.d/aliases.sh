@@ -18,3 +18,7 @@ export PATH="/opt/homebrew/opt/postgresql@15/bin:$PATH"
 # Autocomplete
 autoload -Uz compinit && compinit
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+
+# NeoVim
+alias n=_run_and_update_nvim
