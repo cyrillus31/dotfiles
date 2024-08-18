@@ -14,4 +14,8 @@ alias dactyl=_dactyl
 
 
 # NeoVim
-alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'
+alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
+
+
+# VPN
+alias vpn='_manage_vpn'

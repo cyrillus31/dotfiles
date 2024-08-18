@@ -97,16 +97,18 @@ function _wacomsetup {
   xinput map-to-output $stylus_id $output_device
 }
 
+# Function for configuring RUSTYVIBES
 function rv {
   if [[ -z $1 ]]; then
     kill $(ps aux | grep '[r]ustyvibes' | awk '{print $2}') &>/dev/null
-    FOLDER=/home/cyrillus/Documents/Keyboard_Soundpacks
-    SOUNDPACK=$(ls $FOLDER | fzf)
+    FOLDER=$HOME/Documents/Keyboard_Soundpacks
+    echo $FOLDER
+    SOUNDPACK=$(ls $FOLDER | fzf --reverse --prompt 'Pick a soundpack> ' --header 'RUSTYVIBES Soundpacks: ')
     if [[ -z $SOUNDPACK ]]; then
-      echo "You have to pick a soundpack" >&2
+      echo "You need to pick a soundpack" >&2
       return 1
     fi
-    (rustyvibes $FOLDER/$SOUNDPACK &)
+    (rustyvibes $FOLDER/$SOUNDPACK &>/dev/null &)
     echo "Rustyvibes is running!"
   else
     case $1 in
@@ -122,16 +124,15 @@ function rv {
       ;;
     -h|--help)
       cat << EOF
+RUSTYVIBES WRAPPER 
+(by cyrillus31)
 Usage: rv [OPTIONS]
-
 Options:
   -k, --kill      Kill the process
   -h, --help      Show this help message and exit
-
 Examples:
   rv -k     
   rv --help 
-
 Run 'rv [OPTION]' to run RUSTYVIBES.
 EOF
       ;;
@@ -141,4 +142,36 @@ EOF
       ;;
     esac
   fi
+}
+
+
+function _manage_vpn() {
+  VPN_FOLDER="$HOME/Documents/vpn/"
+  if [[ ! -z $1 ]]; then
+    case $1 in
+      -d|--disconnect)
+        MY_VPN_CONFIG_PATH=`openvpn3 sessions-list | fzf --tac --prompt 'Pick the Path: ' | sed -E 's/\s*Path:\s*//'`
+        openvpn3 session-manage --disconnect -o $MY_VPN_CONFIG_PATH
+        return 0
+        ;;
+      -s|--sessions|-l|--list)
+        openvpn3 sessions-list;
+        return 0
+        ;;
+      -h|--help)
+        echo 'This is a wrapper over openvpn3. You can use -d to disconnect from a vpn session.'
+        return 0
+        ;;
+      *)
+        echo 'Invalid option. You can use -d to disconnect from a session.'
+        return 1
+        ;;
+    esac
+  fi
+  CONFIG=$(find $VPN_FOLDER -type f | fzf)
+  if [[ -z $CONFIG || ! $? -eq 0 ]]; then
+    echo "You need to pick a config." >&2
+    return 1
+  fi
+  openvpn3 session-start --config $CONFIG
 }
