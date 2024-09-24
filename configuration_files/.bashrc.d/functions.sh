@@ -1,3 +1,20 @@
+# DOCKER
+
+function _remove_all_containers {
+  docker rm $(docker ps -a -q)
+}
+
+function _stop_all_containers {
+  docker stop $(docker ps -a -q)
+  _remove_all_containers
+}
+
+function _docker_ls {
+  # this function is supposed to run ls command with fzf over:
+  # container, image, volume, network
+  echo placeholder
+}
+
 function _enter_docker {
 
 	# if [[ -z $1 ]]; then 
@@ -6,14 +23,14 @@ function _enter_docker {
 	# fi;
 
 	container_name=$(\
-			sudo docker ps |\
+			docker ps |\
 			awk 'NR > 1 { print $2 }' |\
-			fzf --preview 'sudo docker ps | grep {}'\
+			fzf --preview 'docker ps | grep {}'\
 			)
 
-	container_id=$(sudo docker ps | grep $container_name | awk '{ print $1 }')
+	container_id=$(docker ps | grep $container_name | awk '{ print $1 }')
 
-	sudo docker exec -it $container_id sh
+	docker exec -it $container_id sh
 
 }
 
@@ -28,8 +45,8 @@ function activatev {
   env_location='./venv/bin/activate'
   if [[ -d ./venv ]]; then
     true
-  elif [[ -d ../venv ]]; then
-    env_location="../venv/bin/activate"
+  # elif [[ -d ../venv ]]; then
+  #   env_location="../venv/bin/activate"
   elif [[ ! -z $(find . -maxdepth 2 -name '*.py') ]]; then 
     echo "'venv/' was not found in the current or parent directory";
     echo "Creating one in the current directory...";
@@ -45,9 +62,9 @@ function activatev {
 
 function prj {
   if [[ -z $1 ]]; then
-    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf)
+    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
   else
-    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf -q $1)
+    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf -q $1 --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
   fi;
 
   if [[ $? == 0 ]]; then
@@ -74,6 +91,8 @@ function notes () {
 }
 
 
+# This commnad caches the last output of neofetch
+# and returns it next time instantaneously 
 function neofetch_hello () {
   cache=$HOME/.cache/neofetch.cache
   neofetch_binary=$(find /usr/bin/ -name '*neofetch*')
@@ -132,8 +151,8 @@ Options:
   -h, --help      Show this help message and exit
 
 Examples:
-  rv -k     
-  rv --help 
+  rv --kill
+  rv -h
 
 Run 'rv [OPTION]' to run RUSTYVIBES.
 EOF

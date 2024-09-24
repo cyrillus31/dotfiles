@@ -1,5 +1,10 @@
 alias src="source ~/.bashrc && echo '~/.bashrc file was succesfully reloaded.'"
-alias enter_docker="_enter_docker"
+
+# DOCKER
+alias denter="_enter_docker"
+alias dc="docker-compose"
+alias drm="_remove_all_containers"
+alias dstop="_stop_all_containers"
 
 alias sysd="cd /etc/systemd/system/"
 
@@ -13,7 +18,11 @@ alias amend="git add .; git commit --amend"
 
 
 # NeoVim
-alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'
+# alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'
+alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # Wacom Drawing Tablet Setup
 alias wacomsetup="wacomsetup_function"
+
+
+source $HOME/.bashrc.d/private_aliases.sh
