@@ -116,9 +116,9 @@ function wacomsetup_function {
 
 # Function for configuring RUSTYVIBES
 function rv {
+  FOLDER=$HOME/Documents/Keyboard_Soundpacks
   if [[ -z $1 ]]; then
     kill $(ps aux | grep '[r]ustyvibes' | awk '{print $2}') &>/dev/null
-    FOLDER=$HOME/Documents/Keyboard_Soundpacks
     echo $FOLDER
     SOUNDPACK=$(ls $FOLDER | fzf --reverse --prompt 'Pick a soundpack> ' --header 'RUSTYVIBES Soundpacks: ')
     if [[ -z $SOUNDPACK ]]; then
@@ -156,6 +156,15 @@ Examples:
 
 Run 'rv [OPTION]' to run RUSTYVIBES.
 EOF
+      ;;
+    -l|--list)
+      printf "++ Here are all available soundpacks ++\n\n"
+      ls -1 $FOLDER
+      ;;
+    -s|--soundpack)
+      if [[ -z $2 ]]; then echo "You didn't specify the soundpack."; exit 1; fi;
+      SP=$(find $FOLDER | grep $2 -m 1)
+      (rustyvibes $SP &)
       ;;
     *)
       echo "Invalid option $1. Use -h or --help for an overview of the commands." >&2
