@@ -19,10 +19,11 @@ alias amend="git add .; git commit --amend"
 
 # NeoVim
 # alias nvimk='NVIM_APPNAME="nvim-kickstart" nvim'
-alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
+# alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
 
 # Wacom Drawing Tablet Setup
 alias wacomsetup="wacomsetup_function"
 
 
-source $HOME/.bashrc.d/private_aliases.sh
+PRIVATE=$HOME/.bashrc.d/private_aliases.sh
+if [ -f $PRIVATE ]; then surce $PRIVATE; fi;
