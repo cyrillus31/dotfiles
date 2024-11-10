@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Import aliases that are not for sharing in version control
-source $HOME/.bashrc.d/private_aliases.sh
+source $HOME/.bashrc.d/private_aliases.sh &>/dev/null || true
 
 # alias prj="cd $HOME/Projects/; ls"
 # alias prj="cd $(find ~/Projects/ -maxdepth 2 -type d -not -name '.*' -and -not -name 'Projects' |  fzf); nvim .;"
@@ -14,7 +14,7 @@ alias dactyl=_dactyl
 
 
 # NeoVim
-alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
+# alias nvim='NVIM_APPNAME="nvim-kickstart" nvim'
 
 
 # VPN

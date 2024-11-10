@@ -34,9 +34,9 @@ function activatev {
 
 function prj {
   if [[ -z $1 ]]; then
-    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf)
+    target=$(find ~/*Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf)
   else
-    target=$(find ~/Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf -q $1)
+    target=$(find ~/*Projects/ -maxdepth 2 -type d -not -name '\.*' |  fzf -q $1)
   fi;
 
   if [[ $? == 0 ]]; then
