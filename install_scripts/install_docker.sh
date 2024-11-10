@@ -1,7 +1,7 @@
 #! /bin/sh
 # Set up the repository
 sudo dnf -y install dnf-plugins-core 
-sudo dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo -y
+sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo -y
 
 # Install Docker Engine
 sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
