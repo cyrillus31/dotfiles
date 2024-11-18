@@ -19,3 +19,7 @@ alias dactyl=_dactyl
 
 # VPN
 alias vpn='_manage_vpn'
+
+
+# google-chrome
+alias fixchrome='_fix_chrome'

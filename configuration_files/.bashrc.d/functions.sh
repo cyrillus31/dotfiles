@@ -175,3 +175,10 @@ function _manage_vpn() {
   fi
   openvpn3 session-start --config $CONFIG
 }
+
+
+function _fix_chrome() {
+  for file in $HOME/.config/google-chrome/Singleton*; do
+    mv ${file} ${file}.bak
+  done
+}
