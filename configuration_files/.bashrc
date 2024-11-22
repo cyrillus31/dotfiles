@@ -28,14 +28,14 @@ unset rc
 
 
 # Config a prompt
-git_branch() {
-  local current_branch=$(git branch --show-current 2> /dev/null )
-  if [ ! -z "$current_branch" ]; then
-    echo "($current_branch)"
-  else
-    echo ""
-  fi;
-}
+# git_branch() {
+#   local current_branch=$(git branch --show-current 2> /dev/null )
+#   if [ ! -z "$current_branch" ]; then
+#     echo "($current_branch)"
+#   else
+#     echo ""
+#   fi;
+# }
 
 # export PS1="[\u@firstvds]\[\e[32m \w \[\e[91m\$(git_branch)\[\e[0m\n\$ "
 
@@ -48,7 +48,7 @@ bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
 # Default editor
-export EDITOR='/usr/bin/vi'
+export EDITOR='/usr/bin/nvim'
 export VISUAL=$EDITOR
 
 
