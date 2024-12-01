@@ -48,8 +48,13 @@ bind 'set show-all-if-ambiguous on'
 bind 'TAB:menu-complete'
 
 # Default editor
-export EDITOR='/usr/bin/nvim'
+export EDITOR='/usr/bin/vim'
 export VISUAL=$EDITOR
 
 
+# RUST && cargo
 . "$HOME/.cargo/env"
+
+
+# Task (for Taskfile.yaml)
+eval "$(task --completion bash)"
