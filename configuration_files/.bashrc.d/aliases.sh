@@ -1,4 +1,5 @@
 alias src="source ~/.bashrc && echo '~/.bashrc file was succesfully reloaded.'"
+alias open="explorer.exe"
 
 # DOCKER
 alias denter="_enter_docker"
@@ -26,4 +27,5 @@ alias wacomsetup="wacomsetup_function"
 
 
 PRIVATE=$HOME/.bashrc.d/private_aliases.sh
-if [ -f $PRIVATE ]; then surce $PRIVATE; fi;
+if [ -f $PRIVATE ]; then source $PRIVATE; fi;
+

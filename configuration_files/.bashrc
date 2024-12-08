@@ -123,7 +123,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Bash autocompletion enabled
 if [ -f /etc/bash_completion ]; then
-  . /etc/bash_completion
+  source ~/.starship_completions
 fi
 
 
