@@ -23,3 +23,7 @@ alias vpn='_manage_vpn'
 
 # google-chrome
 alias fixchrome='_fix_chrome'
+
+
+# Neovim configurations
+alias balding='NVIM_APPNAME="balding-nvim" nvim'
