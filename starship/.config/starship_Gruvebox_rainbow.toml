@@ -1,3 +1,5 @@
+# Rainbow 
+
 "$schema" = 'https://starship.rs/config-schema.json'
 
 format = """
@@ -65,7 +67,7 @@ Macos = "󰀵"
 Manjaro = ""
 Linux = "󰌽"
 Gentoo = "󰣨"
-Fedora = "󰣛"
+Fedora = "" # 󰣛
 Alpine = ""
 Amazon = ""
 Android = ""
@@ -153,7 +155,8 @@ format = '[[ $symbol( $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
 [docker_context]
 symbol = ""
 style = "bg:color_bg3"
-format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+# format = '[[ $symbol( $context) ](fg:#83a598 bg:color_bg3)]($style)'
+format = '[[ $symbol ](fg:#83a598 bg:color_bg3)]($style)'
 
 [time]
 disabled = false
