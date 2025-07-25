@@ -120,6 +120,7 @@ style = "yellow"
 symbol = "󰯫 "
 format = '[\[$symbol$output\]]($style)'
 shell = "/bin/zsh"
+ignore_timeout = true
 
 # suggested by gpt
 # command = "arc symbolic-ref --short HEAD 2>/dev/null"
