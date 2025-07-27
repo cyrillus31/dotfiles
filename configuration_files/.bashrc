@@ -120,6 +120,9 @@ export NVM_DIR="$HOME/.nvm"
 
 
 #################################### PERSONAL CONFIG KIRILL ####################################
+# GOlang
+export PATH="/home/kirill/go/bin:$PATH"
+
 
 # Bash autocompletion enabled
 if [ -f /etc/bash_completion ]; then
@@ -156,3 +159,7 @@ fi
 export VISUAL=vi
 export EDITOR=$VISUAL
 . "$HOME/.cargo/env"
+
+
+# PATH modifications
+export PATH="$HOME/.local/bin:$PATH"

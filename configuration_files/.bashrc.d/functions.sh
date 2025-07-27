@@ -62,9 +62,9 @@ function activatev {
 
 function prj {
   if [[ -z $1 ]]; then
-    target=$(find ~/Projects/ ! -name '.*' -maxdepth 1 -type d -not -name '\.*' |  fzf --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
+    target=$(find ~/*Projects/ ! -name '.*' -maxdepth 1 -type d -not -name '\.*' |  fzf --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
   else
-    target=$(find ~/Projects/ ! -name '.*' -maxdepth 1 -type d -not -name '\.*' |  fzf -q $1 --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
+    target=$(find ~/*Projects/ ! -name '.*' -maxdepth 1 -type d -not -name '\.*' |  fzf -q $1 --height=80% --reverse --border --ansi --preview='ls -a -1 {}' --preview-window=right:30%)
   fi;
 
   if [[ $? == 0 ]]; then
