@@ -19,13 +19,6 @@ LOCAL_BIN="$HOME/bin"
 mkdir $LOCAL_BIN &>/dev/null
 export PATH="$LOCAL_BIN:$PATH"
 
-ZSHRC_DIR="$HOME/.zshrc.d"
-if [[ -d $ZSHRC_DIR ]] then
-	for file in $ZSHRC_DIR/*; do
-		source $file
-	done
-fi
-
 
 # Mount ARCADIA monorepository
 ARC_DIR="$HOME/arcadia"
@@ -48,4 +41,12 @@ if ! which ya &>/dev/null ; then
 	# save token localy to avoid issues with tmux (as per documentation)
 	ya whoami --save-token  &>/dev/null
 	echo "ya linked!"
+fi
+
+# Run at the end
+ZSHRC_DIR="$HOME/.zshrc.d"
+if [[ -d $ZSHRC_DIR ]] then
+	for file in $ZSHRC_DIR/*; do
+		source $file
+	done
 fi
