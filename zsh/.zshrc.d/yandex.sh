@@ -2,7 +2,16 @@
 
 # Aliases
 # alias bpy="cd \$ARC_DIR/taxi/backend-py3/"
-alias bgo="cd \$ARC_DIR/taxi/backend-go/"
+# alias bgo="cd \$ARC_DIR/taxi/backend-go/"
+
+function bgo () {
+	backendpy3="$ARC_DIR/taxi/backend-go/" 
+	cd "$backendpy3" || true
+	service=$(find ./services/ -maxdepth 1 -d | fzf)
+	if [[ -n "$service" ]]; then
+		cd "$service" || true
+  fi
+}
 
 function bpy () {
 	backendpy3="$ARC_DIR/taxi/backend-py3/" 
