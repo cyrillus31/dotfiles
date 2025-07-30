@@ -7,7 +7,7 @@
 function bgo () {
 	backendpy3="$ARC_DIR/taxi/backend-go/" 
 	cd "$backendpy3" || true
-	service=$(find ./services/ -maxdepth 1 -d | fzf)
+	service=$(find ./taxi/client-product/services/ -maxdepth 1 -d | fzf)
 	if [[ -n "$service" ]]; then
 		cd "$service" || true
   fi
