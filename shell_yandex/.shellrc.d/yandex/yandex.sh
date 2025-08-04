@@ -1,8 +1,27 @@
 #!/bin/bash
 
-# Aliases
-# alias bpy="cd \$ARC_DIR/taxi/backend-py3/"
-# alias bgo="cd \$ARC_DIR/taxi/backend-go/"
+# Mount ARCADIA monorepository
+ARC_DIR="$HOME/arcadia"
+if [[ ! "$(ls -A "$ARC_DIR")" ]]; then
+	echo "Mounting arcadia..."
+	arc mount "$ARC_DIR"
+	echo "Arcadia mounted"
+fi
+
+# Setup ya 
+if ! which ya &>/dev/null ; then
+	echo "Linking ya..."
+	# Recommended option 1
+	rm -f "$LOCAL_BIN/ya" &>/dev/null || true
+	ln -s "$ARC_DIR/ya"  "$LOCAL_BIN/ya"
+
+	# Recommended option 2
+	# alias ya="$ARC_DIR/arcadia/ya"
+
+	# save token localy to avoid issues with tmux (as per documentation)
+	ya whoami --save-token  &>/dev/null
+	echo "ya linked!"
+fi
 
 function bgo () {
 	backendpy3="$ARC_DIR/taxi/backend-go/" 
@@ -52,3 +71,4 @@ function yandex_create_pyright_config () {
 
 	unset CONFIG_DIR
 }
+
