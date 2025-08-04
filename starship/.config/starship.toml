@@ -14,7 +14,7 @@ ${custom.arcadia}\
 $arcadia\
 $python\
 $golang\
-$fill\
+ $fill\
 $cmd_duration\
 $time
 [╰──$character](blue)"""
@@ -24,7 +24,7 @@ $time
 [directory]
 format = '[\[󰝰 $path\]]($style)'
 style = "blue"
-truncation_length = 1
+truncation_length = 2
 truncation_symbol = "…/"
 
 [character]
@@ -59,9 +59,9 @@ format = '\([$state($progress_current/$progress_total)]($style)\)'
 style = "bright-black"
 
 [cmd_duration]
+style = "bright-blue"
 format = '[\[$duration\]]($style)'
 # style = "yellow"
-style = "bright-blue"
 
 [python]
 symbol = ""
