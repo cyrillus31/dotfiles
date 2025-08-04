@@ -12,9 +12,10 @@ $git_state\
 $git_status\
 ${custom.arcadia}\
 $arcadia\
-$cmd_duration\
 $python\
+$golang\
 $fill\
+$cmd_duration\
 $time
 $character"""
 
@@ -54,18 +55,25 @@ format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
 # stashed = "≡"
 
 [git_state]
-format = '\([$state( $progress_current/$progress_total)]($style)\) '
+format = '\([$state($progress_current/$progress_total)]($style)\)'
 style = "bright-black"
 
 [cmd_duration]
-format = "[$duration]($style) "
-style = "yellow"
+format = '[\[$duration\]]($style)'
+# style = "yellow"
+style = "bright-blue"
 
 [python]
 symbol = ""
 format = '[\[$symbol $virtualenv\]]($style)'
 # style = "bright-black"
 style = "green"
+
+[golang]
+symbol = ''
+# symbol = '󰟓 '
+style = "bold cyan"
+format = '[\[$symbol $version\]]($style)'
 
 [fill]
 disabled = false
