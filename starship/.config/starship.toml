@@ -14,7 +14,7 @@ ${custom.arcadia}\
 $arcadia\
 $python\
 $golang\
- $fill\
+$fill\
 $cmd_duration\
 $time
 [╰──$character](blue)"""
