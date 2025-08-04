@@ -3,7 +3,7 @@
 # Installation: starship preset pure-preset -o ~/.config/starship.toml
 
 format = """
-$os\
+[╭─ $os](blue)\
 $username\
 $hostname\
 $directory\
@@ -17,7 +17,7 @@ $golang\
 $fill\
 $cmd_duration\
 $time
-$character"""
+[╰──$character](blue)"""
 
 # $line_break\
 
@@ -28,7 +28,7 @@ truncation_length = 1
 truncation_symbol = "…/"
 
 [character]
-success_symbol = "[❯](purple)"
+success_symbol = "[❯](blue)"
 error_symbol = "[❯](red)"
 vimcmd_symbol = "[❮](green)"
 
@@ -77,8 +77,9 @@ format = '[\[$symbol $version\]]($style)'
 
 [fill]
 disabled = false
-symbol = " "
-style = "fg:color_yellow"
+# symbol = " "
+symbol = '─'
+style = "blue"
 
 [time]
 disabled = false
