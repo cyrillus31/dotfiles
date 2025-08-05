@@ -1,9 +1,19 @@
 #!/bin/bash
 
+# Helper function to modify the PATH
+function append_path() {
+  case ":$PATH:" in
+    *:"$1":*) :;; # already in PATH, do nothing
+    *) export PATH="${PATH:+"$PATH:"}$1";;
+  esac
+}
+
 # Setup personal bin
 LOCAL_BIN="$HOME/bin"
 mkdir "$LOCAL_BIN" &>/dev/null
-export PATH="$LOCAL_BIN:$PATH"
+append_path "$LOCAL_BIN"
+
+
 
 # Common setup
 ZSHRC_DIR="$HOME/.shellrc.d"
