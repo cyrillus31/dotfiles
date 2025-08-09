@@ -1,50 +1,49 @@
-.PHONY: fedora
-fedora: common shell_bash_fedora
+# Define the targets that correspond to directories
+STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim zsh private_files
 
-.PHONY: macbook
-macbook: common zsh aerospace
+# Define groups of configurations
+COMMON_TARGETS := shell starship tmux vim kitty
+FEDORA_TARGETS := common shell_bash_fedora
+MACBOOK_TARGETS := common zsh aerospace
+YANDEX_MACBOOK_TARGETS := macbook shell_yandex
 
-.PHONY: yandex_macbook
-yandex_macbook: macbook shell_yandex
+# Default target when running just 'make'
+.PHONY: default
+default:
+	@echo "Please specify a target: fedora, macbook, yandex_macbook, or a specific config"
+	@echo "Available configs: $(STOW_DIRS)"
 
-.PHONY: private_files
-private_files: 
-	stow -R private_files
+# Define phony targets to avoid conflicts with directory names
+.PHONY: $(STOW_DIRS) common fedora macbook yandex_macbook backup all
 
-.PHONY: shell starship tmux vim kitty
-common: shell starship tmux vim kitty
+# Rule for all stow directories - automatically generated
+$(STOW_DIRS):
+	stow -R $@
 
-.PHONY: backup aerospace iterm2 kitty shell_bash_fedora shell_yandex zsh 
+# Special case for backup which uses a script
 backup:
 	./backup.sh
 
-aerospace:
-	stow -R aerospace
+# Meta targets
+common: $(COMMON_TARGETS)
 
-iterm2:
-	stow -R iterm2
+fedora: $(FEDORA_TARGETS)
 
-kitty:
-	stow -R kitty
+macbook: $(MACBOOK_TARGETS)
 
-shell:
-	stow -R shell
+yandex_macbook: $(YANDEX_MACBOOK_TARGETS)
 
-shell_bash_fedora:
-	stow -R shell_bash_fedora
+# Install everything
+all: $(STOW_DIRS)
 
-shell_yandex:
-	stow -R shell_yandex
-
-starship:
-	stow -R starship
-
-tmux:
-	stow -R tmux
-
-vim:
-	stow -R vim
-
-zsh:
-	stow -R zsh
-
+# Show help
+.PHONY: help
+help:
+	@echo "Available targets:"
+	@echo "  fedora          - Setup for Fedora ($(FEDORA_TARGETS))"
+	@echo "  macbook         - Setup for MacBook ($(MACBOOK_TARGETS))"
+	@echo "  yandex_macbook  - Setup for Yandex MacBook ($(YANDEX_MACBOOK_TARGETS))"
+	@echo "  common          - Common configurations ($(COMMON_TARGETS))"
+	@echo "  all             - Install everything"
+	@echo "  backup          - Run backup script"
+	@echo "Individual configs: $(STOW_DIRS)"
