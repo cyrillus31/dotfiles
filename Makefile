@@ -7,6 +7,10 @@ macbook: common zsh aerospace
 .PHONY: yandex_macbook
 yandex_macbook: macbook shell_yandex
 
+.PHONY: private_files
+private_files: 
+	stow -R private_files
+
 .PHONY: shell starship tmux vim kitty
 common: shell starship tmux vim kitty
 
