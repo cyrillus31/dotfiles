@@ -6,20 +6,20 @@ ___
 
 
 ## Usage:
-Backup some files
-```shell
-source backup.sh
-```
 
-Backup some files
-```shell
-source backup.sh
-```
 
-Stow everything
-```shell
-source run.sh
-```
+### Makefile targets:
+- fedora
+- macbook
+- yandex_macbook
+- common
+- backup (to backup *some* shell related files)
+- all
+- help
+
 
 ## Todo:
-- Implement various profiles to exclude certain packages from stowing.
+- [x] Implement various profiles to exclude certain packages from stowing.
+- [ ] CLI app
+- [ ] Distribute with Stow included
+- [ ] GUI
