@@ -58,7 +58,7 @@ function yandex_create_taxi_corp_python_env () {
 }
 
 function yandex_create_pyright_config () {
-	read -p "Are you in the root of the project? y/n: " answer 
+	read -r -p "Are you in the root of the project? y/n: " answer 
 
 	if [[ ! $answer == "y" ]]; then
 		return 1
@@ -72,3 +72,14 @@ function yandex_create_pyright_config () {
 	unset CONFIG_DIR
 }
 
+function yandex_pyright () {
+	PYRIGHT_FILEPATH="$VIRTUAL_ENV/pyrightconfig.json" 
+	if [[ ! -f "$PYRIGHT_FILEPATH" ]]; then 
+		echo "Virtual environment is not active" >&2; 
+		return 1; 
+	fi;
+
+	cp "$PYRIGHT_FILEPATH" "$(pwd)";
+
+	echo "pyrightconfig.json file copied from the VIRTUAL_ENV"
+}
