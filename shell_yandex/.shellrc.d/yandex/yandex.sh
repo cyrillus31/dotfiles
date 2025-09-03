@@ -88,3 +88,25 @@ function branches () {
 	branch=$(arc branch | sed 's/[ \*]//g' | fzf --reverse)
 	[ ! -z "$branch" ] && arc checkout "$branch" || echo "Branch was not picked"
 }
+
+function yandex_pssh () {
+	help_message=$(cat << _EOF_
+Usage example:
+yandex_pssh [-h, AVAILABLE_DATABASE]
+
+AVAILABLE DATABASES ON TESTING:
+1) corp_clients
+_EOF_
+)
+
+	if [[ $1 == '-h' || $1 == '--help' ]]; then
+		echo "$help_message"
+		return 0
+	elif [[ $1 == 'corp_clients' ]]; then 
+		pssh db mongo -C mdb2qa0938nfba6p2dr3 corp_clients
+	else
+		echo "$help_message"
+		return 0
+	fi
+
+}
