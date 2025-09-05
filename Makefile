@@ -20,6 +20,10 @@ default:
 $(STOW_DIRS):
 	stow -R $@
 
+# Rule for unstowing all directories
+unstow:
+	stow -D $(STOW_DIRS)
+
 # Special case for backup which uses a script
 backup:
 	./backup.sh
