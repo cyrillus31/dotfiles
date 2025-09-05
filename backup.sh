@@ -20,3 +20,7 @@ create_backup "$HOME/.bashrc.d";
 create_backup "$HOME/.profile";
 
 create_backup "$HOME/.config/starship.toml";
+create_backup "$HOME/.config/starship.toml";
+
+create_backup "$HOME/.tmux.conf";
+create_backup "$HOME/.vimrc";
