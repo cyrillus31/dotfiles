@@ -1,9 +1,20 @@
 #!/bin/bash
 
-(mv "$HOME/.zshrc" "$HOME/.zshrc.bak" && echo ".zshrc.bak created") 2>/dev/null  || true
-(mv "$HOME/.zshrc.d" "$HOME/.zshrc.d.bak" && echo ".zhsrc.d.bak created") 2>/dev/null || true
-(mv "$HOME/.zprofile" "$HOME/.zprofile.bak" && echo ".zprofile.bak created") 2>/dev/null  || true
+function create_backup () {
+  if [[ -f $1 ]]; then 
+    d="$(date +'_%Y-%m-%d_%H-%M')"
+    mv  "$1"{,$d.bak} && \
+    echo "Backup file '$1$d.bak' was created" >&/dev/null || \
+    echo "Something went wrong with file '$1'!"
+  else
+    echo "File '$1' doesn't exist"
+  fi
+}
 
-(mv "$HOME/.bashrc" "$HOME/.bashrc.bak" && echo ".bashrc.bak created") 2>/dev/null  || true
-(mv "$HOME/.bashrc.d" "$HOME/.bashrc.d.bak" && echo ".bashrc.d.bak created") 2>/dev/null  || true
-(mv "$HOME/.profile" "$HOME/.profile.bak" && echo ".profile.bak created") 2>/dev/null || true
+create_backup "$HOME/.zshrc";
+create_backup "$HOME/.zshrc.d";
+create_backup "$HOME/.zprofile";
+
+create_backup "$HOME/.bashrc";
+create_backup "$HOME/.bashrc.d";
+create_backup "$HOME/.profile";
