@@ -3,8 +3,8 @@
 function create_backup () {
   if [[ -f $1 ]]; then 
     d="$(date +'_%Y-%m-%d_%H-%M')"
-    mv  "$1"{,$d.bak} && \
-    echo "Backup file '$1$d.bak' was created" >&/dev/null || \
+    mv  "$1"{,$d.bak} >&/dev/null && \
+    echo "Backup file '$1$d.dotfiles.bak' was created" || \
     echo "Something went wrong with file '$1'!"
   else
     echo "File '$1' doesn't exist"
@@ -18,3 +18,5 @@ create_backup "$HOME/.zprofile";
 create_backup "$HOME/.bashrc";
 create_backup "$HOME/.bashrc.d";
 create_backup "$HOME/.profile";
+
+create_backup "$HOME/.config/starship.toml";
