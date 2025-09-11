@@ -1,9 +1,13 @@
+# NOTE: to add a new stow target:
+# 1) add the directory to STOW_DIRS
+# 2) add the directory to the required group of configurations below (e.g. COMMON_TARGETS)
+
 # Define the targets that correspond to directories
-STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim zsh private_files
+STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim zsh private_files rustyvibes
 
 # Define groups of configurations
-COMMON_TARGETS := shell starship tmux vim kitty
-FEDORA_TARGETS := common shell_bash_fedora
+COMMON_TARGETS := shell starship tmux vim kitty rustyvibes
+FEDORA_TARGETS := common shell_bash_fedor
 MACBOOK_TARGETS := common zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
 CURRENT_PROFILE := .dotfiles-current-profile
@@ -15,12 +19,11 @@ default:
 	@echo "Please specify a target: fedora, macbook, yandex_macbook, or a specific config"
 	@echo "Available configs: $(STOW_DIRS)"
 
-.PHONY: update update_fail
 update:
-	@$(MAKE) $(shell cat .dotfiles-current-profile 2&>/dev/null || echo "update_fail")
+	@$(MAKE) $(shell cat $(CURRENT_PROFILE) || echo "update_fail")
 
 update_fail:
-	@echo "'.dotfiles-current-profile' file doesn't exist"
+	@echo "'$(CURRENT_PROFILE)' file doesn't exist"
 
 # Define phony targets to avoid conflicts with directory names
 .PHONY: $(STOW_DIRS) common fedora macbook yandex_macbook backup all
