@@ -60,6 +60,7 @@ all: $(STOW_DIRS)
 .PHONY: help
 help:
 	@echo "Available targets:"
+	@echo "  update          - Re-stow files as per last target picked (stored in $(CURRENT_PROFILE))"
 	@echo "  fedora          - Setup for Fedora ($(FEDORA_TARGETS))"
 	@echo "  macbook         - Setup for MacBook ($(MACBOOK_TARGETS))"
 	@echo "  yandex_macbook  - Setup for Yandex MacBook ($(YANDEX_MACBOOK_TARGETS))"
