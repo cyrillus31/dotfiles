@@ -77,6 +77,7 @@ CentOS = ""
 Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
+Kali = " "
 
 [username]
 show_always = false 
