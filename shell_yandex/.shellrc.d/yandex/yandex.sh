@@ -110,3 +110,17 @@ _EOF_
 	fi
 
 }
+
+function yatools () {
+	commandslist=$(
+		cat <<-_EOF_
+		ya make -ttt	#tests
+		ya tool tt test -vv --auto-env -F -R services/corp-clients	#tests
+		ya tool tt format .	#formatting
+		make smart-format	#formatting 
+		make update	#build
+		_EOF_
+	)
+
+	echo "$commandslist" | fzf --delimiter=$'\t' --with-nth=1 # --nth=2 # --nth=3
+}
