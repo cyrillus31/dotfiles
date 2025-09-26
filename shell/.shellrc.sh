@@ -13,6 +13,8 @@ LOCAL_BIN="$HOME/bin"
 mkdir "$LOCAL_BIN" &>/dev/null
 append_path "$LOCAL_BIN"
 
+# Setup golang path
+append_path "/usr/local/go/bin"
 
 
 # Common setup
