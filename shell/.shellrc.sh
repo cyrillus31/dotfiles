@@ -16,6 +16,8 @@ append_path "$LOCAL_BIN"
 # Setup golang path
 append_path "/usr/local/go/bin"
 
+# Setup cargo path
+append_path "$HOME/.cargo/bin"
 
 # Common setup
 SHRC_DIR="$HOME/.shellrc.d"
