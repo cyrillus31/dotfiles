@@ -1,0 +1,5 @@
+[pre-commit-hook ""]
+		formatting-check = /Users/kfedtsov/pre-commit-hooks/formatting.sh
+
+[pre-commit-hook "taxi/backend-go"]
+    goliath-backend-go-hook-check-style = taxi/backend-go/scripts/arc-hook-formatters.sh
