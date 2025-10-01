@@ -6,16 +6,17 @@ function run_formatters {
     # if [[ -n "${files_to_commit}" ]]; then
     #     echo "${files_to_commit}" | xargs arc add
     # fi
-		ya tool tt format "$HOME/arcadia/taxi"
+		# ya tool tt format "$HOME/arcadia/taxi"
+		ya tool tt format -s true
 }
 
 
 run_formatters
 
 function main {
-    echo >&2 -n "Running arc-hook-formatters checks... "
+    echo >&2 "'Ya tool tt fromat -s true' runs"
     run_formatters
-    echo >&2 -e "\narc-hook-formatters have finished"
+    echo >&2 "Formatting completed"
 }
 
 
