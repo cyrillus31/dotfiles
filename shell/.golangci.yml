@@ -1,0 +1,31 @@
+version: "2"
+linters:
+    enable:
+        - govet
+        - staticcheck
+        - errcheck
+        - unused
+        - wsl_v5 # add/remove linters you want!
+
+run:
+    timeout: 5m
+
+# exclusions:
+#     generated: lax
+#     presets:
+#         - comments
+#         - common-false-positives
+#         - legacy
+#         - std-error-handling
+#     paths:
+#         - third_party$
+#         - builtin$
+#         - examples$
+
+formatters:
+    exclusions:
+        generated: lax
+        paths:
+            - third_party$
+            - builtin$
+            - examples$
