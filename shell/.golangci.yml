@@ -5,11 +5,21 @@ linters:
         - staticcheck
         - errcheck
         - unused
-        - wsl_v5 # add/remove linters you want!
+        - wsl_v5 # white space linter
+        - cyclop # cyclomatic complexity
+        - ineffassign # detects ineffectual assignments
+        - gocritic # highly opinionated go linter
+        - exhaustive # exhaustive switch cases
+        - nlreturn # newline before return & branches
+        - lll # long lines linter
+        - importas # check for import aliases (closest to importcheck)
+        - errorlint # error wrapping/fmt.Errorf checks
+        - predeclared # shadowing predeclared identifiers
+        - testifylint # for testify usage
+        - forbidigo # forbid fmt.Print, etc
 
 run:
     timeout: 5m
-
 # exclusions:
 #     generated: lax
 #     presets:
@@ -21,11 +31,12 @@ run:
 #         - third_party$
 #         - builtin$
 #         - examples$
+#
+# formatters:
+#     exclusions:
+#         generated: lax
+#         paths:
+#             - third_party$
+#             - builtin$
+#             - examples$
 
-formatters:
-    exclusions:
-        generated: lax
-        paths:
-            - third_party$
-            - builtin$
-            - examples$
