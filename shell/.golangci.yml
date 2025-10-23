@@ -19,6 +19,10 @@ linters:
         - testifylint # for testify usage
         - forbidigo # forbid fmt.Print, etc
     settings:
+        nlreturn:
+            # Size of the block (including return statement that is still "OK"),
+            # so no return split required.
+            block-size: 1
         wsl_v5:
             # Allow cuddling a variable if it's used first in the immediate following block,
             # even if the statement with the block doesn't use the variable.
