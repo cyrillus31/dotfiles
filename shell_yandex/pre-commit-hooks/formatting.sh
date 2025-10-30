@@ -8,13 +8,15 @@ function run_formatters {
     # fi
 		# ya tool tt format "$HOME/arcadia/taxi"
 		ya tool tt format -s true
+		# ya test --style
+		return $?
 }
 
 
 run_formatters
 
 function main {
-    echo >&2 "'Ya tool tt fromat -s true' runs"
+    echo >&2 "'Ya tool tt format -s true' runs"
     run_formatters
     echo >&2 "Formatting completed"
 }
