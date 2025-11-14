@@ -119,8 +119,11 @@ function yatools () {
 		ya tool tt format .	#formatting
 		make smart-format	#formatting 
 		make update	#build
+		ya test -F "*by_corp*" -v --regular-tests --test-log-level debug  #tests    
+		ya test --style #test #formatting
 		_EOF_
 	)
 
-	echo "$commandslist" | fzf --delimiter=$'\t' --with-nth=1 # --nth=2 # --nth=3
+	# echo "$commandslist" | fzf | sed 's/[ \t]*#//' | vim -
+	echo "$commandslist" | fzf | sed 's/[ \t]*#//'
 }
