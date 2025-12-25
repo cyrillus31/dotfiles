@@ -1,4 +1,7 @@
-fastfetch
+# Run only on startup
+if [[ -o login ]]; then
+	fastfetch
+fi
 
 # Rust
 cargo_env="$HOME/.cargo/env"
