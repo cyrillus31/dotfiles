@@ -3,12 +3,12 @@
 # 2) add the directory to the required group of configurations below (e.g. COMMON_TARGETS)
 
 # Define the targets that correspond to directories
-STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim zsh private_files rustyvibes
+STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim shell_zsh private_files rustyvibes
 
 # Define groups of configurations
 COMMON_TARGETS := shell starship tmux vim kitty rustyvibes
 FEDORA_TARGETS := common shell_bash_fedor
-MACBOOK_TARGETS := common zsh aerospace
+MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
 CURRENT_PROFILE := .dotfiles-current-profile
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+fastfetch
 
 # Setup Rust and Cargo
 cargopath="$HOME/.cargo"
