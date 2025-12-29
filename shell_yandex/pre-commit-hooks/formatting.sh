@@ -7,16 +7,16 @@ function run_formatters {
     #     echo "${files_to_commit}" | xargs arc add
     # fi
 		# ya tool tt format "$HOME/arcadia/taxi"
-		ya tool tt format -s true
+		# ya tool tt format -s true
 		# ya test --style
+		
+		ya style
 		return $?
 }
 
 
-run_formatters
-
 function main {
-    echo >&2 "'Ya tool tt format -s true' runs"
+    echo >&2 "'ya style' started"
     run_formatters
     echo >&2 "Formatting completed"
 }
