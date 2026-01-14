@@ -32,7 +32,7 @@ get_current_theme() {
     if [[ -L "$ACTIVE_THEME" ]]; then
         basename "$(readlink "$ACTIVE_THEME")" | sed 's/\.toml$//'
     elif [[ -f "$ACTIVE_THEME" ]]; then
-        echo "custom/unknown"
+        echo "unknown"
     else
         echo "none"
     fi
@@ -47,7 +47,6 @@ select_theme() {
         --preview "cat ${THEMES_DIR}/{}.toml | head -20" \
         --preview-window=right:50% \
         --header "Current theme: $current" \
-        --header-lines=1 \
         --height=50% \
         --reverse)
     
@@ -69,11 +68,21 @@ apply_theme() {
         exit 1
     fi
     
-    # Copy theme file to starship.toml
-    cp "$theme_file" "$ACTIVE_THEME"
+    # Remove old symlink/file if it exists
+    if [[ -e "$ACTIVE_THEME" ]] || [[ -L "$ACTIVE_THEME" ]]; then
+        rm "$ACTIVE_THEME"
+    fi
+    
+    # Create symlink to selected theme
+    ln -s "${THEMES_DIR}/${theme}.toml" "$ACTIVE_THEME"
     
     echo "✓ Switched to theme: $theme"
-    echo "Starship will reload on your next prompt."
+    echo ""
+    echo "Starting a new shell to apply the theme..."
+    echo ""
+    
+    # Start a new shell to avoid prompt conflicts
+    exec $SHELL
 }
 
 # Main execution

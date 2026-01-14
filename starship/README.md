@@ -46,8 +46,10 @@ Run the theme switcher to browse and select themes:
 This will:
 1. Display an interactive fzf menu with all available themes
 2. Show a preview of the first 20 lines of each theme configuration
-3. Switch to your selected theme immediately
-4. Update `starship.toml` with the selected theme
+3. Switch to your selected theme
+4. Start a new shell to cleanly apply the theme
+
+The new shell prevents prompt rendering conflicts and ensures fzf keybindings work correctly after theme changes.
 
 ### Requirements
 
@@ -81,10 +83,11 @@ To create a new theme:
 ## How It Works
 
 - **Theme files** in `starship-themes/` are committed to git (shared across machines)
-- **Active theme file** (`starship.toml`) is updated by the switcher and **NOT committed** (local preference)
-- Each time you run the switcher, it copies your selected theme to `starship.toml`
+- **Active theme symlink** (`starship.toml`) points to selected theme and is **NOT committed** (local preference)
+- Each time you run the switcher, it updates the symlink to point to your selected theme
 - Starship automatically loads the active config on the next prompt
 - Fresh machines will use whatever theme was last set (local to that machine)
+- Using symlinks avoids config conflicts when switching themes
 
 ## Notes
 
