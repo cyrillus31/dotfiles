@@ -8,6 +8,7 @@ alias update="ya project update gen"
 alias check="ya tool tt check"
 alias yatest="ya test"
 alias style="ya test --style"
+alias tars="ya tool tars"
 
 
 # DEPRECATED FOR NOW
