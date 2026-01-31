@@ -5,7 +5,7 @@ linters:
         - staticcheck
         - errcheck
         - unused
-        - wsl
+        # - wsl
         - wsl_v5 # white space linter
         - cyclop # cyclomatic complexity
         - ineffassign # detects ineffectual assignments

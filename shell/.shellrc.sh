@@ -15,6 +15,7 @@ append_path "$LOCAL_BIN"
 
 # Setup golang path
 append_path "/usr/local/go/bin"
+append_path "$HOME/go/bin"
 
 # Setup cargo path
 append_path "$HOME/.cargo/bin"
