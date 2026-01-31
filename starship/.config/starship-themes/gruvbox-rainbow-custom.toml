@@ -120,10 +120,24 @@ style = "bright-black"
 style = "bg:color_aqua"
 format = '[[($all_status$ahead_behind )](fg:color_fg0 bg:color_aqua)]($style)'
 
+[golang]
+symbol = ""
+style = "bg:color_blue"
+format = '[[ $symbol ](fg:color_fg0 bg:color_blue)]($style)'
+# format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+
+[python]
+symbol = ""
+style = "bg:color_blue"
+# format = '[[ $symbol( $version $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol( $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
+
 [nodejs]
+disabled = true
 symbol = ""
 style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
+format = '[[ $symbol ](fg:color_fg0 bg:color_blue)]($style)'
+# format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [c]
 symbol = " "
@@ -135,10 +149,6 @@ symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
-[golang]
-symbol = ""
-style = "bg:color_blue"
-format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [php]
 symbol = ""
@@ -159,12 +169,6 @@ format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
 symbol = ""
 style = "bg:color_blue"
 format = '[[ $symbol( $version) ](fg:color_fg0 bg:color_blue)]($style)'
-
-[python]
-symbol = ""
-style = "bg:color_blue"
-# format = '[[ $symbol( $version $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
-format = '[[ $symbol( $virtualenv) ](fg:color_fg0 bg:color_blue)]($style)'
 
 [docker_context]
 symbol = ""
