@@ -2,12 +2,11 @@
 AGENTS.md
 agents.md
 opencode.json
+session*.md
 
 # Golang
 .golangci.yaml
 .golangci.yml
 
-
 # Auxiliary
 *bak2
-
