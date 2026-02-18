@@ -119,7 +119,15 @@ branch=$(arc branch | sed -n "s/^\* //p")
 if [[ -z $branch ]]; then
 	branch="DETACHED_HEAD"
 fi
-echo $branch
+
+# Add status indicator
+if arc status --short | grep -q .; then
+  indicator="✗"
+else
+  indicator="✓"
+fi
+
+echo "${branch} ${indicator}"
 '''
 when = "arc user-info"
 # when = "arc rev-parse --is-inside-work-tree > /dev/null 2>&1"
