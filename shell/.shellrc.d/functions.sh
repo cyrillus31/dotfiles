@@ -73,5 +73,39 @@ function prjfzf {
   nvim .
 }
 
+# VCS abstraction: list of supported version control systems (in priority order)
+declare -a VCS_SYSTEMS=("git" "arc")
+
+# Helper function to detect available VCS in current directory
+_get_vcs() {
+	local vcs
+	for vcs in "${VCS_SYSTEMS[@]}"; do
+		if $vcs status >/dev/null 2>&1; then
+			echo "$vcs"
+			return 0
+		fi
+	done
+	return 1
+}
+
+# Generic branches function: works with any VCS that has the same interface
+function branches () {
+	local vcs
+	vcs=$(_get_vcs)
+	
+	if [[ -z "$vcs" ]]; then
+		echo "Error: Not a git or arc repository" >&2
+		return 1
+	fi
+	
+	local branch
+	branch=$($vcs branch | sed 's/[ \*]//g' | fzf --reverse)
+	
+	if [[ -n "$branch" ]]; then
+		$vcs checkout "$branch"
+	else
+		echo "Branch was not picked"
+	fi
+}
 
 

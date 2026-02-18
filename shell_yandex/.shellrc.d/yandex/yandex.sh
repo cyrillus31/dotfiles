@@ -84,11 +84,6 @@ function yandex_pyright () {
 	echo "pyrightconfig.json file copied from the VIRTUAL_ENV"
 }
 
-function branches () {
-	branch=$(arc branch | sed 's/[ \*]//g' | fzf --reverse)
-	[ ! -z "$branch" ] && arc checkout "$branch" || echo "Branch was not picked"
-}
-
 function yandex_pssh () {
 	help_message=$(cat << _EOF_
 Usage example:
