@@ -1,0 +1,1296 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "arcanum-mcp": {
+      "type": "local",
+      "command": [
+        "~/arcadia/devtools/mcp/bin/devtools-mcp",
+        "--arcadia",
+        "~/arcadia"
+      ],
+      "environment": {
+        "ARC_OAUTH_TOKEN": "y1__xCJ9eeRpdT-ARjEQSD2xOYCR3E9Xg1jJ0vZyJGRtQxz8TJWZpY",
+        "TMS_OAUTH_TOKEN": "y1__xCJ9eeRpdT-ARjfaCDP-ZIDKkM6KROhPEoWObj5W8_ZO2ZGruI",
+        "CI_OAUTH_TOKEN": "y1__xCJ9eeRpdT-ARj9PiDb-ZIDhjfl4jgw432vSM3yXXKH6cC1AYE" 
+      },
+      "enabled": false
+    },
+    "intrasearch": {
+      "type": "local",
+      "command": [
+        "~/arcadia/ml/infra/model_context_protocol/tools/proxy_client/proxy_client",
+        "-F",
+        "~/.mcp_store/oauth_token",
+        "--endpoint",
+        "mcp.yandex.net/ws?servers=intrasearch"
+      ],
+      "enabled": false
+    },
+    "tracker": {
+      "type": "local",
+      "command": [
+        "~/arcadia/ml/infra/model_context_protocol/tools/proxy_client/proxy_client",
+        "-F",
+        "~/.mcp_store/oauth_token",
+        "--endpoint",
+        "mcp.yandex.net/ws?servers=tracker_mcp"
+      ],
+      "enabled": false
+    }
+  },
+  "lsp": {
+    "gopls": {
+      "command": ["ya", "tool", "gopls", "serve"],
+      "extensions": [".go"],
+      "disabled": true
+    }
+  },
+  "provider": {
+    "internal-qwen-vl": {
+      "name": "Elizainternal-qwen-vl",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "qwen3-vl-235b": {
+          "name": "qwen3-vl-235b",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "moonshotai/kimi-dev-72b": {
+          "name": "test-moonshotai/kimi-dev-72b",
+          "cost": {
+            "input": 2.9E-7,
+            "output": 0.00000115
+          }
+        },
+        "google/gemini-3-pro-image-preview": {
+          "name": "google/gemini-3-pro-image-preview",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000012
+          }
+        },
+        "yandex_vlm_pro_tgbot": {
+          "name": "yandex_vlm_pro_tgbot"
+        },
+        "deepseek/deepseek-v3.1-terminus": {
+          "name": "openrouter/deepseek/deepseek-v3.1-terminus",
+          "cost": {
+            "input": 2.3E-7,
+            "output": 9E-7
+          }
+        },
+        "gigachat-702b-a36b-preview": {
+          "name": "gigachat-702b-a36b-preview",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "kimi-k2-thinking": {
+          "name": "kimi-k2-thinking",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "google/gemini-2.5-flash-image-preview": {
+          "name": "google/gemini-2.5-flash-image-preview",
+          "cost": {
+            "input": 3E-7,
+            "output": 0.0000025
+          }
+        },
+        "gigachat-10b-a1.8b": {
+          "name": "gigachat-10b-a1.8b",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        }
+      }
+    },
+    "qwen": {
+      "name": "Elizaqwen",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw//alibaba/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "qwen3-omni-flash": {
+          "name": "qwen3-omni-flash",
+          "cost": {
+            "input": 4.3E-7,
+            "output": 0.00000166
+          }
+        },
+        "qwen3-coder-480b-a35b-instruct": {
+          "name": "qwen3-Coder-480b",
+          "cost": {
+            "input": 0.0000027,
+            "output": 0.0000135
+          }
+        },
+        "qwen-mt-turbo": {
+          "name": "qwen-mt-turbo",
+          "cost": {
+            "input": 1.6E-7,
+            "output": 4.9E-7
+          }
+        },
+        "qwen3-vl-235b-a22b-thinking": {
+          "name": "qwen3-vl-thinking",
+          "cost": {
+            "input": 7E-7,
+            "output": 0.0000084
+          }
+        },
+        "qwen3-vl-plus-2025-09-23": {
+          "name": "qwen3-vl",
+          "cost": {
+            "input": 3E-7,
+            "output": 0.0000024
+          }
+        },
+        "qwen3-vl-235b-a22b-instruct": {
+          "name": "qwen3-vl-instruct",
+          "cost": {
+            "input": 7E-7,
+            "output": 0.0000028
+          }
+        },
+        "qwen3-max-2025-09-23": {
+          "name": "qwen-max",
+          "cost": {
+            "input": 0.0000016,
+            "output": 0.0000064
+          }
+        },
+        "qwen-vl-ocr": {
+          "name": "qwen-vl-ocr"
+        },
+        "qwen-mt-plus": {
+          "name": "qwen-mt-plus",
+          "cost": {
+            "input": 0.00000246,
+            "output": 0.00000737
+          }
+        }
+      }
+    },
+    "claude": {
+      "name": "Elizaclaude",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/anthropic/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "claude-opus-4-20250514": {
+          "name": "claude-opus-4-0",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.000075
+          }
+        },
+        "claude-haiku-4-5-20251001": {
+          "name": "claude-haiku-4-5",
+          "cost": {
+            "input": 0.000001,
+            "output": 0.000005
+          }
+        },
+        "claude-3-opus-20240229": {
+          "name": "claude-3-opus-latest",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.000075
+          }
+        },
+        "claude-3-5-sonnet-20240620": {
+          "name": "claude-3-5-sonnet-latest",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        },
+        "claude-3-5-haiku-20241022": {
+          "name": "claude-3-5-haiku-latest",
+          "cost": {
+            "input": 8E-7,
+            "output": 0.000004
+          }
+        },
+        "claude-opus-4-5-20251101": {
+          "name": "claude-opus-4-5",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.000025
+          }
+        },
+        "claude-sonnet-4-5-20250929": {
+          "name": "claude-sonnet-4-5-20250929",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        },
+        "claude-3-7-sonnet-20250219": {
+          "name": "claude-3-7-sonnet-latest",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        },
+        "claude-3-haiku-20240307": {
+          "name": "claude-3-haiku-20240307",
+          "cost": {
+            "input": 2.5E-7,
+            "output": 0.00000125
+          }
+        },
+        "claude-sonnet-4-20250514": {
+          "name": "claude-sonnet-4-0",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        }
+      }
+    },
+    "cohere": {
+      "name": "Elizacohere",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/cohere/v2/chat",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "command-r7b-12-2024": {
+          "name": "command-r7b-12-2024",
+          "cost": {
+            "input": 3.75E-8,
+            "output": 1.5E-7
+          }
+        },
+        "command-r-plus": {
+          "name": "command-r-plus",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        },
+        "command-r": {
+          "name": "command-r",
+          "cost": {
+            "input": 5E-7,
+            "output": 0.0000015
+          }
+        },
+        "command-r-plus-08-2024": {
+          "name": "command-r-plus-08-2024",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "command-r-08-2024": {
+          "name": "command-r-08-2024",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 6E-7
+          }
+        }
+      }
+    },
+    "midjourney": {
+      "name": "Elizamidjourney",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/imaginepro/v1/nova/imagine",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "imaginepro/midjourney": {
+          "name": "imaginepro/midjourney"
+        },
+        "midjourney-v7": {
+          "name": "midjourney-v7"
+        }
+      }
+    },
+    "deepseek": {
+      "name": "Elizadeepseek",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/together/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "deepseek-ai/deepseek-v3.1": {
+          "name": "deepseek-ai/deepseek-v3",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.00000125
+          }
+        },
+        "meta-llama/llama-4-maverick-17b-128e-instruct-fp8": {
+          "name": "meta-llama/llama-4-maverick-17b-128e-instruct-fp8",
+          "cost": {
+            "input": 2.7E-7,
+            "output": 8.5E-7
+          }
+        },
+        "qwen/qwen3-coder-480b-a35b-instruct-fp8": {
+          "name": "qwen/qwen3-coder-480b-a35b-instruct-fp8",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000002
+          }
+        },
+        "meta-llama/llama-4-scout-17b-16e-instruct": {
+          "name": "meta-llama/llama-4-scout-17b-16e-instruct",
+          "cost": {
+            "input": 1.8E-7,
+            "output": 5.9E-7
+          }
+        },
+        "qwen/qwen2.5-72b-instruct-turbo": {
+          "name": "qwen/qwen2-vl-72b-instruct",
+          "cost": {
+            "input": 0.0000012,
+            "output": 0.0000012
+          }
+        },
+        "deepseek-ai/deepseek-r1": {
+          "name": "deepseek-ai/deepseek-r1",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000007
+          }
+        },
+        "moonshotai/kimi-k2-instruct": {
+          "name": "moonshotai/kimi-k2-instruct",
+          "cost": {
+            "input": 0.000001,
+            "output": 0.000003
+          }
+        },
+        "qwen/qwq-32b": {
+          "name": "qwen/qwq-32b",
+          "cost": {
+            "input": 0.0000012,
+            "output": 0.0000012
+          }
+        },
+        "qwen/qwen3-235b-a22b-thinking-2507": {
+          "name": "qwen/qwen3-235b-a22b-thinking-2507",
+          "cost": {
+            "input": 6.5E-7,
+            "output": 0.000003
+          }
+        },
+        "qwen/qwen3-next-80b-a3b-thinking": {
+          "name": "qwen/qwen3-next-80b-a3b-thinking",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 0.0000015
+          }
+        },
+        "qwen/qwen3-235b-a22b-fp8-tput": {
+          "name": "together/qwen/qwen3-235b-a22b-fp8-tput",
+          "cost": {
+            "input": 2E-7,
+            "output": 6E-7
+          }
+        }
+      }
+    },
+    "elevenlabs": {
+      "name": "Elizaelevenlabs",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/elevenlabs/v1/text-to-speech",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "eleven_v3": {
+          "name": "eleven_v3"
+        }
+      }
+    },
+    "gigachat": {
+      "name": "Elizagigachat",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/gigachat/api/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "GigaChat-Max-preview": {
+          "name": "GigaChat-Max",
+          "cost": {
+            "input": 0.0000195,
+            "output": 0.0000195
+          }
+        },
+        "GigaChat-preview": {
+          "name": "GigaChat",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000002
+          }
+        },
+        "GigaChat-Pro-preview": {
+          "name": "GigaChat-Pro",
+          "cost": {
+            "input": 0.00001455,
+            "output": 0.00001455
+          }
+        }
+      }
+    },
+    "gemini": {
+      "name": "Elizagemini",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openrouter/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "google/gemini-2.5-flash-lite-preview-06-17": {
+          "name": "google/gemini-2.5-flash-lite-preview-06-17",
+          "cost": {
+            "input": 1E-7,
+            "output": 4E-7
+          }
+        },
+        "moonshotai/kimi-k2": {
+          "name": "moonshotai/kimi-k2",
+          "cost": {
+            "input": 6E-7,
+            "output": 0.0000025
+          }
+        },
+        "openai/gpt-oss-20b": {
+          "name": "openai/gpt-oss-20b",
+          "cost": {
+            "input": 5E-8,
+            "output": 2E-7
+          }
+        },
+        "openai/gpt-5-chat-latest": {
+          "name": "openai/gpt-5",
+          "cost": {
+            "input": 5E-8,
+            "output": 2E-7
+          }
+        },
+        "openai/o3-mini-high": {
+          "name": "openai/o3-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "openai/o1-preview": {
+          "name": "openai/o1-preview",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.00006
+          }
+        },
+        "openai/o4-mini-high": {
+          "name": "openai/o4-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "deepseek/deepseek-chat-v3.1": {
+          "name": "deepseek/deepseek-chat-v3",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.00000125
+          }
+        },
+        "google/gemini-3-pro-preview": {
+          "name": "google/gemini-3-pro-preview",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000012
+          }
+        },
+        "openai/o1-mini-2024-09-12": {
+          "name": "openai/o1-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "openai/o1-2024-12-17": {
+          "name": "openai/o1",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.00006
+          }
+        },
+        "google/gemini-2.5-pro": {
+          "name": "google/gemini-2.5-pro",
+          "cost": {
+            "input": 0.0000012,
+            "output": 0.00001
+          }
+        },
+        "qwen/qwen3-30b-a3b-instruct-2507": {
+          "name": "qwen/qwen3",
+          "cost": {
+            "input": 2E-7,
+            "output": 8E-7
+          }
+        },
+        "deepseek/deepseek-r1-0528": {
+          "name": "deepseek/deepseek-r1-0528",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.00000125
+          }
+        },
+        "google/gemini-2.5-flash": {
+          "name": "google/gemini-2.5-flash",
+          "cost": {
+            "input": 3E-7,
+            "output": 0.0000025
+          }
+        },
+        "z-ai/glm-4.5": {
+          "name": "z-ai/glm-4.5",
+          "cost": {
+            "input": 6E-7,
+            "output": 0.0000022
+          }
+        },
+        "openai/gpt-oss-120b": {
+          "name": "openai/gpt-oss-120b",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 6E-7
+          }
+        }
+      }
+    },
+    "ideogram": {
+      "name": "Elizaideogram",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/ideogram/v1/ideogram-v3",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "V_3_TURBO": {
+          "name": "V_3_TURBO"
+        },
+        "V_3_DEFAULT": {
+          "name": "V_3_DEFAULT"
+        },
+        "V_3_QUALITY": {
+          "name": "V_3_QUALITY"
+        }
+      }
+    },
+    "internal-deepseek-batch": {
+      "name": "Elizainternal-deepseek-batch",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/deepseek-v3-1-terminus-batch/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "deepseek-v3-1-terminus-batch": {
+          "name": "deepseek-v3-1-terminus-batch"
+        }
+      }
+    },
+    "internal-deepseek": {
+      "name": "Elizainternal-deepseek",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/deepseek-v3-2/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "deepseek-v3-2": {
+          "name": "deepseek-v3-2"
+        }
+      }
+    },
+    "internal-embedder": {
+      "name": "Elizainternal-embedder",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/qwen3-embedding-8b/v1/embeddings",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "qwen3-embedding-8b": {
+          "name": "qwen3-embedding-8b"
+        }
+      }
+    },
+    "internal-glm": {
+      "name": "Elizainternal-glm",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/glm-45-runtime/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "glm-45-runtime": {
+          "name": "glm-45-runtime"
+        }
+      }
+    },
+    "internal-gpt-oss": {
+      "name": "Elizainternal-gpt-oss",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/gpt-oss-120b/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "gpt-oss-120b": {
+          "name": "gpt-oss-120b"
+        }
+      }
+    },
+    "internal-qwen-coder": {
+      "name": "Elizainternal-qwen-coder",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/qwen3-coder-480b-a35b-runtime/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "qwen3-coder-480b-a35b-runtime": {
+          "name": "qwen3-coder-480b-a35b-runtime",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        }
+      }
+    },
+    "internal": {
+      "name": "Elizainternal",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/rawunavailable",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "deepseek_r1_by_soy": {
+          "name": "deepseek_r1_by_soy",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "internal-soy-yagpt": {
+          "name": "internal-soy-yagpt",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "deepseek_v3_deepagent": {
+          "name": "deepseek_v3_deepagent",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        },
+        "deepseek_v3_for_soy": {
+          "name": "deepseek_v3_for_soy",
+          "cost": {
+            "input": 0,
+            "output": 0
+          }
+        }
+      }
+    },
+    "internal-yagpt-235b": {
+      "name": "Elizainternal-yagpt-235b",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/zeliboba/zeliboba_lts_235b_aligned_quantized_202510/generative",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "zeliboba_lts_235b_aligned_quantized_202510": {
+          "name": "zeliboba_lts_235b_aligned_quantized_202510"
+        }
+      }
+    },
+    "internal-yagpt-235b-batch": {
+      "name": "Elizainternal-yagpt-235b-batch",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/zeliboba/zeliboba_lts_235b_batched_aligned_quantized_202510/generative",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "zeliboba_lts_235b_batched_aligned_quantized_202510": {
+          "name": "zeliboba_lts_235b_batched_aligned_quantized_202510"
+        }
+      }
+    },
+    "internal-yagpt-32b": {
+      "name": "Elizainternal-yagpt-32b",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/zeliboba/zeliboba_lts_32b_aligned_quantized_202511/generative",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "zeliboba_lts_32b_aligned_quantized_202511": {
+          "name": "zeliboba_lts_32b_aligned_quantized_202511"
+        }
+      }
+    },
+    "internal-yagpt-32b-batch": {
+      "name": "Elizainternal-yagpt-32b-batch",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/internal/zeliboba/zeliboba_lts_32b_batched_aligned_quantized_202511/generative",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "zeliboba_lts_32b_batched_aligned_quantized_202511": {
+          "name": "zeliboba_lts_32b_batched_aligned_quantized_202511"
+        }
+      }
+    },
+    "mistral": {
+      "name": "Elizamistral",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/mistral/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "open-mixtral-8x22b": {
+          "name": "open-mixtral-8x22b",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000006
+          }
+        },
+        "mistral-large-2402": {
+          "name": "mistral-large-latest",
+          "cost": {
+            "input": 0.000004,
+            "output": 0.000012
+          }
+        },
+        "mistral-medium-2312": {
+          "name": "mistral-medium-latest",
+          "cost": {
+            "input": 0.0000027,
+            "output": 0.0000081
+          }
+        },
+        "open-mixtral-8x7b": {
+          "name": "open-mixtral-8x7b",
+          "cost": {
+            "input": 7E-7,
+            "output": 7E-7
+          }
+        },
+        "mistral-small-2402": {
+          "name": "mistral-small-latest",
+          "cost": {
+            "input": 0.000001,
+            "output": 0.000003
+          }
+        },
+        "open-mistral-7b": {
+          "name": "open-mistral-7b",
+          "cost": {
+            "input": 2.5E-7,
+            "output": 2.5E-7
+          }
+        }
+      }
+    },
+    "gpt-3.5": {
+      "name": "Elizagpt-3.5",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "gpt-3.5-turbo-1106": {
+          "name": "gpt-3.5-turbo-1106",
+          "cost": {
+            "input": 0.000001,
+            "output": 0.000002
+          }
+        },
+        "gpt-4o-2024-08-06": {
+          "name": "gpt-4o",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "gpt-4o-mini-search-preview-2025-03-11": {
+          "name": "gpt-4o-mini-search-preview",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 6E-7
+          }
+        },
+        "gpt-5.2-pro": {
+          "name": "gpt-5.2-pro",
+          "cost": {
+            "input": 0.000021,
+            "output": 0.000168
+          }
+        },
+        "o3-deep-research-2025-06-26": {
+          "name": "o3-deep-research",
+          "cost": {
+            "input": 0.00001,
+            "output": 0.00004
+          }
+        },
+        "chatgpt-4o-latest": {
+          "name": "chatgpt-4o-latest",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.000015
+          }
+        },
+        "gpt-4.1-2025-04-14": {
+          "name": "gpt-4.1",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000008
+          }
+        },
+        "gpt-4-0613": {
+          "name": "gpt-4",
+          "cost": {
+            "input": 0.00003,
+            "output": 0.00006
+          }
+        },
+        "gpt-5-nano-2025-08-07": {
+          "name": "gpt-5-nano",
+          "cost": {
+            "input": 5E-8,
+            "output": 4E-7
+          }
+        },
+        "gpt-5-pro-2025-10-06": {
+          "name": "gpt-5-pro",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.00012
+          }
+        },
+        "o1-mini-2024-09-12": {
+          "name": "o1-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "gpt-4-1106-preview": {
+          "name": "gpt-4-turbo",
+          "cost": {
+            "input": 0.00001,
+            "output": 0.00003
+          }
+        },
+        "gpt-4.1-mini-2025-04-14": {
+          "name": "gpt-4.1-mini",
+          "cost": {
+            "input": 4E-7,
+            "output": 0.0000016
+          }
+        },
+        "gpt-4.1-nano-2025-04-14": {
+          "name": "gpt-4.1-nano",
+          "cost": {
+            "input": 1E-7,
+            "output": 4E-7
+          }
+        },
+        "o4-mini-2025-04-16": {
+          "name": "o4-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "gpt-5.2": {
+          "name": "gpt-5.2-lebwa82-test",
+          "cost": {
+            "input": 0.00000175,
+            "output": 0.000014
+          }
+        },
+        "gpt-4o-mini-2024-07-18": {
+          "name": "gpt-4o-mini",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 6E-7
+          }
+        },
+        "gpt-4o-audio-preview-2024-10-01": {
+          "name": "gpt-4o-audio-preview-2024-10-01",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "gpt-5.1": {
+          "name": "gpt-5.1",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.00001
+          }
+        },
+        "gpt-4o-audio-preview-2025-06-03": {
+          "name": "gpt-4o-audio-preview",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "gpt-3.5-turbo-0125": {
+          "name": "gpt-3.5-turbo",
+          "cost": {
+            "input": 5E-7,
+            "output": 0.0000015
+          }
+        },
+        "gpt-4o-mini-audio-preview-2024-12-17": {
+          "name": "gpt-4o-mini-audio-preview",
+          "cost": {
+            "input": 1.5E-7,
+            "output": 6E-7
+          }
+        },
+        "o3-2025-04-16": {
+          "name": "o3",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000008
+          }
+        },
+        "o4-mini-deep-research-2025-06-26": {
+          "name": "o4-mini-deep-research",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000008
+          }
+        },
+        "gpt-4.5-preview": {
+          "name": "gpt-4.5-preview",
+          "cost": {
+            "input": 0.000075,
+            "output": 0.00015
+          }
+        },
+        "gpt-4o-2024-05-13": {
+          "name": "gpt-4o-2024-05-13",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.000015
+          }
+        },
+        "o1-2024-12-17": {
+          "name": "o1",
+          "cost": {
+            "input": 0.000015,
+            "output": 0.00006
+          }
+        },
+        "o3-mini-2025-01-31": {
+          "name": "o3-mini",
+          "cost": {
+            "input": 0.0000011,
+            "output": 0.0000044
+          }
+        },
+        "gpt-5-mini-2025-08-07": {
+          "name": "gpt-5-mini",
+          "cost": {
+            "input": 2.5E-7,
+            "output": 0.000002
+          }
+        },
+        "gpt-4o-search-preview-2025-03-11": {
+          "name": "gpt-4o-search-preview",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "gpt-5-chat-latest": {
+          "name": "gpt-5",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.00001
+          }
+        }
+      }
+    },
+    "openai": {
+      "name": "Elizaopenai",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1/audio/transcriptions",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "gpt-4o-mini-transcribe": {
+          "name": "gpt-4o-mini-transcribe",
+          "cost": {
+            "input": 0.00000125,
+            "output": 0.000005
+          }
+        },
+        "gpt-4o-transcribe": {
+          "name": "gpt-4o-transcribe",
+          "cost": {
+            "input": 0.0000025,
+            "output": 0.00001
+          }
+        },
+        "whisper-1": {
+          "name": "whisper-1"
+        }
+      }
+    },
+    "embeddings": {
+      "name": "Elizaembeddings",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1/embeddings",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "text-embedding-3-large": {
+          "name": "text-embedding-3-large",
+          "cost": {
+            "input": 1.3E-7,
+            "output": 1.3E-7
+          }
+        },
+        "text-embedding-3-small": {
+          "name": "text-embedding-3-small",
+          "cost": {
+            "input": 2E-8,
+            "output": 2E-8
+          }
+        },
+        "text-embedding-ada-002": {
+          "name": "text-embedding-ada-002",
+          "cost": {
+            "input": 1E-7,
+            "output": 1E-7
+          }
+        }
+      }
+    },
+    "gpt-image": {
+      "name": "Elizagpt-image",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1/images/generations",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "gpt-image-1-mini": {
+          "name": "gpt-image-1-mini",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.000002
+          }
+        },
+        "dall-e-2": {
+          "name": "dall-e-2"
+        },
+        "dall-e-3": {
+          "name": "dall-e-3"
+        },
+        "gpt-image-1-edit": {
+          "name": "gpt-image-1",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.000005
+          }
+        },
+        "gpt-image-1.5-edit": {
+          "name": "gpt-image-1.5",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.00001
+          }
+        }
+      }
+    },
+    "gpt-4": {
+      "name": "Elizagpt-4",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1/videos",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "sora-2": {
+          "name": "sora-2"
+        },
+        "sora-2-pro": {
+          "name": "sora-2-pro"
+        }
+      }
+    },
+    "o1": {
+      "name": "Elizao1",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/openai/v1/responses",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "o1-pro-2025-03-19": {
+          "name": "o1-pro",
+          "cost": {
+            "input": 0.00015,
+            "output": 0.0006
+          }
+        },
+        "o3-pro-2025-06-10": {
+          "name": "o3-pro",
+          "cost": {
+            "input": 0.00002,
+            "output": 0.00008
+          }
+        },
+        "computer-use-preview-2025-03-11": {
+          "name": "computer-use-preview",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000012
+          }
+        },
+        "codex-mini-latest": {
+          "name": "codex-mini-latest",
+          "cost": {
+            "input": 0.0000015,
+            "output": 0.000006
+          }
+        }
+      }
+    },
+    "perplexity": {
+      "name": "Elizaperplexity",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/perplexity/search",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "perplexity-search": {
+          "name": "perplexity-search"
+        }
+      }
+    },
+    "recraft": {
+      "name": "Elizarecraft",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/recraft/v1/images/generations",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "recraftv3": {
+          "name": "recraftv3"
+        }
+      }
+    },
+    "grok": {
+      "name": "Elizagrok",
+      "npm": "@ai-sdk/openai-compatible",
+      "options": {
+        "baseURL": "https://api.eliza.yandex.net/raw/xai/v1",
+        "apiKey": "{env:SOY_TOKEN}"
+      },
+      "models": {
+        "grok-3-mini-beta": {
+          "name": "grok-3-mini",
+          "cost": {
+            "input": 3E-7,
+            "output": 5E-7
+          }
+        },
+        "grok-3-mini-fast-beta": {
+          "name": "grok-3-mini-fast",
+          "cost": {
+            "input": 6E-7,
+            "output": 0.000004
+          }
+        },
+        "grok-4-0709": {
+          "name": "grok-4",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        },
+        "grok-2-image-1212": {
+          "name": "grok-2-image"
+        },
+        "grok-code-fast": {
+          "name": "grok-code-fast-1",
+          "cost": {
+            "input": 2E-7,
+            "output": 0.0000015
+          }
+        },
+        "grok-3-fast-beta": {
+          "name": "grok-3-fast",
+          "cost": {
+            "input": 0.000005,
+            "output": 0.000025
+          }
+        },
+        "grok-2-vision-1212": {
+          "name": "grok-2-vision",
+          "cost": {
+            "input": 0.000002,
+            "output": 0.00001
+          }
+        },
+        "grok-3-beta": {
+          "name": "grok-3",
+          "cost": {
+            "input": 0.000003,
+            "output": 0.000015
+          }
+        }
+      }
+    }
+  }
+}
