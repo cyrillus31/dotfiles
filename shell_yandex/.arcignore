@@ -3,6 +3,8 @@ AGENTS.md
 agents.md
 opencode.json
 session*.md
+opencode
+.opencode
 
 # Golang
 .golangci.yaml
