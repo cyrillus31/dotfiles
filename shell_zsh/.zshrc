@@ -16,3 +16,6 @@ source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # WARN: Run my common setup entrypoint
 source "$HOME/.shellrc.sh"
+
+# Wizard: shell patches
+[ -f "/Users/kfedtsov/.wizard/shell.rc" ] && source "/Users/kfedtsov/.wizard/shell.rc"
