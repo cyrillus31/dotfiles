@@ -153,13 +153,11 @@ function arcprj() {
 
 	# Detect Arcadia root
 	local arcadia_root
-	if [[ "$PWD" == ~/arcadia* ]] || [[ "$PWD" == /*/arcadia* ]]; then
-		# Extract arcadia root from current path
-		arcadia_root="${PWD%%/arcadia*}/arcadia"
-		if [[ ! -d "$arcadia_root" ]]; then
-			arcadia_root="$HOME/arcadia"
-		fi
+	if arcadia_root=$(arc root 2>/dev/null); then
+		# Inside Arcadia, use the detected root
+		:
 	else
+		# Outside Arcadia, default to ~/arcadia
 		arcadia_root="$HOME/arcadia"
 	fi
 
@@ -171,7 +169,7 @@ function arcprj() {
 			"[PY Root] backend-py3"
 		)
 		local selected
-		selected=$(printf '%s\n' "${root_options[@]}" | fzf --prompt="Select backend root: ")
+		selected=$(printf '%s\n' "${root_options[@]}" | fzf --prompt="Select backend root: " --popup --layout=reverse)
 
 		if [[ -n "$selected" ]]; then
 			local root_name="${selected#*\] }"
