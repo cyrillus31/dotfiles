@@ -224,7 +224,7 @@ function arcprj() {
 
 	# Interactive selection
 	local selected
-	selected=$(printf '%s\n' "${all_services[@]}" | fzf --prompt="Select project: ")
+	selected=$(printf '%s\n' "${all_services[@]}" | fzf --prompt="Select project: " --popup --layout=reverse)
 
 	if [[ -n "$selected" ]]; then
 		local target="${selected#\[*\] }"
