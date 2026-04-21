@@ -1,5 +1,7 @@
 # Private files 
 private_files/*
+opencode.json
+opencode.json.bak*
 
 # Current profile
 /.current-profile
