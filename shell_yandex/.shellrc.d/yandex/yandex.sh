@@ -122,3 +122,33 @@ function yatools () {
 	# echo "$commandslist" | fzf | sed 's/[ \t]*#//' | vim -
 	echo "$commandslist" | fzf | sed 's/[ \t]*#//'
 }
+
+function arcmount () {
+	local name="${1:-arcadia}"
+	local mount_dir="$PWD/$name"
+
+	if ! command -v arc >/dev/null 2>&1; then
+		echo "Error: arc command not found. Please ensure Arcadia tools are installed." >&2
+		return 1
+	fi
+
+	if [[ -d "$mount_dir" ]] && [[ -n "$(ls -A "$mount_dir")" ]]; then
+		echo "Error: Mount directory '$mount_dir' already exists and is not empty." >&2
+		return 1
+	fi
+
+	mkdir -p "$mount_dir"
+
+	local store_dir="$HOME/.arc/stores/$(basename "$mount_dir")"
+	local obj_store="$HOME/.arc/shared_objects"
+	mkdir -p "$store_dir" "$obj_store"
+
+	echo "Mounting Arcadia to '$mount_dir'..."
+	if arc mount "$mount_dir" --store "$store_dir" --object-store "$obj_store" --allow-other --vfs-version 2; then
+		echo "Successfully mounted Arcadia instance in '$mount_dir'."
+		echo "To switch to a different branch, cd '$mount_dir' and run 'arc checkout <branch>'"
+	else
+		echo "Error: Failed to mount Arcadia." >&2
+		return 1
+	fi
+}
