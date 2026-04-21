@@ -1,0 +1,1 @@
+/Users/kfedtsov/.wizard/commands/fix-pr-issues.md
