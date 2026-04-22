@@ -7,7 +7,7 @@ STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starshi
 
 # Define groups of configurations
 COMMON_TARGETS := shell starship tmux vim kitty rustyvibes
-FEDORA_TARGETS := common shell_bash_fedor
+FEDORA_TARGETS := common shell_bash_fedora
 MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
 CURRENT_PROFILE := .current-profile

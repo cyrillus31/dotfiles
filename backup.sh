@@ -24,3 +24,4 @@ create_backup "$HOME/.config/starship.toml";
 
 create_backup "$HOME/.tmux.conf";
 create_backup "$HOME/.vimrc";
+create_backup "$HOME/.sqliterc";
