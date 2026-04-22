@@ -7,3 +7,6 @@ fi
 
 # User specific environment and startup programs
 . "$HOME/.cargo/env"
+
+# opencode
+export PATH="$HOME/.opencode/bin:$PATH"
