@@ -12,3 +12,7 @@ starship/.config/starship.toml
 # Opencode
 shell_yandex/.config/opencode/bun.lock
 shell_yandex/.config/opencode/package.json
+
+# Python (qtile)
+__pycache__
+

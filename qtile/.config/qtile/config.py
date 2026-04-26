@@ -163,31 +163,48 @@ screens = [
                 widget.KeyboardLayout(
                     configured_keyboards=["us", "ru"]
                     ),
+                widget.Sep(),
+                widget.CurrentLayout(),
+                widget.Sep(),
+                widget.Prompt(),
+                widget.WindowName(),
+
+                widget.Spacer(),
+                widget.TextBox(">"),
                 widget.GroupBox(
                     rounded=True,
                     ),
-                widget.CurrentLayout(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.Chord(
-                    chords_colors={
-                        "launch": (Colors.red, Colors.white),
-                    },
-                    name_transform=lambda name: name.upper(),
-                ),
-                # widget.TextBox("default config", name="default"),
-                # widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
-                # NB Systray is incompatible with Wayland, consider using StatusNotifier instead
+                widget.TextBox("<"),
+                widget.Spacer(),
+
                 widget.StatusNotifier(),
-                widget.Systray(),
-                widget.Volume(),
+                widget.SwayNC(),
+                widget.Notify(),
+                widget.Sep(),
+                widget.Systray(
+                    padding=10,
+                    ),
+                widget.Wlan(),
+                widget.Sep(),
+                widget.Bluetooth(),
+                widget.Sep(),
+                widget.Volume(
+                    emoji=False,
+                    fmt="Vol: {}",
+                    ),
+                widget.Sep(),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                widget.QuickExit(),
+                widget.Sep(),
+                widget.QuickExit(
+                    default_text='[quit Qtile]', 
+                    countdown_format='[{}]',
+                )
+                ,
             ],
             size=30,
             margin=[5, 5, 5, 5],
             # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
+            # border_color=["#ff00ff", "#000000", "#ff00ff", "#000000"]  # Borders are magenta
         ),
     ),
 ]
