@@ -3,7 +3,7 @@
 # 2) add the directory to the required group of configurations below (e.g. COMMON_TARGETS)
 
 # Define the targets that correspond to directories
-STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim shell_zsh private_files rustyvibes
+STOW_DIRS := aerospace iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim shell_zsh private_files rustyvibes qtile
 
 # Define groups of configurations
 COMMON_TARGETS := shell starship tmux vim kitty rustyvibes
