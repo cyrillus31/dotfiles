@@ -1,0 +1,61 @@
+# Alacritty configuration
+# Based on kitty config at ../kitty/.config/kitty/kitty.conf
+
+[env]
+TERM = "alacritty"
+
+# Font configuration
+[font]
+size = 13.0
+
+[font.normal]
+family = "Victor Mono"
+style = "Regular"
+
+[font.bold]
+family = "Victor Mono"
+style = "Bold"
+
+[font.italic]
+family = "Victor Mono"
+style = "Italic"
+
+[font.bold_italic]
+family = "Victor Mono"
+style = "Bold Italic"
+
+# Window configuration
+[window]
+decorations = "None"
+startup_mode = "Windowed"
+dynamic_title = true
+opacity = 1.0
+
+# Cursor configuration
+[cursor]
+style = "Block"
+unfocused_hollow = true
+
+# Selection
+[selection]
+save_to_clipboard = false
+
+# Terafox color theme (ported from kitty)
+# Source: https://github.com/EdenEast/nightfox.nvim
+[colors]
+primary = { foreground = "#e6eaea", background = "#152528" }
+selection = { text = "#e6eaea", background = "#293e40" }
+normal = { black = "#2f3239", red = "#e85c51", green = "#7aa4a1", yellow = "#fda47f", blue = "#5a93aa", magenta = "#ad5c7c", cyan = "#a1cdd8", white = "#ebebeb" }
+bright = { black = "#4e5157", red = "#eb746b", green = "#8eb2af", yellow = "#fdb292", blue = "#73a3b7", magenta = "#b97490", cyan = "#afd4de", white = "#eeeeee" }
+
+[colors.cursor]
+cursor = "#e6eaea"
+text = "#152528"
+
+[colors.hints]
+start = { foreground = "#e6eaea", background = "#152528" }
+end = { foreground = "#e6eaea", background = "#152528" }
+
+[colors.footer_bar]
+background = "#152528"
+foreground = "#e6eaea"
