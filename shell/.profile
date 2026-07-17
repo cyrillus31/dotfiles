@@ -1,7 +1,10 @@
 #!/bin/bash
 fastfetch
 
-# Setup Rust and Cargo
+# Go
+export PATH="$HOME/go/bin:$PATH"
+
+# Rust and Cargo
 cargopath="$HOME/.cargo"
 if [[ -d $cargopath ]]; then
 	cargo_env="${cargopath}/env"

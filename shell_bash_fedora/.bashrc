@@ -66,3 +66,16 @@ export VISUAL=$EDITOR
 if [[ ! -z $(command -v task) ]]; then
     eval "$(task --completion bash)"
 fi
+# Homebrew
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# Yandex Cloud CLI
+if [ -f '/home/kirill/yandex-cloud/path.bash.inc' ]; then
+    source '/home/kirill/yandex-cloud/path.bash.inc'
+fi
+if [ -f '/home/kirill/yandex-cloud/completion.bash.inc' ]; then
+    source '/home/kirill/yandex-cloud/completion.bash.inc'
+fi
+
+# opencode CLI
+export PATH=/home/kirill/.opencode/bin:$PATH
