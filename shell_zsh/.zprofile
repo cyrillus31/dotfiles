@@ -1,6 +1,6 @@
 # Run only on startup
 if [[ -o login ]]; then
-	fastfetch
+	fastfetch 2&>/dev/null
 fi
 
 # Rust
