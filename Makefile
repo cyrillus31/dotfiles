@@ -6,7 +6,7 @@
 STOW_DIRS := aerospace alacritty iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim shell_zsh private_files rustyvibes qtile
 
 # Define groups of configurations
-COMMON_TARGETS := shell starship tmux vim kitty rustyvibes
+COMMON_TARGETS := shell starship tmux vim kitty rustyvibes private_files
 FEDORA_TARGETS := common shell_bash_fedora
 MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
