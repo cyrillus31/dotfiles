@@ -1,1 +1,5 @@
+.echo on
+.headers on
+.nullvalue "NULL"
 .mode markdown
+.timer on
