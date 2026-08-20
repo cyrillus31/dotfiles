@@ -1,3 +1,4 @@
 .gitkeep
 .keep
 .dotfiles-current-porfile
+*.example
