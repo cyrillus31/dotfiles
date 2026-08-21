@@ -3,20 +3,21 @@
 # 2) add the directory to the required group of configurations below (e.g. COMMON_TARGETS)
 
 # Define the targets that correspond to directories
-STOW_DIRS := aerospace alacritty iterm2 kitty shell shell_bash_fedora shell_yandex starship tmux vim shell_zsh private_files rustyvibes qtile
+STOW_DIRS := aerospace alacritty iterm2 kitty shell shell_bash_fedora shell_yandex shell_cloud_ru starship tmux vim shell_zsh private_files rustyvibes qtile
 
 # Define groups of configurations
 COMMON_TARGETS := shell starship tmux vim kitty rustyvibes private_files
 FEDORA_TARGETS := common shell_bash_fedora
 MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
+CLOUD_RU_TARGETS := common shell_cloud_ru
 CURRENT_PROFILE := .current-profile
 
 
 # Default target when running just 'make'
 .PHONY: default
 default:
-	@echo "Please specify a target: fedora, macbook, yandex_macbook, or a specific config"
+	@echo "Please specify a target: fedora, macbook, yandex_macbook, cloud_ru, or a specific config"
 	@echo "Available configs: $(STOW_DIRS)"
 
 update:
@@ -26,7 +27,7 @@ update_fail:
 	@echo "'$(CURRENT_PROFILE)' file doesn't exist"
 
 # Define phony targets to avoid conflicts with directory names
-.PHONY: $(STOW_DIRS) common fedora macbook yandex_macbook backup all
+.PHONY: $(STOW_DIRS) common fedora macbook yandex_macbook cloud_ru backup all
 
 # Rule for all stow directories - automatically generated
 $(STOW_DIRS):
@@ -53,6 +54,9 @@ macbook: $(MACBOOK_TARGETS)
 yandex_macbook: $(YANDEX_MACBOOK_TARGETS)
 	@echo 'yandex_macbook' > $(CURRENT_PROFILE)
 
+cloud_ru: $(CLOUD_RU_TARGETS)
+	@echo 'cloud_ru' > $(CURRENT_PROFILE)
+
 # Install everything
 all: $(STOW_DIRS)
 
@@ -64,6 +68,7 @@ help:
 	@echo "  fedora          - Setup for Fedora ($(FEDORA_TARGETS))"
 	@echo "  macbook         - Setup for MacBook ($(MACBOOK_TARGETS))"
 	@echo "  yandex_macbook  - Setup for Yandex MacBook ($(YANDEX_MACBOOK_TARGETS))"
+	@echo "  cloud_ru        - Setup for cloud.ru server ($(CLOUD_RU_TARGETS))"
 	@echo "  common          - Common configurations ($(COMMON_TARGETS))"
 	@echo "  all             - Install everything"
 	@echo "  backup          - Run backup script"

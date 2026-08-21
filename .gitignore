@@ -1,5 +1,5 @@
 # Private files 
-private_files/.shellrc.d/*
+private_files/*
 !private_files/.shellrc.d/private.sh.example
 opencode.json
 opencode.json.bak*
