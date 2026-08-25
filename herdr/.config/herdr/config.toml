@@ -1,0 +1,20 @@
+[theme]
+name = "terminal"
+auto_switch = false
+
+[keys]
+# Navigate Mode Workspace Keybindings Up and Down only
+navigate_workspace_down  = "j"
+navigate_workspace_up    = "k"
+
+# Tmux-style split window shortcuts
+split_vertical   = "prefix+%"     # Splits side-by-side (Horizontal layout, vertical border)
+split_horizontal = 'prefix+"'     # Splits stacked top/bottom (Vertical layout, horizontal border)
+
+[ui]
+show_agent_labels_on_pane_borders = true
+
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "herdr"

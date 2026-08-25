@@ -17,3 +17,8 @@ shell_yandex/.config/opencode/package.json
 # Python (qtile)
 __pycache__
 
+# Herdr runtime files
+herdr/.config/herdr/*.log
+herdr/.config/herdr/*.sock
+herdr/.config/herdr/session.json
+
