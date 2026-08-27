@@ -11,6 +11,9 @@ navigate_workspace_up    = "k"
 split_vertical   = "prefix+%"     # Splits side-by-side (Horizontal layout, vertical border)
 split_horizontal = 'prefix+"'     # Splits stacked top/bottom (Vertical layout, horizontal border)
 
+# Focus agent with "shift" 1-9
+focus_agent = "prefix+shift+1..9"
+
 [ui]
 show_agent_labels_on_pane_borders = true
 
