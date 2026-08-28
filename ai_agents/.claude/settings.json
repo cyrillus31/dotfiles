@@ -1,0 +1,109 @@
+{
+  "effortLevel": "xhigh",
+  "theme": "dark",
+  "model": "opus",
+  "spinnerVerbs": {
+    "mode": "replace",
+    "verbs": [
+      "Overthinking", "Procrastinating", "Blaming compiler", "Panic-refactoring", "Losing plot",
+      "Reticulating splines", "Bribing linter", "Guessing wildly", "Rubber-ducking", "Staring blankly",
+      "Second-guessing", "Overengineering", "Yak-shaving", "Bikeshedding", "Refactoring again",
+      "Naming variables", "Googling error", "Copy-pasting fix", "Blaming cache", "Restarting everything",
+
+      "Purging heretics", "Invoking Omnissiah", "Rolling initiative", "Chanting litany", "Anointing machine spirit",
+      "Declaring heresy", "Sanctifying code", "Summoning tech-priest", "Offering incense", "Waging holy war",
+      "Exterminating bugs", "Consulting codex", "Blessing the bolter", "Marching to war", "Praising Emperor",
+      "Fighting for humanity", "Repairing machine spirit", "Casting bolt of wrath", "Standing vigil", "Deploying servitor",
+
+      "Web-slinging", "Thwipping semicolons", "Swinging downtown", "Dodging danger sense", "Fighting responsibility",
+      "Climbing walls", "Catching villain", "Saving city", "Losing mask", "Missing curfew",
+      "Web-shooting bug", "Sensing trouble", "Swinging late", "Patching suit", "Chasing deadline",
+      "Balancing lives", "Outrunning trouble", "Ducking camera", "Racing rooftops", "Web-zipping past",
+
+      "Taking red pill", "Taking blue pill", "Bending spoons", "Dodging bullets", "Compiling matrix",
+      "Freeing your mind", "Following the rabbit", "Questioning reality", "Unplugging jack", "Loading gun program",
+      "Learning kung fu", "Doubting the Oracle", "Fighting the agent", "Glitching déjà vu", "Choosing the door",
+      "Waking in pod", "Jacking in", "Dodging in slow-mo", "Seeing the code", "Becoming the one",
+
+      "Circling time", "Chasing yellow king", "Smoking in silence", "Following the thread", "Staring at wall",
+      "Connecting red string", "Driving at dusk", "Questioning suspect", "Muttering philosophy", "Losing partner trust",
+      "Chasing cold case", "Doubting everything", "Walking swampland", "Following false lead", "Interrogating witness",
+      "Reviewing case file", "Doubting the timeline", "Piecing together clues", "Watching the horizon", "Brooding quietly",
+
+      "Running diagnostics", "Never lupus", "Doubting the patient", "Prescribing sarcasm", "Solving mystery illness",
+      "Limping down hallway", "Popping pills", "Annoying nurses", "Second differential", "Running MRI",
+      "Ordering biopsy", "Doubting first diagnosis", "Cane-tapping thoughtfully", "Ignoring hospital rules", "Overruling colleagues",
+      "Spotting the symptom", "Betting on rare disease", "Reading vitals", "Dismissing obvious answer", "Diagnosing boredom",
+
+      "Counting samurai", "Guarding village", "Recruiting warriors", "Sharpening blade", "Training farmers",
+      "Defending harvest", "Studying enemy", "Planning defense", "Standing watch", "Facing bandits",
+      "Losing swordsman", "Digging trenches", "Rallying villagers", "Honing technique", "Waiting for rain",
+      "Charging the gate", "Protecting the weak", "Counting losses", "Bowing respectfully", "Walking away quietly",
+
+      "Breaking rule one", "Making soap", "Fighting itself", "Blacking out", "Losing sleep",
+      "Starting a chapter", "Renting basement", "Punching mirror", "Whispering narration", "Splitting personality",
+      "Building army", "Blowing up building", "Ignoring furniture", "Rejecting consumerism", "Bleeding knuckles",
+      "Forgetting name", "Waking up bruised", "Following Tyler", "Losing job", "Burning it down",
+
+      "Yada yada", "No soup", "Master of domain", "Debating nothing", "Complaining loudly",
+      "Double-dipping chip", "Parking the car", "Regifting present", "Close talking", "Low talking",
+      "Sniffing out lies", "Sponge-worthy debate", "Sending back soup", "Arguing over cereal", "Waiting at diner",
+      "Judging shoes", "Mocking small talk", "Overanalyzing breakup", "Losing the spot", "Ranting about nothing",
+
+      "Being phony", "Missing carousel", "Wandering the city", "Skipping class", "Losing suitcase",
+      "Avoiding phonies", "Wandering the park", "Calling old teacher", "Renting hotel room", "Watching the ducks",
+      "Drifting through night", "Doubting adulthood", "Missing his sister", "Walking aimlessly", "Dodging conversation",
+      "Overthinking everything", "Losing his gloves", "Hating the movies", "Chain smoking", "Staring at nothing",
+
+      "Coding the algorithm", "Suing the twins", "Dropping percent", "Coding all night", "Losing best friend",
+      "Building the network", "Refreshing the site", "Ranking the girls", "Crashing the server", "Drafting the terms",
+      "Signing the papers", "Doubting the partnership", "Scaling too fast", "Meeting the lawyers", "Founding the company",
+      "Coding at 2am", "Betraying the cofounder", "Diluting the shares", "Deposition testimony", "Refreshing friend count",
+
+      "Counting to nine", "Bleeding tempo", "Not rushing", "Drumming till dawn", "Chasing the tempo",
+      "Bleeding on cymbals", "Sweating through solo", "Missing the beat", "Practicing till bleeding", "Doubting the tempo",
+      "Facing the conductor", "Losing the chair", "Dropping the sticks", "Correcting the rhythm", "Pushing past limit",
+      "Rehearsing obsessively", "Chasing greatness", "Counting the beat", "Playing double time", "Bleeding for art",
+
+      "Drifting sideways", "Watching the tether", "Breathing manually", "Spinning in orbit", "Losing oxygen",
+      "Grabbing debris", "Floating helplessly", "Watching earth spin", "Running low on air", "Drifting from station",
+      "Reaching for handhold", "Losing communication", "Watching the capsule", "Spinning out of control", "Counting oxygen minutes",
+      "Drifting toward reentry", "Holding onto hope", "Watching debris field", "Breathing shallow", "Reaching escape pod",
+
+      "Staying hungry", "Staying foolish", "Demanding perfection", "Simplifying design", "Rejecting good enough",
+      "Obsessing over font", "Pacing the stage", "Wearing black turtleneck", "Iterating relentlessly", "Cutting the clutter",
+      "Chasing insanely great", "Reality distorting", "Firing the team", "Rehiring the team", "Unveiling the product",
+      "Polishing the pixel", "Rejecting the mouse", "Demanding one button", "Thinking differently", "Shipping perfection",
+
+      "Blaming the id", "Interpreting dreams", "Free associating", "Analyzing slip", "Blaming childhood",
+      "Diagnosing repression", "Reading symbolism", "Probing subconscious", "Charging by hour", "Taking notes quietly",
+      "Nodding thoughtfully", "Asking about mother", "Interpreting the cigar", "Suppressing the urge", "Projecting anxiety",
+      "Displacing the anger", "Sublimating the drive", "Denying the obvious", "Analyzing the analyst", "Billing the session",
+
+      "Cleaning room", "Standing straight", "Sorting yourself out", "Telling truth", "Carrying burden",
+      "Comparing to yesterday", "Petting the cat", "Assuming ignorance", "Befriending pain", "Pursuing meaning",
+      "Slaying dragon", "Confronting chaos", "Ordering chaos", "Taking responsibility", "Straightening posture",
+      "Rescuing father", "Reading maps of meaning", "Avoiding resentment", "Aiming upward", "Bucking up",
+
+      "Dissolving the self", "Watching the watcher", "Resting as awareness", "Questioning the question", "Losing the seeker",
+      "Being without doing", "Merging with silence", "Releasing the story", "Sitting with what is", "Noticing the noticer",
+      "Letting thoughts pass", "Abiding as awareness", "Dropping the seeker", "Resting in stillness", "Witnessing witnessing",
+      "Untangling the knot", "Seeing through illusion", "Meeting the present", "Emptying the mind", "Just being",
+
+      "Praise the sun", "Git gud", "Resting at bonfire", "You died", "Kindling flame",
+      "Reversing hollowing", "Ringing bell", "Chugging estus", "Ashen one rises", "Invading world",
+      "Riposting parry", "Rolling through fire", "Farming souls", "Losing souls again", "Leveling soul",
+      "Finding ember", "Jolly cooperation", "Entering boss room", "Backstabbing carefully", "Managing stamina",
+
+      "Hunting the hunt", "Ringing the bell", "Transfusing blood", "Losing insight", "Gaining insight",
+      "Fighting the moon", "Chalice diving", "Beast within stirring", "Trick weapon transforming", "Regaining health",
+      "Rallying damage back", "Fighting the nightmare", "Dodging quickstep", "Visceral attacking", "Hunter's dream calling",
+      "Losing sanity", "Facing great ones", "Echoing blood vial", "Cutting the umbilical", "Awakening insight",
+
+      "Requesting backup", "Calling airstrike", "Holding the line", "Suppressing fire", "Flanking left",
+      "Reloading mag", "Checking six", "Painting target", "Advancing position", "Falling back",
+      "Breaching entry", "Securing perimeter", "Calling contact", "Marking hostiles", "Deploying squad",
+      "Regrouping forces", "Taking cover", "Popping smoke", "Requesting evac", "Executing maneuver"
+    ]
+  }
+}
