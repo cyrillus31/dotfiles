@@ -14,6 +14,12 @@ split_horizontal = 'prefix+"'     # Splits stacked top/bottom (Vertical layout, 
 # Focus agent with "shift" 1-9
 focus_agent = "prefix+shift+1..9"
 
+# Rename tab (herdr original + tmux-style comma)
+rename_tab = ["prefix+shift+t", "prefix+,"]
+
+# Detach (herdr original + tmux-style 'd')
+detach = ["prefix+q", "prefix+d"]
+
 [ui]
 show_agent_labels_on_pane_borders = true
 
