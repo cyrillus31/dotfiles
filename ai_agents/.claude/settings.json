@@ -100,10 +100,31 @@
       "Rallying damage back", "Fighting the nightmare", "Dodging quickstep", "Visceral attacking", "Hunter's dream calling",
       "Losing sanity", "Facing great ones", "Echoing blood vial", "Cutting the umbilical", "Awakening insight",
 
+      "Failing the check", "Rolling Electrochemistry", "Consulting Inland Empire", "Passing Composure", "Shivers tingling",
+      "Half Light panicking", "Volition holding on", "Logic connecting dots", "Encyclopedia interrupting", "Drama detecting lies",
+      "Perception noticing detail", "Empathy reading room", "Authority asserting itself", "Esprit de Corps humming", "Visual Calculus measuring",
+      "Conceptualization getting artsy", "Savoir Faire showing off", "Interfacing with machine", "Pain Threshold enduring", "Physical Instrument flexing",
+      "Kim is unimpressed", "Cuno doesn't care", "Kim lighting cigarette", "Measurehead blocking path", "Evrart helping you",
+      "Klaasje lying beautifully", "Joyce explaining the Pale", "Cunoesse throwing rocks", "Garte wants payment", "Deserter still waiting",
+      "Staring at hanged man", "Wandering Martinaise", "Drifting into Pale", "Praising Dolores Dei", "Finding the Phasmid",
+      "Chewing apricot gum", "Wearing horrific necktie", "Losing your gun", "Losing your badge", "Searching for boots",
+      "Internalizing thought", "Thought Cabinet processing", "Becoming Superstar Cop", "Going full Communist", "Mazovian socio-economics",
+      "Detective Costeau reporting", "Asking about tribunal", "Doing the anodic dance", "Waking in wreckage", "Denying the hangover",
+
       "Requesting backup", "Calling airstrike", "Holding the line", "Suppressing fire", "Flanking left",
       "Reloading mag", "Checking six", "Painting target", "Advancing position", "Falling back",
       "Breaching entry", "Securing perimeter", "Calling contact", "Marking hostiles", "Deploying squad",
-      "Regrouping forces", "Taking cover", "Popping smoke", "Requesting evac", "Executing maneuver"
+      "Regrouping forces", "Taking cover", "Popping smoke", "Requesting evac", "Executing maneuver",
+      "Radio check", "Say again over", "Solid copy", "Lima Charlie", "Standby one",
+      "Roger wilco", "How copy over", "Break break", "Send traffic", "Interrogative",
+      "Oscar Mike", "Charlie Mike", "Bugging out", "Stacking up", "Moving moving",
+      "Room clear", "Clear left", "Contact front", "Frag out", "Flashbang out",
+      "Danger close", "Cleared hot", "Fire for effect", "Adjust fire", "Splash over",
+      "Shot over", "Steel on target", "Check fire", "Weapons free", "Weapons tight",
+      "Bingo fuel", "Winchester on ammo", "Feet dry", "No joy", "Tally ho",
+      "Guns guns guns", "Fox two", "Angels one five", "Bogey dope", "Buster",
+      "Man down", "Corpsman up", "Nine-line inbound", "Dust off inbound", "Casualty collected",
+      "LZ is hot", "Bird inbound", "Sending sitrep", "Rally point set", "Exfil in five"
     ]
   }
 }
