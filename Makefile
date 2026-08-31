@@ -3,14 +3,14 @@
 # 2) add the directory to the required group of configurations below (e.g. COMMON_TARGETS)
 
 # Define the targets that correspond to directories
-STOW_DIRS := aerospace ai_agents alacritty iterm2 kitty shell shell_bash_fedora shell_yandex shell_cloud_ru starship tmux vim shell_zsh private_files rustyvibes qtile herdr
+STOW_DIRS := aerospace ai_agents alacritty iterm2 kitty shell shell_bash_fedora shell_yandex shell_cloud_ru starship tmux vim shell_zsh private_files rustyvibes qtile herdr git_cloud_ru
 
 # Define groups of configurations
 COMMON_TARGETS := shell starship tmux vim kitty rustyvibes private_files herdr ai_agents
 FEDORA_TARGETS := common shell_bash_fedora
 MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
-CLOUD_RU_TARGETS := common shell_cloud_ru
+CLOUD_RU_TARGETS := common shell_cloud_ru git_cloud_ru
 CURRENT_PROFILE := .current-profile
 
 
