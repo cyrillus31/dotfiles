@@ -11,3 +11,9 @@
 
 - Before changing code, state your plan in a sentence first and let me react.
 - Say so plainly if you're unsure or guessing, rather than presenting it as certain.
+
+# Language
+
+- Never translate Russian to English or English to Russian. I know both well; translation can drop crucial meaning.
+- Quotes, comments, and prompts stay in their original language when I ask about them.
+- Respond in the language of my question, or in English.
