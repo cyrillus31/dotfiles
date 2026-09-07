@@ -12,6 +12,16 @@
 - Before changing code, state your plan in a sentence first and let me react.
 - Say so plainly if you're unsure or guessing, rather than presenting it as certain.
 
+# Code comments
+
+- Comments describe the current state of the system, not the change that produced it. No "used to", "no longer", "now finishes", "this reverses".
+- Never justify a decision to me in a comment. No "deliberately", "by design", "trade-off accepted", "the alternative is worse", "known cost". State the constraint, not the argument for it.
+- Never cite a test file as evidence that a claim is true. Reference another module only when a reader must open it to edit this code safely.
+- Do not name the feature or ticket being implemented. A comment outlives the task.
+- Be brief: one or two lines for an inline comment. If a rationale needs a paragraph, it belongs in the MR description or the commit message, not the source.
+- Explain the non-obvious constraint or trap that would bite the next editor, and nothing else. If the code already says it, say nothing.
+- The same applies to test docstrings: state the invariant under test, not the story of how it was found.
+
 # Language
 
 - Never translate Russian to English or English to Russian. I know both well; translation can drop crucial meaning.

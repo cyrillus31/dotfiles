@@ -1,6 +1,6 @@
 [user]
 	name = Cloud.ru Mac M4 16
-	email = kirill.olegovich31@gmail.com
+	email = kofedtsov@cloud.ru
 [core]
 	excludesfile = /Users/kofedtsov/.gitignore_global
 [includeIf "gitdir:~/Projects/**"]

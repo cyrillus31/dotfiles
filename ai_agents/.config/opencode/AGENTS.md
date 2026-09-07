@@ -1,3 +1,7 @@
+# Knowledge Base
+
+There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru`. Consult it for relevant notes before answering when applicable.
+
 # Communication Style
 
 ## Be concise by default
