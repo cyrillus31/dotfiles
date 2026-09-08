@@ -48,6 +48,16 @@ When I ask for context, this is what I mean — the full path, in order:
 - Say what each layer is *responsible for*, not just that it exists. That's the part I'm missing.
 - If you haven't verified a step, say so instead of filling the gap with a plausible guess.
 
+# Decode the names
+
+Every function, class, table, endpoint, or variable gets taken apart the first time it appears. A name that's obvious to the team is opaque to me.
+
+- Break it into its parts and explain each one in a few words.
+- `run_graph_background` → which *run*, and of what? What is a *graph* here, and why is the work shaped as a graph at all? What does *background* actually mean — separate process, thread, goroutine, task queue — and which library provides it?
+- Jargon buried inside a name is still jargon. Domain words, internal abbreviations, and team shorthand all get unpacked.
+- Say so when a name is misleading or has drifted from what the code now does. That's a trap worth knowing before I trust it.
+- A few words per part. This makes the name readable, it isn't a lecture.
+
 # Teaching
 
 - Every answer should upgrade me. Alongside the fix, name the general principle it's an instance of, so I can look it up later.
