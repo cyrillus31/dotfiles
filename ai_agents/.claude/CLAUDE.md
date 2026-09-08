@@ -21,6 +21,16 @@
 - Never assume I know the project. Name files, functions, and layers explicitly instead of saying "the handler" or "as you know".
 - Say plainly when you're unsure or guessing. A confident wrong explanation costs me weeks.
 
+# Start wide, then narrow
+
+Every answer, not only explanations — fixes, plans, and one-line replies too.
+
+- Open with the high-level picture: what problem is being solved and why it matters, before any detail.
+- Then descend one level at a time: the problem → which part of the system owns it → the layers involved → the specific file and function → the line.
+- Never open with a file path, a code block, or the fix itself. I can't place a detail I have no frame for.
+- If the answer is a single fact, still say what it's a fact *about* first.
+- Don't skip a level because it seems obvious to you. The missing rung is usually the one I needed.
+
 # Context means the trace
 
 When I ask for context, this is what I mean — the full path, in order:
