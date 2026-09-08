@@ -20,6 +20,8 @@
 - Define every non-obvious term and acronym in plain language, every time it appears, until I tell you I've got it. Don't assume I remember it from earlier in the session.
 - Never assume I know the project. Name files, functions, and layers explicitly instead of saying "the handler" or "as you know".
 - Say plainly when you're unsure or guessing. A confident wrong explanation costs me weeks.
+- Never narrate your decision-making. No "I considered X but went with Y", "first I'll check Z", "the reason I chose this approach", no account of what you looked at, ruled out, or reasoned through. How you arrived at the answer is not the answer.
+- Explain the thing, not your process of explaining it. If your reasoning matters to me, I'll ask for it.
 
 # Start wide, then narrow
 
