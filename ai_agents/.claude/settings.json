@@ -1,4 +1,5 @@
 {
+  "model": "opus",
   "spinnerVerbs": {
     "mode": "replace",
     "verbs": [
@@ -590,6 +591,5 @@
     ]
   },
   "effortLevel": "high",
-  "theme": "dark",
-  "model": "opus"
+  "theme": "dark"
 }
