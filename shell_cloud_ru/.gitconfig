@@ -5,3 +5,34 @@
 	excludesfile = /Users/kofedtsov/.gitignore_global
 [includeIf "gitdir:~/Projects/**"]
 	path = ~/.gitconfig-projects
+[safe]
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_full_diff_covers_every_ch0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_paths_narrow_the_diff_to_0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_files_only_sizes_the_chan0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_magic_looking_paths_are_r0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_magic_looking_paths_are_r1/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_a_path_is_handed_to_git_e0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_a_file_named_like_an_opti0/dashed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_paths_are_literal_not_glo0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_renamed_files_round_trip_0/renamed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-10/test_blank_paths_are_ignored_a0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_full_diff_covers_every_ch0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_paths_narrow_the_diff_to_0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_files_only_sizes_the_chan0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_magic_looking_paths_are_r0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_magic_looking_paths_are_r1/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_a_path_is_handed_to_git_e0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_a_file_named_like_an_opti0/dashed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_paths_are_literal_not_glo0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_renamed_files_round_trip_0/renamed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-11/test_blank_paths_are_ignored_a0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_full_diff_covers_every_ch0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_paths_narrow_the_diff_to_0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_files_only_sizes_the_chan0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_magic_looking_paths_are_r0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_magic_looking_paths_are_r1/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_a_path_is_handed_to_git_e0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_a_file_named_like_an_opti0/dashed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_paths_are_literal_not_glo0/repo
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_renamed_files_round_trip_0/renamed
+	directory = /private/var/folders/54/qgzpvsdd56l9661r_gym725m0000gn/T/pytest-of-kofedtsov/pytest-12/test_blank_paths_are_ignored_a0/repo
