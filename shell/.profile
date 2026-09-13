@@ -10,3 +10,6 @@ if [[ -d $cargopath ]]; then
 	fi
 	export PATH="${cargopath}/bin:$PATH"
 fi
+
+# Setup Homebrew
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/opt"

@@ -20,6 +20,11 @@ append_path "$HOME/go/bin"
 # Setup cargo path
 append_path "$HOME/.cargo/bin"
 
+# Setup Homebrew (linuxbrew) when installed
+if [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Common setup
 SHRC_DIR="$HOME/.shellrc.d"
 if [[ -d $SHRC_DIR ]]; then
