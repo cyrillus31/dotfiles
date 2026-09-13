@@ -21,4 +21,5 @@ __pycache__
 herdr/.config/herdr/*.log
 herdr/.config/herdr/*.sock
 herdr/.config/herdr/session.json
+herdr/.config/herdr/release-notes.json
 
