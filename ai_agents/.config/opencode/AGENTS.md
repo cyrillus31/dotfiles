@@ -55,3 +55,18 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 ## Summarize what changed, briefly
 
 - After making changes, give a short summary of what was actually done — not a step-by-step narration of the process, just the outcome and anything I should know.
+
+# GitLab
+
+## Tool preference
+
+- Use the `glab` CLI for any GitLab operation it supports: MRs, issues, pipelines, CI/CD, repositories, groups, releases.
+- If `glab` is not installed and cannot be installed (no network, no package manager access, restrictions, etc.), fall back to the GitLab REST API:
+  - `curl --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" "https://gitlab.com/api/v4/<endpoint>"`
+  - Adjust the base URL for self-hosted instances.
+
+## Authentication
+
+- Resolve the token as `GITLAB_ACCESS_TOKEN`, falling back to `GITLAB_API_TOKEN` if the former is unset.
+- For `glab`, the CLI reads `GITLAB_TOKEN`, so export it from the resolved value, e.g. `export GITLAB_TOKEN="${GITLAB_ACCESS_TOKEN:-$GITLAB_API_TOKEN}"` (or `glab auth login` once).
+- For direct API calls use the `PRIVATE-TOKEN` header with the resolved token.
