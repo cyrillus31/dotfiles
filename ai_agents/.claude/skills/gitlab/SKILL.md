@@ -8,15 +8,15 @@ when_to_use: Tasks involving merge requests, reviews, issues, pipelines, CI/CD, 
 
 ## Auth
 
-- Use `GITLAB_API_TOKEN` environment variable for authentication.
-- `glab` reads `GITLAB_TOKEN`. If `GITLAB_API_TOKEN` is the only var set, export `GITLAB_TOKEN=$GITLAB_API_TOKEN` or run `glab auth login --token $GITLAB_API_TOKEN` once.
-- For direct API calls use the `PRIVATE-TOKEN` header.
+- Resolve the token as `GITLAB_ACCESS_TOKEN`, falling back to `GITLAB_API_TOKEN` if the former is unset.
+- `glab` reads `GITLAB_TOKEN`, so export it from the resolved value, e.g. `export GITLAB_TOKEN="${GITLAB_ACCESS_TOKEN:-$GITLAB_API_TOKEN}"` (or `glab auth login` once).
+- For direct API calls use the `PRIVATE-TOKEN` header with the resolved token.
 
 ## Tool preference
 
 - Prefer the `glab` CLI for any operation it supports.
 - If a feature is not available via `glab`, fall back to the GitLab REST API directly:
-  - `curl --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" "https://gitlab.com/api/v4/<endpoint>"`
+  - `curl --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" "https://gitlab.com/api/v4/<endpoint>"`
   - Adjust the base URL for a self-hosted instance.
 
 ## Common glab commands
@@ -67,7 +67,7 @@ glab ssh-key add
 When glab lacks a feature, tag it and call the API directly:
 
 ```
-curl --header "PRIVATE-TOKEN: $GITLAB_API_TOKEN" \
+curl --header "PRIVATE-TOKEN: $GITLAB_ACCESS_TOKEN" \
   https://gitlab.com/api/v4/[projects|groups]/<id>/[pipelines|issues|merge_requests|variables|...]
 ```
 
@@ -76,7 +76,7 @@ Useful endpoints:
 - `GET /projects/:id/repository/files/:path/raw?ref=:branch` — file content
 - `GET /projects/:id/pipelines?ref=main` — pipeline runs
 - `GET /projects/:id/jobs/:job_id/trace` — full job log (glab truncates)
-- `GET /projects/:id/variables` — CI variables (glab needs admin; API can list with `GITLAB_API_TOKEN`)
+- `GET /projects/:id/variables` — CI variables (glab needs admin; API can list with `GITLAB_ACCESS_TOKEN`)
 - `PUT/POST/DELETE` for mutations not covered by glab — pass JSON bodies via `-d`.
 
 ## Getting project/group IDs
