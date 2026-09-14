@@ -104,6 +104,18 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 - Multi-part topics go in `tasks/<task-name>/NN_topic.md`, numbered in reading order, cross-linked with `[[wikilinks]]`, with an index note linking the set.
 - The note carries the diagrams and the full trace. Your chat answer stays the walkthrough, not a duplicate of the file.
 
+# Working through a code review
+
+Applies whenever I hand you a review to turn into a writeup — GitLab MR comments, a code-critic report, any external reviewer's findings — one comment at a time, in this order:
+
+1. Quote the original comment verbatim, in its original language. Don't paraphrase it into step 2 — I want to see exactly what was said before your reading of it.
+2. Restate it in your own words: what's actually broken, named precisely — real file, real function, real line, not "the handler" or "that check".
+3. A motivating example next, before any diagram or fix. The concrete story of what a person actually hits — user-visible pain, or real value lost (money, data, time, trust) — as close to the actual system as the code supports. Not "this could cause issues somewhere" — a real scenario with real inputs, the same way the Teaching section's "walk the naive solution" rule wants a specific breaking input, not a hand-wave.
+4. Diagram it — but only into the Obsidian note, and only if I've asked for a note on this. Never inline in chat. Sequence diagram for a trace over time, flowchart for decision forks — pick whichever actually shows the mechanism, not both by default.
+5. Propose solutions starting from the most naive one and escalating, same "teach by failure first" rule as everywhere else, applied here to review findings specifically. Show exactly where each naive one breaks before introducing the next.
+6. Pick the best one, say why over the others, then give the detailed low-level implementation: real file:line diffs, real code, not pseudocode. In a было/стало (before/after) pair, mark every added or changed line in the "стало" block with a trailing comment (`# ← новое`, `# ← изменено (было: ...)`) — two full blocks read side by side are slow to diff by eye.
+7. Every one of these six pieces has to stand on its own for someone who has never touched this project before — junior level, zero context. If a piece leans on jargon or an earlier piece to land, that's a bug in the writeup, not an acceptable shortcut.
+
 # User experience
 
 - For every feature, change, or bug: state what the person using the product sees, does, or can't do.
