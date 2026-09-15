@@ -106,15 +106,20 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 
 # Working through a code review
 
-Applies whenever I hand you a review to turn into a writeup — GitLab MR comments, a code-critic report, any external reviewer's findings — one comment at a time, in this order:
+Applies whenever I hand you a review to turn into a writeup — GitLab MR comments, a code-critic report, any external reviewer's findings.
+
+When there's more than one comment: don't work them in posting order. Order by severity/root-cause first — state the ordering rationale in one line up top (e.g. "root cause first, then its direct consequences, then an independent lower-severity finding"). If two comments share a root cause, or fixing one changes whether the other still applies, don't assume the first fix silently closes the second — say explicitly whether it does or doesn't. Close the writeup with a short "order of work" section, and if the comments' causes overlap, a small dependency diagram (flowchart: which root causes which symptom, which fix actually removes it) — not just a numbered list.
+
+One comment at a time, in this order:
 
 1. Quote the original comment verbatim, in its original language. Don't paraphrase it into step 2 — I want to see exactly what was said before your reading of it.
 2. Restate it in your own words: what's actually broken, named precisely — real file, real function, real line, not "the handler" or "that check".
-3. A motivating example next, before any diagram or fix. The concrete story of what a person actually hits — user-visible pain, or real value lost (money, data, time, trust) — as close to the actual system as the code supports. Not "this could cause issues somewhere" — a real scenario with real inputs, the same way the Teaching section's "walk the naive solution" rule wants a specific breaking input, not a hand-wave.
-4. Diagram it — but only into the Obsidian note, and only if I've asked for a note on this. Never inline in chat. Sequence diagram for a trace over time, flowchart for decision forks — pick whichever actually shows the mechanism, not both by default.
+3. A motivating example next, before any diagram or fix. The concrete story of what a person actually hits — user-visible pain, or real value lost (money, data, time, trust) — as close to the actual system as the code supports. Not "this could cause issues somewhere" — a real scenario with real inputs, the same way the Teaching section's "walk the naive solution" rule wants a specific breaking input, not a hand-wave. A named recurring persona (Алиса, Борис, Вера...) walking through the exact steps reads better than "a user" — reuse the technique across comments in the same note.
+4. Diagram it — but only into the Obsidian note, and only if I've asked for a note on this. Never inline in chat. Sequence diagram for a trace over time, flowchart for decision forks — pick whichever actually shows the mechanism, not both by default. When the fix changes the mechanism, draw it twice — broken flow and fixed flow, both diagrams, back to back — rather than one "after" diagram with the "before" left to prose alone.
 5. Propose solutions starting from the most naive one and escalating, same "teach by failure first" rule as everywhere else, applied here to review findings specifically. Show exactly where each naive one breaks before introducing the next.
-6. Pick the best one, say why over the others, then give the detailed low-level implementation: real file:line diffs, real code, not pseudocode. In a было/стало (before/after) pair, mark every added or changed line in the "стало" block with a trailing comment (`# ← новое`, `# ← изменено (было: ...)`) — two full blocks read side by side are slow to diff by eye.
-7. Every one of these six pieces has to stand on its own for someone who has never touched this project before — junior level, zero context. If a piece leans on jargon or an earlier piece to land, that's a bug in the writeup, not an acceptable shortcut.
+6. Pick the best one, say why over the others, then give the detailed low-level implementation: real file:line diffs, real code, not pseudocode. In a было/стало (before/after) pair, mark every added or changed line in the "стало" block with a trailing comment (`# ← новое`, `# ← изменено (было: ...)`) — two full blocks read side by side are slow to diff by eye. If I ask a clarifying question about this comment in chat afterward, fold the answer back into the note as a new subsection right there — don't let it live only in chat while the note goes stale.
+7. Once I've approved both the fix and, separately, the exact reply text before it's posted anywhere (see the rule on never posting to humans without approval), add an "Итог" section: quote the posted reply verbatim, then break it down claim by claim — each claim gets the minimal real code snippet or command output that actually backs it, not a repeat of step 6's full diff. Include the real verification command you ran and its real result (pass count, not "tests pass"), and end with an explicit list of anything the reviewer asked for that's still not done.
+8. Every one of these pieces — including the Итог section — has to stand on its own for someone who has never touched this project before — junior level, zero context. If a piece leans on jargon or an earlier piece to land, that's a bug in the writeup, not an acceptable shortcut.
 
 # User experience
 
@@ -134,6 +139,10 @@ Applies whenever I hand you a review to turn into a writeup — GitLab MR commen
 - Be brief: one or two lines for an inline comment. If a rationale needs a paragraph, it belongs in the MR description or the commit message, not the source.
 - Explain the non-obvious constraint or trap that would bite the next editor, and nothing else. If the code already says it, say nothing.
 - The same applies to test docstrings: state the invariant under test, not the story of how it was found.
+
+# Git worktrees
+
+- When creating a linked worktree (`git worktree add`, `git worktree add --track <branch>`), never flip `core.bare` to `true` in that worktree's config. Every worktree stays a normal working directory — files checked out, editable, runnable — not a bare repo. If anything suggests `git config core.bare true` (or the worktree's config already looks bare), that's wrong; undo it so the dir stays a usable checkout.
 
 # Language
 
