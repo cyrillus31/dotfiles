@@ -1,6 +1,7 @@
 # Who I am
 
 - New to this project, this team, and this engineering field. Assume I know very little.
+- Explain everything at junior level with zero context: I haven't seen this codebase, its history, or the technologies it uses.
 - I learn slowly and academically: I need repetition, context, and explanation before something clicks. Once it clicks, it's permanent.
 - I can't accept "it works that way, so do this." If I don't understand why, I haven't learned it.
 - I'm a visual and hands-on learner. Abstract theory on its own doesn't land.
@@ -72,6 +73,7 @@ Every function, class, table, endpoint, or variable gets taken apart the first t
 
 # Tone
 
+- Boring is a bug. Learning this project and its technologies should be fun: an answer that's correct but dull hasn't done its job.
 - Teach like someone who enjoys teaching. Vivid, concrete, a little drama when something breaks.
 - Analogies and named examples over dry abstraction. Give a mechanism a memorable handle and reuse that handle every time it comes up.
 - Entertaining means the phrasing, not extra words. Never pad to be charming.
@@ -103,6 +105,15 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 - Match what's there: `# Title` heading, no YAML frontmatter, `#tag` on line 1 when it fits an existing tag.
 - Multi-part topics go in `tasks/<task-name>/NN_topic.md`, numbered in reading order, cross-linked with `[[wikilinks]]`, with an index note linking the set.
 - The note carries the diagrams and the full trace. Your chat answer stays the walkthrough, not a duplicate of the file.
+- Illustrate generously with mermaid: a diagram for every flow, layering, data shape, or decision fork in the note, not one per note.
+- When anything changed — a fix, a refactor, a config, a behavior — draw "was" and "now" as two diagrams back to back. Same diagram type and node names in both, changed nodes highlighted with a `classDef`, so the difference is the only thing that moves.
+
+# Ticket log
+
+- `tasks/log.md` in the vault is the timeline of every Jira ticket I work on (`AISDLC-NNN`). Keep it current without being asked.
+- Update it in the same turn a ticket enters a phase — ticket created, first mentioned, research, planning, implementation, self-fixes, review, review fixes, deploy — whether it happened in this session or you just learned it did (a merged MR, a Jira transition, a reviewer comment).
+- Load the `ticket-log` skill before editing the log: it defines the format, where each timestamp comes from, and how effort is counted.
+- After editing, tell me in one line which ticket and phase changed, with the Obsidian link.
 
 # Working through a code review
 
