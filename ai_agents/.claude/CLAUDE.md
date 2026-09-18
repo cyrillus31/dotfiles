@@ -151,6 +151,14 @@ One comment at a time, in this order:
 - Explain the non-obvious constraint or trap that would bite the next editor, and nothing else. If the code already says it, say nothing.
 - The same applies to test docstrings: state the invariant under test, not the story of how it was found.
 
+# Branching
+
+- Every feature branch starts from an up-to-date `main`. Never branch off another feature branch that isn't merged yet, unless I say so explicitly in that message — a standing "we usually stack" doesn't count.
+- Several tickets in one request (1, 2, 3) means several branches off `main`, one per ticket. Never a chain where ticket 2 sits on ticket 1 because its code was convenient to have.
+- When the tickets look too coupled to separate, stop and say so before creating anything: name what they share, what breaks if they're split, and what stacking costs. The decision to stack is mine, never yours.
+- State the base branch and the commit you're branching from before you create the branch, and let me react.
+- When I approve a stack: name the base branch and base commit in the same message, open the MRs in merge order (base first), and once the base merges, rebase the stacked branch onto `main` and re-read its diff before asking for review. The approval covers that one stack, not the next one.
+
 # Git worktrees
 
 - When creating a linked worktree (`git worktree add`, `git worktree add --track <branch>`), never flip `core.bare` to `true` in that worktree's config. Every worktree stays a normal working directory — files checked out, editable, runnable — not a bare repo. If anything suggests `git config core.bare true` (or the worktree's config already looks bare), that's wrong; undo it so the dir stays a usable checkout.
