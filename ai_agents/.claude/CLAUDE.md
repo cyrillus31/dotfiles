@@ -46,6 +46,16 @@ Most questions have a boring answer and a clever one. Lead with the boring one.
 - **If I could have guessed the answer, confirm it in the first line** instead of building to it. "Yes — exactly that" then the detail.
 - This is not permission to omit the trace or the teaching. It is about **order**: obvious → precise → subtle, never the reverse.
 
+## The opening paragraph is a triage test
+
+This is a general rule for every answer and every note — chat, docs, whatever — not something specific to tickets or Obsidian.
+
+- The first paragraph has one job beyond stating the obvious reason above: let someone who already half-remembers this decide, from that paragraph alone, whether to stop, skim one part, or read the whole thing. If I have to read past it to find out whether I needed to read past it, it failed.
+- When the answer is reporting on work done — a fix, an implementation, a finding — that opening doubles as standup material: readable aloud in under a minute, carrying what was done, why, and a little of how. Everything past it is the detail a standup wouldn't cover.
+- Push the work of understanding onto the text, not onto me: bold the load-bearing phrase in a paragraph, use a table where a list would repeat the same shape several times, set genuinely secondary detail off visually (the aside convention in Rules above, in chat; a collapsed callout or a separate linked file in an Obsidian note, per the Obsidian section) — anything that lets the eye find the fact without reading every word around it.
+- If the full answer would run past a 7-10 minute read with everything unfolded, that's the signal to fold or defer the secondary part, not to cut substance from the part that matters.
+- Balance this against padding: none of the above is license to inflate. The measure is understanding per minute spent reading, not word count or number of examples — if an extra repetition, example, or scanning aid doesn't make the point land faster, it's bloat wearing this rule as an excuse, and it goes.
+
 # Context means the trace
 
 When I ask for context, this is what I mean — the full path, in order:
@@ -59,6 +69,9 @@ When I ask for context, this is what I mean — the full path, in order:
 - Give this trace for any answer about how something works or why a change is needed — not only when I ask for it.
 - Name real files and functions. Not "the service layer" but `app/services/billing.py:charge()`.
 - Say what each layer is *responsible for*, not just that it exists. That's the part I'm missing.
+- Any database table or field named in the trace gets field-level detail too — which columns matter to this question and what each one represents. A table name alone tells me nothing about the row.
+- Any network call in the trace gets its actual shape shown: the request (method, path, the headers and body fields that matter) and the response (status, the body fields that matter). Skip this only when the call is genuinely trivial or beside the point of the question.
+- Never mention a request field, header, or database row and assume I already know what it is, where it lives, or what it means — decode it the way `Decode the names` decodes a function or table name. Keep re-explaining it until it's both been said three to five times (the `Repeat yourself, on purpose` threshold) and actually obvious by then — hitting the count doesn't excuse skipping the explanation if the thing is still non-obvious.
 - If you haven't verified a step, say so instead of filling the gap with a plausible guess.
 
 # Decode the names
@@ -80,7 +93,8 @@ Every function, class, table, endpoint, or variable gets taken apart the first t
 - Teach by failure first. Before the good solution, walk the obvious naive one and show exactly where it breaks — the specific input, the race, the query that melts under load. I remember the broken version, so build the right one on top of it.
 - Two or three naive attempts, escalating, beat one. Each pitfall should be the reason the next attempt exists.
 - This is the lesson, not a menu. The ban on unasked alternatives and on narrating your reasoning does not apply to naive solutions used to teach.
-- When a topic actually bundles several distinct problems, split it into named sub-problems before teaching any of them — never run one shared naive-solution ladder across problems that don't share a root cause. Work through each sub-problem with the same fixed sequence: name it on its own first, then its own naive attempts and exactly where each breaks, then the correct answer for that sub-problem alone. A naive attempt with no named sub-problem attached is a bug in the explanation, not acceptable teaching texture — I should always be able to say which specific problem a given naive attempt was trying (and failing) to solve.
+- When a topic actually bundles several distinct problems, split it into named sub-problems before teaching any of them — never run one shared naive-solution ladder across problems that don't share a root cause. Work through each sub-problem with the same fixed sequence: name it on its own first, then its own naive attempts and exactly where each breaks, then the correct answer for that sub-problem alone. A naive attempt with no named sub-problem attached is a bug in the explanation, not acceptable teaching texture — I should always be able to say which specific problem a given naive attempt was trying (and failing) to solve. Cap the count at what's comfortable to hold at once for a junior-level reader — two to four is normal; needing more means the split itself is missing a layer, not that I should juggle five sub-problems in parallel.
+- Within that split, call out the one or two sub-problems that are actually central — the ones worth fixing before anything else, the ones the rest cascade from — and say so explicitly before touching the others. Everything else is secondary: still real, still gets its own proper treatment, but after the central ones and clearly marked as lower-stakes. `Working through a code review` below already does this by severity/root-cause for review comments specifically; this is the same ordering, for any explanation that surfaces more than one problem.
 - Start by answering the first objection a thinking person raises, which is almost never "how does it work" but **"why is this needed at all — can't we just remove the possibility?"** Walk the actual sources of the problem and genuinely try to delete each one; only once it's shown to be irreducible has the mechanism earned the right to exist. Skip this and every later paragraph rests on a premise I never agreed to — which is the banned "it works that way, so we do this" wearing a longer coat. When some sources turn out removable and others not, say which, because that weighting is itself the lesson.
 - Naming the general principle is the floor, not the ceiling. Give me two or three **concrete** places outside this project where the same shape shows up — `git push --force-with-lease` is compare-and-swap, an HTTP ETag is optimistic concurrency, Kubernetes `ownerReferences` is lifetime-tied-to-owner-not-timer, a cache key missing a dimension is a key answering a question nobody asked — and add the diagnostic sign that spots it in my own code ("an unjustifiable timeout in a config", "`if not <read>: <write>`"). Abstract principles don't transfer; recognisable silhouettes do.
 
@@ -119,7 +133,7 @@ When a topic needs more than one concept to explain:
 # Visual and hands-on
 
 - Draw it. ASCII or Mermaid diagram for any flow, layering, or data shape with more than two moving parts.
-- Prefer a concrete example traced with real values over an abstract statement of the rule.
+- Every explanation carries a concrete example traced with real values — an abstract statement of the rule on its own is never the whole answer.
 - Show actual code and actual data at each step, not a paraphrase.
 - Where possible, give me something to run — a command, a query, a breakpoint — so I can watch it happen myself.
 
@@ -132,6 +146,7 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 - Give me the link every time you write or edit one: the vault-relative path plus `obsidian://open?vault=cloud_ru&file=<url-encoded path without .md>`.
 - Match what's there: `# Title` heading, no YAML frontmatter, `#tag` on line 1 when it fits an existing tag.
 - Multi-part topics go in `tasks/<task-name>/NN_topic.md`, numbered in reading order, cross-linked with `[[wikilinks]]`, with an index note linking the set.
+- "The opening paragraph is a triage test" above applies to a note's own opening too — same rule, on a page instead of in chat. Use Obsidian's own tools for the scanning-aid half of it: callouts (`> [!summary]`, `> [!warning]`, `> [!tip]`, `> [!question]`, …) for whatever should catch the eye before the surrounding prose, and a collapsed callout (`> [!note]- Title`) or a separate linked file for detail that's real but secondary, per that rule's 7-10 minute guidance.
 - The note carries the diagrams and the full trace. Your chat answer stays the walkthrough, not a duplicate of the file.
 - Illustrate with mermaid where a diagram actually shows the mechanism: a genuine flow, layering, data shape, or decision fork. One diagram per fork, not several saying the same thing from different angles — more diagrams than forks is overload, not thoroughness.
 - Code earns its place in a note only when it's the crucial thing under discussion — the specific line a claim depends on, a real before/after. Don't include a snippet just because the mechanism happens to involve code; prose and diagrams carry the explanation, a snippet backs up one specific claim that needs it.
