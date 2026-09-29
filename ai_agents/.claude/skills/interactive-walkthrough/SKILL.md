@@ -50,9 +50,15 @@ Every response while a walkthrough is running — not only the ones delivering a
 ```
 🎓 Walkthrough · 🎯 <goal, one short line> · 📍 Step 2 of 5 — <step name> · 1/3 answered
 ✅ Q1: <question, one line> — you said X, so <one-line reinterpretation of what that established>.
-❓ Q2: <question, one line> — still open.
-❓ Q3: <question, one line> — still open.
+❓ Q2: <question, one line> — still open. <the facts needed to answer it, one or two lines>.
+❓ Q3: <question, one line> — still open. <the facts needed to answer it, one or two lines>.
 ```
+
+- Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
+- **Every restatement of an open question carries the information needed to answer it** — the relevant mechanism, the entity and field names in play, the setup the question is about — so the reader can answer from the block alone without scrolling back to the chunk. Not the answer itself, and not the chunk re-pasted: the general facts that lead to the answer, one or two lines. Repeating the conclusion the question is testing makes the check worthless; repeating nothing makes the reader hunt for context they already paid attention for once.
+- An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
+- When a step's questions are all answered or explicitly skipped (§3) and the next chunk starts, the block resets to that chunk's own questions — a resolved step's questions don't get carried forward.
+- This is exactly why chunks in §2 stay small: the block repeats on every message for as long as a step's questions are open, so a bigger step means paying for its recap more times and for longer. Small steps keep the recap a small fraction of each response instead of the bulk of it.
 
 These glyphs carry fixed meanings and are used consistently for the whole walkthrough:
 
@@ -70,11 +76,6 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 - They are status signals, not decoration. The teaching prose in each chunk stays plain, precise text per §2 — a walkthrough that sprinkles emoji through its explanations is worse than one with none.
 - Keep the set fixed. Inventing a new glyph mid-walkthrough defeats the point: the reader learns these eight once and can then parse any response without reading it closely.
 - This is scoped to walkthrough mode. Outside it, the normal no-emoji default applies.
-
-- Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
-- An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
-- When a step's questions are all answered or explicitly skipped (§3) and the next chunk starts, the block resets to that chunk's own questions — a resolved step's questions don't get carried forward.
-- This is exactly why chunks in §2 stay small: the block repeats on every message for as long as a step's questions are open, so a bigger step means paying for its recap more times and for longer. Small steps keep the recap a small fraction of each response instead of the bulk of it.
 
 ## 5. Recalibrating the level as you go
 
