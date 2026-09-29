@@ -15,6 +15,7 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 - Don't assume I already understand a term, acronym, tool, or convention just because it's common in this domain — especially in a new project.
 - If you use a term I might not know, define it briefly the first time, in plain language.
 - Don't skip explanations because "it's standard" — I'd rather you over-explain once than assume wrong.
+- When something has more than one representation — e.g. "the user" as a database row, an in-code object, and an id used elsewhere — say which one you mean. "The user" alone doesn't say if it's the row, a specific column, or the in-memory object.
 
 ## Understand before acting
 

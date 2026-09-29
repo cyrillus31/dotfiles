@@ -38,6 +38,7 @@
    - Give multiple complex paragraphs when one would do
    - Assume the user knows about other parts of the system
    - Include information "just in case" - let them ask
+   - Mention a multi-part entity (e.g. "the user") without saying which part is meant — the database row, which column, the in-code object, which field, or an id used elsewhere
 
 ---
 

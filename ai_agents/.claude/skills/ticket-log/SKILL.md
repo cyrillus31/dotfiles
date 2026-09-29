@@ -11,6 +11,8 @@ Link: `tasks/log.md` · `obsidian://open?vault=cloud_ru&file=tasks%2Flog`
 
 The log is a record the user shows at performance reviews. A wrong date is worse than a `?`.
 
+A "ticket" is never one thing here — it's a Jira issue, a `log.md` row, a vault folder, and often an MR too. CLAUDE.md's bare entity rule applies: say which Jira field, which `log.md` column, or which MR field is meant, not just "the ticket".
+
 ## 1. Which tickets belong here
 
 Tickets the user works on: they write code, notes, or reviews for it, or it is assigned to them. A key that only
