@@ -43,16 +43,33 @@ What these questions are for: confirming the reader understands the problem this
 
 **The questions are a gate, not a suggestion — once asked, they stay open regardless of what happens next in the conversation.** If the reader goes on a tangent, asks something unrelated, or asks about something else entirely, that does not clear the open questions: answer what they actually asked, then return to the still-open questions before advancing. Never let the walkthrough drift into the next chunk just because the conversation moved elsewhere. The only way past an open question, besides answering it, is the reader explicitly or clearly-implicitly asking to skip it ("skip this", "let's just move on") — absent that, there is no other path forward.
 
-## 4. Status recap on every response
+## 4. Status recap and visual markers
 
-Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are:
+Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are, and so a walkthrough response is distinguishable from ordinary chat at a glance:
 
 ```
-[Goal: <goal, one short line> · Step 2 of 5 — <step name>. Questions answered: 1/3]
+🎓 Walkthrough · 🎯 <goal, one short line> · 📍 Step 2 of 5 — <step name> · 1/3 answered
 ✅ Q1: <question, one line> — you said X, so <one-line reinterpretation of what that established>.
 ❓ Q2: <question, one line> — still open.
 ❓ Q3: <question, one line> — still open.
 ```
+
+These glyphs carry fixed meanings and are used consistently for the whole walkthrough:
+
+| Glyph | Means |
+|---|---|
+| 🎓 | walkthrough mode is active — opens the status block |
+| 🎯 | the goal (§1) |
+| 📍 | the current step |
+| ✅ | question answered and accepted |
+| ❓ | question still open |
+| 🔁 | re-explaining after a missed check (§3) |
+| ⚠️ | agenda or pacing change (§5, §6) |
+| 🏁 | walkthrough complete (§7) |
+
+- They are status signals, not decoration. The teaching prose in each chunk stays plain, precise text per §2 — a walkthrough that sprinkles emoji through its explanations is worse than one with none.
+- Keep the set fixed. Inventing a new glyph mid-walkthrough defeats the point: the reader learns these eight once and can then parse any response without reading it closely.
+- This is scoped to walkthrough mode. Outside it, the normal no-emoji default applies.
 
 - Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
 - An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
