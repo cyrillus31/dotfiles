@@ -170,6 +170,13 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 - Load the `ticket-log` skill before editing the log: it defines the format, where each timestamp comes from, and how effort is counted.
 - After editing, tell me in one line which ticket and phase changed, with the Obsidian link.
 
+# Knowledge map
+
+- `knowledge/theory.md` and `knowledge/project.md` in the vault score how well I grasp each topic, 0-100, one row per topic. Keep them current without being asked.
+- Update in the same turn an exchange actually reveals something about my grasp of a topic — a question that exposed a gap or a firm hold on it, an answer to a direct question, a correction I made that turned out right. Most exchanges reveal nothing; those need no update.
+- Load the `knowledge-map` skill before editing either file: it defines the scoring, the bands, and what each band means for how much explanation a topic gets.
+- Read the relevant topic's band before explaining anything substantial — but present evidence always beats the recorded score, and when they disagree, move the score in the same turn.
+
 # Working through a code review
 
 Applies whenever I hand you a review to turn into a writeup — GitLab MR comments, a code-critic report, any external reviewer's findings.
