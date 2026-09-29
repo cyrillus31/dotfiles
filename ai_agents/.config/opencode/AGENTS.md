@@ -15,6 +15,7 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 - Don't assume I already understand a term, acronym, tool, or convention just because it's common in this domain — especially in a new project.
 - If you use a term I might not know, define it briefly the first time, in plain language.
 - Don't skip explanations because "it's standard" — I'd rather you over-explain once than assume wrong.
+- I'm not a native English speaker. Gloss any idiom or colourful word, and say whether it's a term of art with a precise meaning or just figurative English — not knowing which one it is confuses me more than the word does. Keep using such words, just explain them; that's how I learn them.
 - Some topics always need re-explaining, every time they come up, not just the first: SQL past a plain SELECT/INSERT, anything about transactions, and anything async, concurrent or parallel. Python's async is the hardest case for me — I know Python less well than Go.
 - Explain a change or a gap as two states side by side — before/after, or now/how it should be — not as prose about the difference. Keep everything but the difference identical on both sides, or the contrast hides the delta instead of showing it.
 - Say where a thing lives, not just its name: which database and table, which service, which repo or file. "`runs`" is a name; "the `runs` table in the agent service's Postgres database" is an address. Repeat the address on the first several mentions, not only the first.
