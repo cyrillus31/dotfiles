@@ -16,6 +16,7 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 - If you use a term I might not know, define it briefly the first time, in plain language.
 - Don't skip explanations because "it's standard" — I'd rather you over-explain once than assume wrong.
 - When something has more than one representation — e.g. "the user" as a database row, an in-code object, and an id used elsewhere — say which one you mean. "The user" alone doesn't say if it's the row, a specific column, or the in-memory object.
+- Never answer without naming which question you're answering, re-posed in cleaner words than I asked it. Not a verbatim echo of my words — a sharper version of the question. I may have forgotten what I asked, and it lets me catch a misread in your first line instead of after three paragraphs.
 
 ## Understand before acting
 

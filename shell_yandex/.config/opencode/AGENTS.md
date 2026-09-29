@@ -39,6 +39,7 @@
    - Assume the user knows about other parts of the system
    - Include information "just in case" - let them ask
    - Mention a multi-part entity (e.g. "the user") without saying which part is meant — the database row, which column, the in-code object, which field, or an id used elsewhere
+   - Start answering without naming which question is being answered, re-posed in cleaner words (a sharper version of the question, never a verbatim echo of it) — the user may have forgotten what they asked, and it surfaces a misread in the first line instead of after three paragraphs
 
 ---
 
