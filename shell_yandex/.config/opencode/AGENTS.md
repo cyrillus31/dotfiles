@@ -47,7 +47,7 @@
    - Mention a multi-part entity (e.g. "the user") without saying which part is meant — the database row, which column, the in-code object, which field, or an id used elsewhere
    - Write a long answer that only makes sense to someone who just read the previous ones — the user is often not reading in real time and may return hours later, and must never have to scroll up to recover context
    - Treat a clarifying question as proof the whole previous message was read — it usually means the user stopped reading at that point, so answer it and return them to that spot rather than moving on to the next topic
-   - Start answering without naming which question is being answered, re-posed in cleaner words (a sharper version of the question, never a verbatim echo of it) — the user may have forgotten what they asked, and it surfaces a misread in the first line instead of after three paragraphs
+   - Start answering without carrying the ask into the answer — what is being answered and why this reply exists, re-posed in cleaner words (a sharper version of the question, never a verbatim echo of it); the user may read it days later with no memory of what prompted it, and it surfaces a misread in the first line instead of after three paragraphs. Skip only when a short question gets a short, straightforward answer in a live exchange
 
 ---
 
