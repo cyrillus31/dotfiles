@@ -39,6 +39,7 @@
    - Assume the user knows about other parts of the system
    - Include information "just in case" - let them ask
    - Mention a multi-part entity (e.g. "the user") without saying which part is meant — the database row, which column, the in-code object, which field, or an id used elsewhere
+   - Write a long answer that only makes sense to someone who just read the previous ones — the user is often not reading in real time and may return hours later, and must never have to scroll up to recover context
    - Treat a clarifying question as proof the whole previous message was read — it usually means the user stopped reading at that point, so answer it and return them to that spot rather than moving on to the next topic
    - Start answering without naming which question is being answered, re-posed in cleaner words (a sharper version of the question, never a verbatim echo of it) — the user may have forgotten what they asked, and it surfaces a misread in the first line instead of after three paragraphs
 

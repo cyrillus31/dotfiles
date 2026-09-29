@@ -49,7 +49,7 @@ What these questions are for: confirming the reader understands the problem this
 
 ## 4. Status recap and visual markers
 
-Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are, and so a walkthrough response is distinguishable from ordinary chat at a glance:
+Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are — a walkthrough can sit open for hours while they're pulled onto other work, and this block is what lets them resume cold — and so a walkthrough response is distinguishable from ordinary chat at a glance:
 
 ```
 🎓 Walkthrough · 🎯 <goal, one short line> · 📍 Step 2 of 5 — <step name> · 1/3 answered
