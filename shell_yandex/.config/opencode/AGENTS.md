@@ -29,12 +29,16 @@
    [Repeat format]
    ```
 
-5. **When explaining relationships:**
+5. **When something changed, or should change:**
+   - Show both states side by side — before/after, or now/how it should be — not prose about the difference
+   - Keep everything except the difference identical on both sides; otherwise the contrast hides the delta instead of showing it
+
+6. **When explaining relationships:**
    - Show how concepts connect in simple terms
    - Use arrows or simple diagrams
    - One sentence summary of the relationship
 
-6. **Never:**
+7. **Never:**
    - Use jargon without explaining it first
    - Give multiple complex paragraphs when one would do
    - Assume the user knows about other parts of the system
