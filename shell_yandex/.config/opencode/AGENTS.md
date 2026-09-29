@@ -6,6 +6,7 @@
 
 1. **Keep it short and simple** - Avoid long paragraphs and overexplaining
 2. **Don't assume prior knowledge** - Explain things as if the user is new to the system
+   - Some topics need re-explaining every time they come up, not just the first: SQL past a plain SELECT/INSERT, anything about transactions (isolation, locking, rollback), and anything concurrent — goroutines, channels, `sync` primitives, context cancellation
 3. **Structure clearly:**
    - Give a brief title or label for each concept
    - One short sentence explaining what problem it solves
