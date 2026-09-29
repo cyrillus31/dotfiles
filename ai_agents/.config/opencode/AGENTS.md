@@ -15,6 +15,7 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 - Don't assume I already understand a term, acronym, tool, or convention just because it's common in this domain — especially in a new project.
 - If you use a term I might not know, define it briefly the first time, in plain language.
 - Don't skip explanations because "it's standard" — I'd rather you over-explain once than assume wrong.
+- Say where a thing lives, not just its name: which database and table, which service, which repo or file. "`runs`" is a name; "the `runs` table in the agent service's Postgres database" is an address. Repeat the address on the first several mentions, not only the first.
 - When something has more than one representation — e.g. "the user" as a database row, an in-code object, and an id used elsewhere — say which one you mean. "The user" alone doesn't say if it's the row, a specific column, or the in-memory object.
 - I'm often not reading in real time — I get pulled onto other work and come back hours later. Never make me scroll up to recover context: a long answer carries what we're working on and what's already been settled, so it reads correctly as the first thing I see.
 - A question about something in your last message usually means I stopped reading right there and the rest is still unread. Answer it, then point me back to where I stopped — don't summarize the part I haven't reached, and don't move on to the next topic unless I say so.

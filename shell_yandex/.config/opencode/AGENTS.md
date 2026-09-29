@@ -38,6 +38,7 @@
    - Give multiple complex paragraphs when one would do
    - Assume the user knows about other parts of the system
    - Include information "just in case" - let them ask
+   - Name a thing without saying where it lives — which database and table, which service, which repo or file; repeat that address on the first several mentions, not only the first
    - Mention a multi-part entity (e.g. "the user") without saying which part is meant — the database row, which column, the in-code object, which field, or an id used elsewhere
    - Write a long answer that only makes sense to someone who just read the previous ones — the user is often not reading in real time and may return hours later, and must never have to scroll up to recover context
    - Treat a clarifying question as proof the whole previous message was read — it usually means the user stopped reading at that point, so answer it and return them to that spot rather than moving on to the next topic
