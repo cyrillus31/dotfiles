@@ -22,15 +22,18 @@ Start assuming **zero context and junior-or-below technical competence**, regard
 
 - **Length:** roughly 150-400 words — a 1-3 minute read. If a step genuinely needs more, split it into two chunks rather than stretch the read.
 - **No Mermaid in plain chat.** Claude Code's terminal doesn't render Mermaid — assume that's the medium unless the walkthrough is explicitly landing in something that renders it (an Obsidian note, a claude.ai Artifact). Use an ASCII diagram instead when a diagram earns its place.
-- Every chunk still gets a concrete, real-valued example and the precise-first framing — short is not an exemption from either.
+- Every sentence describing a mechanism must be precise, never abstract: name the actual database row/column, network request/response field, or code-level construct involved — never a metaphor or an anthropomorphized stand-in for the literal fact (`Rules`, top bullet). Short is not an exemption from this.
+- Every chunk still gets a concrete, real-valued example — an abstract statement of the rule alone never counts as the explanation.
+- Assume zero context for each new concept the first time it appears, regardless of how technical the reader has seemed on other topics. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, three to five times across the walkthrough — including whenever it resurfaces in a later chunk, not only within the chunk that first defined it — before assuming it's actually landed. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything.
 - **End every chunk with 1-3 check questions** — see §3.
 
 ## 3. Comprehension check
 
 - Ask 1-3 questions that test the one or two operative facts of that specific chunk — not trivia, not something answerable without having understood the point. Prefer a question that makes the reader apply the fact to a new instance (predict what happens if X changes) over one that just asks them to repeat a definition back.
 - Wait for an answer before moving on. Don't advance the walkthrough in the same message as the questions.
-- Grade generously on wording, strictly on substance: if the reader has the operative fact even in their own words, that's a pass — move to the next chunk. If the answer is missing or contradicts the fact, re-explain it from a different angle (`Repeat yourself, on purpose` — a different angle, not the same sentence again), then re-ask before moving on.
-- Don't turn this into an exam. One clarifying round per miss is normal; if it's still not landing after that, the chunk itself was pitched wrong — rewrite it, don't keep re-testing the same explanation.
+- Grade generously on wording, strictly on substance — and substance means the reasoning, not just the conclusion. A right-sounding answer can still be a guess; a guess and real understanding produce the same words. If the first answer states the conclusion without showing why, or without applying it to anything, ask one quick follow-up before deciding pass or fail — a "why", or the same fact applied to a slightly different instance. That follow-up is what tells a guess from a grasp; it's a single quick check, not the re-explanation round below.
+- Only advance once the reasoning holds up, not just the stated conclusion. Treat missing, evasive, or contradicted reasoning the same as a wrong answer: re-explain the point from a different angle (`Repeat yourself, on purpose` — a different angle, not the same sentence again), then re-ask, before moving on.
+- Don't turn this into an exam. The follow-up probe above is one quick check, not a second graded question. One full clarifying round (re-explain + re-ask) per genuine miss is normal; if it's still not landing after that, the chunk itself was pitched wrong — rewrite it, don't keep re-testing the same explanation.
 
 ## 4. Recalibrating the level as you go
 
