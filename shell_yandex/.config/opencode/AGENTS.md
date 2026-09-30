@@ -57,6 +57,14 @@
 
 ---
 
+## Doubt the Proposal
+
+- **A ticket is an input, not truth**: it was often written without the full picture, or the picture moved since it was filed. Assess whether its approach is still right *before* implementing it, not after
+- **Verify the load-bearing premise first**: if the whole plan rests on one claim, check that claim against the actual code before building anything on top of it
+- **Propose the alternative** when one looks better on any axis — correctness, blast radius, reversibility, maintenance cost — and say which you would pick and why. A critique with no counter-proposal is just an objection
+- **This applies to what the user proposes too**: if they are wrong, or there is a better way, say so plainly rather than agreeing
+- Drop this only when told to for a specific task
+
 ## Version Control
 
 When working with version control:

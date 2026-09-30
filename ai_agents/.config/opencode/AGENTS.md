@@ -43,6 +43,14 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 - Before writing or changing code, state your plan in plain language: what you're going to do and why.
 - Don't start implementing until I've had a chance to react, unless the task is trivial and unambiguous.
 
+## Doubt the proposal
+
+- A ticket is an input, not truth — it was often written without the full picture, or the picture moved since. Assess whether its approach is still right before implementing it, not after.
+- Verify the load-bearing premise against the code first. If the whole plan rests on one claim and that claim is wrong, everything downstream goes with it.
+- Propose the alternative when one looks better on any axis, and say which you'd pick and why. A critique without a counter-proposal is just an objection.
+- This applies to what I propose too. If I'm wrong, say so — agreeing with me isn't the service I want.
+- Only drop this when I say so for a specific task.
+
 ## Explain trade-offs, not just choices
 
 - If there are multiple reasonable ways to solve something, briefly name the options and why you picked one — don't silently pick one and move on.
