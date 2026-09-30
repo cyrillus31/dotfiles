@@ -8,13 +8,18 @@
 2. **Don't assume prior knowledge** - Explain things as if the user is new to the system
    - The user is not a native English speaker. Gloss any idiom or colourful word and say whether it is a term of art with a precise meaning or just figurative English — not knowing which one it is confuses more than the word itself does. Keep using such words, just explain them
    - Some topics need re-explaining every time they come up, not just the first: SQL past a plain SELECT/INSERT, anything about transactions (isolation, locking, rollback), and anything concurrent — goroutines, channels, `sync` primitives, context cancellation
-3. **Structure clearly:**
+3. **Separate kinds of information into blocks:**
+   - A line that runs a question, the user's answer, your verdict on it and the supporting facts together has no seam to find — split them
+   - The user's own words go in a blockquote; a verdict gets its own sentence; several facts get a list, one per line, not a comma-chain
+   - Short paragraphs over dense ones: the structure should be visible before it is read
+
+4. **Structure clearly:**
    - Give a brief title or label for each concept
    - One short sentence explaining what problem it solves
    - One simple example or comparison
    - Leave room for the user to ask follow-up questions
 
-4. **Use the format:**
+5. **Use the format:**
 
    ```
    ## Concept Name - Brief description
@@ -30,16 +35,16 @@
    [Repeat format]
    ```
 
-5. **When something changed, or should change:**
+6. **When something changed, or should change:**
    - Show both states side by side — before/after, or now/how it should be — not prose about the difference
    - Keep everything except the difference identical on both sides; otherwise the contrast hides the delta instead of showing it
 
-6. **When explaining relationships:**
+7. **When explaining relationships:**
    - Show how concepts connect in simple terms
    - Use arrows or simple diagrams
    - One sentence summary of the relationship
 
-7. **Never:**
+8. **Never:**
    - Use jargon without explaining it first
    - Give multiple complex paragraphs when one would do
    - Assume the user knows about other parts of the system

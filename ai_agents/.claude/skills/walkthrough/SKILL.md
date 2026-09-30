@@ -54,12 +54,34 @@ What these questions are for: confirming the reader understands the problem this
 
 Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are — a walkthrough can sit open for hours while they're pulled onto other work, and this block is what lets them resume cold — and so a walkthrough response is distinguishable from ordinary chat at a glance:
 
-```
-🎓 Walkthrough · 🎯 <goal, one short line> · 📍 Step 2 of 5 — <step name> · 1/3 answered
-✅ Q1: <question, one line> — you said X, so <one-line reinterpretation of what that established>.
-❓ Q2: <question, one line> — still open. <the facts needed to answer it, one or two lines>.
-❓ Q3: <question, one line> — still open. <the facts needed to answer it, one or two lines>.
-```
+````
+🎓 **Walkthrough** · 📍 Step 2 of 5 — <step name> · 1/3 answered
+🎯 <goal, one short line>
+
+---
+
+✅ **Q1 — <the question, one line>**
+
+> <what the reader answered, in their own words>
+
+<Verdict first word, then what their answer established or what it missed — its own paragraph, never appended to the lines above.>
+
+---
+
+❓ **Q2 — <the question, one line>** · still open
+
+Нужные факты:
+- <one fact per line, never a comma-chain inside the question>
+- <one fact per line>
+````
+
+**One kind of information per block — this is the part that breaks first.** A single line carrying the question, the reader's answer, your verdict on it, and the supporting facts is unreadable even when every word in it is correct: there is no way to see where one ends and the next begins. So:
+
+- The question is a **bolded heading on its own line**, so it can be found without reading anything around it.
+- The reader's own answer goes in a **blockquote**. That is the only device that reliably distinguishes *their words* from *your comment on their words* at a glance.
+- Your verdict and its reasoning get **their own paragraph**, below the quote, never appended to it.
+- Refresher facts are a **list**, one fact per line — never folded into the question's sentence.
+- A `---` rule between questions. Blank lines inside each one.
 
 - Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
 - A clarifying question about the current chunk means the reader stopped reading at that point — the rest of that chunk is probably still unread. Answer it, then hand them back to the exact spot they stopped at. A clarification never counts as having cleared the chunk, and never advances the walkthrough to the next step.
