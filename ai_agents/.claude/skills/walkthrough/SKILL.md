@@ -1,5 +1,6 @@
 ---
 name: walkthrough
+argument-hint: "<goal: what you should be able to explain by the end>"
 description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Requires a goal argument: what the reader should understand and still remember when it ends.
 when_to_use: The user asks to be walked through, taught, or onboarded to a topic interactively, asks for a step-by-step/guided explanation, or invokes `/walkthrough <goal>`.
 ---
