@@ -1,6 +1,6 @@
 ---
 name: walkthrough
-argument-hint: "<goal: what you should be able to explain by the end>"
+argument-hint: "<goal: what you should understand by the end>"
 description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Requires a goal argument: what the reader should understand and still remember when it ends.
 when_to_use: The user asks to be walked through, taught, or onboarded to a topic interactively, asks for a step-by-step/guided explanation, or invokes `/walkthrough <goal>`.
 ---
@@ -8,6 +8,46 @@ when_to_use: The user asks to be walked through, taught, or onboarded to a topic
 # Interactive walkthrough
 
 This is the explicit, packaged form of the "one step at a time" mode CLAUDE.md's `Complex topics: lay it all out` section allows as an opt-in — here it's the default for the whole session, not a one-off request. Apply CLAUDE.md's `Teaching`, `Tone`, `Repeat yourself, on purpose`, `Decode the names`, and the precision-over-abstraction bullet at the top of `Rules` to every chunk below; this skill only adds the structure around them.
+
+## 0. Per-user settings — read this first
+
+Every reader tunes a walkthrough differently: one wants 30-second steps, another is fine with three-minute ones. Those preferences live in a local JSON file, **per user, not per project**:
+
+```
+~/.claude/walkthrough.json
+```
+
+It sits outside this skill's own directory deliberately. The skill directory is version-controlled and shared between machines and people; a personal preference written in there would be committed and imposed on everyone else who installs the skill.
+
+**At the start of every walkthrough:** read that file. If it does not exist, create it with the defaults below and say in one line that it was created and where, so the reader knows there is something to tune. Never block the start on it — the defaults below are authoritative on their own, and the file only overrides them.
+
+```json
+{
+  "chunk_read_minutes": [1, 3],
+  "questions_per_chunk": [1, 3],
+  "gate_on_answers": true,
+  "recap_every_response": true,
+  "glyphs": true,
+  "diagrams": "ascii",
+  "language": "en",
+  "starting_level": "zero-context",
+  "repeat_complex_times": [3, 5]
+}
+```
+
+| Key | Governs | Notes |
+|---|---|---|
+| `chunk_read_minutes` | §2 chunk length | `[0.5, 1]` gives 30-60 second steps, roughly 75-150 words; 1 minute ≈ 150 words of technical prose |
+| `questions_per_chunk` | §3 how many checks | lower bound 0 disables checks for a reader who only wants the material |
+| `gate_on_answers` | §3 the gate | `false` delivers chunks back to back without waiting; the questions still get asked |
+| `recap_every_response` | §4 status block | `false` shows it only when the step changes |
+| `glyphs` | §4 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
+| `diagrams` | §2 visuals | `ascii`, or `obsidian` for a reader who would rather have real diagrams and follow links |
+| `language` | the walkthrough's prose | code identifiers, paths and error strings stay verbatim regardless |
+| `starting_level` | §1 opening assumption | `zero-context` or `experienced`; §5 recalibrates from there either way |
+| `repeat_complex_times` | §2 re-explanation budget | how many times a genuinely complex point is restated before it is assumed landed |
+
+An unknown key is left alone rather than deleted — a newer version of this skill may own it. A malformed file is reported in one line and the defaults are used; never fail a walkthrough over its config.
 
 ## 1. Opening message
 
