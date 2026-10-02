@@ -51,6 +51,14 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 
 An unknown key is left alone rather than deleted — a newer version of this skill may own it. A malformed file is reported in one line and the defaults are used; never fail a walkthrough over its config.
 
+### If a knowledge-map skill is installed
+
+Optional, and the walkthrough works identically without it. There is no declared dependency between skills — a standalone `SKILL.md` has no `dependencies` field — so the link is just this: check whether a `knowledge-map` skill is listed, and if it is, invoke it and use what it knows.
+
+- **At the start**, read the relevant subject or project file and take the opening depth from the recorded band rather than defaulting to zero context (§1). A topic already scored 75 does not get taught from scratch.
+- **At the end, or at a natural pause**, hand back what the checks revealed: each graded question, the answer, and whether the reasoning held. That is exactly the evidence the map scores on, and a walkthrough generates more of it than anything else. Batch it — one write, not one per question.
+- If no such skill is listed, skip all of this silently. Never mention a missing skill to the reader, and never ask them to install one.
+
 ## 1. Opening message
 
 **The goal is a required argument.** A walkthrough is defined by what the reader should be able to explain, and still remember, when it ends — not by which topic gets covered. If the invocation carried no goal (`/walkthrough` with nothing after it, or a bare topic name like "langgraph"), ask for it and start nothing until it's answered: what should the reader walk away knowing? Inventing a goal from a bare topic is a guess, and every later decision is derived from it — which steps exist, what each chunk covers, which questions gate it, and what the ending checks.

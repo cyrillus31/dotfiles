@@ -1,26 +1,35 @@
 ---
 name: knowledge-map
-description: Maintain the reader's knowledge map in the Obsidian vault — per-topic scores from 0 to 100 estimating how well they grasp each topic, split into a general CS/theory file and a project-specific file, updated from the quality of their questions and answers, and used to decide how much explanation a topic still needs.
+description: Maintain a knowledge map of how well the reader grasps each topic — per-topic scores from 0 to 100 plus a criticality rating, split into transferable theory subjects and project-specific files, updated from the quality of their questions and answers, and used to decide how much explanation a topic still needs.
 when_to_use: An exchange revealed something about how well the reader understands a topic — a question that showed a gap or a firm grasp, an answer to a direct question, a correction they made. Or the user asks to read, rebuild, or adjust the knowledge map (`/knowledge-map`, `/knowledge-map <topic>`).
 ---
 
 # Knowledge map
 
-Two files in the vault, one directory:
+Plain markdown under the agent's own config directory — **no Obsidian, no vault, no external tool**:
 
-- `knowledge/theory.md` — topics that exist outside this project: SQL, transactions, concurrency, HTTP, data structures, Python, Go, Kubernetes, testing. Anything that would still be true at a different company.
-- `knowledge/project.md` — topics that exist only here: the copilot/agent architecture, its surfaces, its decisions and their reasons, its dependencies and how they interact, ticket history that still shapes the code.
+```
+~/.claude/knowledge_map/
+  knowledge.md              index: what is tracked and where, plus the scoring rules. No scores.
+  theory/<subject>.md       one file per transferable subject — go.md, python.md, sql.md, kubernetes.md
+  projects/<project>.md     one file per project
+```
 
-Both follow the vault's own `tasks/AGENTS.md`: Russian prose, `# Title` heading, no YAML frontmatter, code identifiers and paths verbatim. The maintenance rules live inside each file as a blockquote legend, the same way `tasks/log.md` carries its own legend — so the file explains itself to someone opening it cold months later.
+- **`knowledge.md` is the index and the rulebook.** It lists every subject and project with a one-line description and a link, and carries the scoring rules once. Read it first; it is cheap and it tells you which file to open.
+- **One subject or one project per file.** `theory/` holds what would still be true at another company; `projects/` holds what is true only here. Create a file the first time a subject or project comes up substantively, and add it to the index in the same edit.
+- **Subject files carry a pointer to the rules, not a copy of them.** Repeating the rulebook in a dozen files guarantees twelve drifting versions.
+- A file that has grown past comfortable reading gets split, with the index updated.
+
+Everything is ordinary markdown tables — readable with `cat`, editable by hand, and portable to any machine that has the skill.
 
 ## 0. What this map is protecting
 
 Two competences, and both decay silently when an agent does the work — the output keeps looking fine while the understanding behind it thins out:
 
-1. **Theoretical CS at interview depth.** The transferable fundamentals. `knowledge/theory.md` holds these, and they are most of the высокая criticality rows.
-2. **The ability to explain the reader's own work, and why it is built the way it is.** Shipping a ticket with an agent's help and being able to defend its design six months later are different skills, and only the first happens by itself. `knowledge/project.md` holds these — and the theory underneath a decision is part of that row, not a separate one: "why a row lock here instead of a lease" is the project topic, not merely "what a row lock is".
+1. **The transferable fundamentals, at interview depth.** `theory/` holds these, and they are most of the high-criticality rows.
+2. **The ability to explain the reader's own work, and why it is built the way it is.** Shipping something with an agent's help and being able to defend its design six months later are different skills, and only the first happens by itself. `projects/` holds these — and the theory underneath a decision belongs to that row rather than a separate one: "why a row lock here instead of a lease" is the project topic, not merely "what a row lock is".
 
-The working test for the second: **could the reader write that ticket's `00_guide_from_zero.md` from memory** — the problem, why the naive fixes break, why this design won, what it cost — without rereading the code? That is the arc `tasks/AGENTS.md` demands of vault documents, and it is also precisely what an interviewer means by "walk me through something you built". If the answer is no, that work scores low no matter how smoothly it shipped.
+The working test for the second: **could the reader write the whole thing out from memory** — the problem, why the naive fixes break, why this design won, what it cost — without rereading the work? That is precisely what an interviewer means by "walk me through something you built". If the answer is no, that work scores low no matter how smoothly it shipped.
 
 ## 1. What a topic is
 
@@ -108,6 +117,15 @@ There is no background process — an agent only acts during a turn. "Automatic"
 - Batch within a turn: one edit covering every topic the exchange touched, not one edit per topic.
 - Don't announce routine updates. A score moving from 55 to 60 is not worth a line of the reader's attention — §4's confirmation and a genuine reversal (a topic dropping a band) are the exceptions worth mentioning.
 
-## 7. Reading the map
+## 7. Working with a walkthrough
+
+A `walkthrough` skill, if one is installed, is the single richest source of evidence this map can get: it asks graded comprehension questions and sees exactly which ones land. There is no declared dependency between the two skills — a standalone `SKILL.md` has no `dependencies` field — so the link is simply that each checks whether the other is listed and uses it when it is.
+
+- **Before a walkthrough starts**, it should read the relevant subject or project file and pick its opening depth from the band (§4) instead of assuming zero context. A topic already at 75 does not need teaching from scratch.
+- **After each graded check**, the walkthrough has precisely what §2 wants: a question, an answer, and a verdict on the reasoning. Record the move and the evidence.
+- Batch the writes. One edit at the end of a walkthrough, or at a natural pause, beats an edit after every question.
+- If no walkthrough skill is installed, nothing here applies and the map works exactly as before.
+
+## 8. Reading the map
 
 Before explaining anything substantial, the relevant topic's band (§3) sets the depth. When the map and the evidence in front of you disagree — the reader asks something that a 90 wouldn't ask — trust the evidence, explain accordingly, and move the score in the same turn. The map is a record of past evidence, never a reason to ignore present evidence.

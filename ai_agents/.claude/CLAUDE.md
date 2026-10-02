@@ -174,7 +174,7 @@ My vault is `/Users/kofedtsov/Documents/Obsidian/cloud_ru`. Complex relations re
 
 # Knowledge map
 
-- `knowledge/theory.md` and `knowledge/project.md` in the vault score how well I grasp each topic, 0-100, one row per topic. Keep them current without being asked.
+- `~/.claude/knowledge_map/` scores how well I grasp each topic, 0-100, one row per topic: `knowledge.md` is the index and rulebook, `theory/<subject>.md` holds transferable subjects, `projects/<project>.md` the local ones. Keep them current without being asked.
 - Update in the same turn an exchange actually reveals something about my grasp of a topic — a question that exposed a gap or a firm hold on it, an answer to a direct question, a correction I made that turned out right. Most exchanges reveal nothing; those need no update.
 - Load the `knowledge-map` skill before editing either file: it defines the scoring, the bands, and what each band means for how much explanation a topic gets.
 - Read the relevant topic's band before explaining anything substantial — but present evidence always beats the recorded score, and when they disagree, move the score in the same turn.
