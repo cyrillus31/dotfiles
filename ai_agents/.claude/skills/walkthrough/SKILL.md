@@ -1,7 +1,7 @@
 ---
 name: walkthrough
 argument-hint: "<goal: what you should understand by the end>"
-description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Requires a goal argument: what the reader should understand and still remember when it ends.
+description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Checks can be answered as freeform text (the default, better for retention) or as quick 3-4 option multiple choice, switchable at any point. Requires a goal argument: what the reader should understand and still remember when it ends.
 when_to_use: The user asks to be walked through, taught, or onboarded to a topic interactively, asks for a step-by-step/guided explanation, or invokes `/walkthrough <goal>`.
 ---
 
@@ -25,6 +25,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 {
   "chunk_read_minutes": [1, 3],
   "questions_per_chunk": [1, 3],
+  "answer_mode": "ask",
   "gate_on_answers": true,
   "recap_every_response": true,
   "glyphs": true,
@@ -39,6 +40,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 |---|---|---|
 | `chunk_read_minutes` | §2 chunk length | `[0.5, 1]` gives 30-60 second steps, roughly 75-150 words; 1 minute ≈ 150 words of technical prose |
 | `questions_per_chunk` | §3 how many checks | lower bound 0 disables checks for a reader who only wants the material |
+| `answer_mode` | §3 how checks are answered | `ask` asks once at the start; `freeform` or `test` skips that question for a reader who already knows which they want |
 | `gate_on_answers` | §3 the gate | `false` delivers chunks back to back without waiting; the questions still get asked |
 | `recap_every_response` | §5 status block | `false` shows it only when the step changes |
 | `glyphs` | §5 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
@@ -52,6 +54,8 @@ An unknown key is left alone rather than deleted — a newer version of this ski
 ## 1. Opening message
 
 **The goal is a required argument.** A walkthrough is defined by what the reader should be able to explain, and still remember, when it ends — not by which topic gets covered. If the invocation carried no goal (`/walkthrough` with nothing after it, or a bare topic name like "langgraph"), ask for it and start nothing until it's answered: what should the reader walk away knowing? Inventing a goal from a bare topic is a guess, and every later decision is derived from it — which steps exist, what each chunk covers, which questions gate it, and what the ending checks.
+
+**Settle the answer mode before chunk 1**, resolving in this order: stated in the goal message → use it silently; set to `freeform` or `test` in `~/.claude/walkthrough.json` → use it silently; otherwise ask, in one short question, with the trade-off of each named (§3). Freeform wins if the reader doesn't pick.
 
 Then, before any teaching content:
 
@@ -90,6 +94,21 @@ What these questions are for: confirming the reader understands the problem this
 - A broadly-right answer that is silent on, or wrong about, the crucial part is a miss, not a pass. "Generous on wording" never means filling the missing piece in on the reader's behalf because everything around it sounded right — probe exactly the part they skipped. When that confirms the gap, the re-explanation (🔁) targets only the missing piece, not the whole chunk: someone who had 90% doesn't need the 90% again, and re-teaching it reads as not having listened to their answer.
 - Only advance once the reasoning holds up, not just the stated conclusion. Treat missing, evasive, or contradicted reasoning the same as a wrong answer: re-explain the point from a different angle (`Repeat yourself, on purpose` — a different angle, not the same sentence again), then re-ask, before moving on.
 - Don't turn this into an exam. One full clarifying round (re-explain + re-ask) per genuine miss is normal; if it's still not landing after that, the chunk itself was pitched wrong — rewrite it, don't keep re-testing the same explanation.
+
+### Answer mode: freeform or test
+
+Checks come in two shapes, and the reader picks (§1). **Freeform is the default** — producing an answer from nothing forces retrieval and articulation, which is what actually builds retention, and it exposes gaps the reader didn't know they had. Multiple choice is faster and lower-friction, which genuinely matters on dense material or late in a long session, and its wrong options can teach by showing the plausible-but-mistaken readings side by side. State that trade-off in one line whenever the choice comes up, so it's an informed pick rather than a coin flip.
+
+**The reader can switch at any point**, just by saying so. Honour it from the next question onward; never re-ask what has already been answered in the other mode.
+
+**Write the question for the mode — they are not the same question in two costumes.**
+
+- Freeform keeps everything above: reconstruct the mechanism, say why, restate the sequence in your own words.
+- Test mode cannot ask for a restatement, and recognition is far easier than recall — so a lazily-converted freeform question becomes much weaker as multiple choice. Compensate deliberately:
+  - **Every wrong option is a specific, real misunderstanding**, not filler. Done properly, *which* wrong answer gets picked tells you what the reader actually misunderstands — that diagnostic is the one thing test mode does better than freeform, and it's lost entirely if the distractors are throwaway.
+  - **No option is eliminable without understanding.** No "all of the above", nothing absurd, and never make the correct answer the longest or most hedged one — those are patterns a reader learns to game instead of learning the material.
+  - **Ask for the reason, not the label**: "which of these is *why* the second replica kills the run" beats "what does `owner` store".
+  - **A correct pick is weaker evidence than a correct freeform answer** — one in four lands by luck. So §3's guess-versus-grasp probe matters *more* here, not less: after a correct pick on anything load-bearing, ask for a one-line why before counting it.
 
 **The questions are a gate, not a suggestion — once asked, they stay open regardless of what happens next in the conversation.** If the reader goes on a tangent, asks something unrelated, or asks about something else entirely, that does not clear the open questions: answer what they actually asked, then return to the still-open questions before advancing. Never let the walkthrough drift into the next chunk just because the conversation moved elsewhere. The only way past an open question, besides answering it, is the reader explicitly or clearly-implicitly asking to skip it ("skip this", "let's just move on") — absent that, there is no other path forward.
 
