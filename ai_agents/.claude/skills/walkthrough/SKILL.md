@@ -40,11 +40,11 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 | `chunk_read_minutes` | §2 chunk length | `[0.5, 1]` gives 30-60 second steps, roughly 75-150 words; 1 minute ≈ 150 words of technical prose |
 | `questions_per_chunk` | §3 how many checks | lower bound 0 disables checks for a reader who only wants the material |
 | `gate_on_answers` | §3 the gate | `false` delivers chunks back to back without waiting; the questions still get asked |
-| `recap_every_response` | §4 status block | `false` shows it only when the step changes |
-| `glyphs` | §4 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
+| `recap_every_response` | §5 status block | `false` shows it only when the step changes |
+| `glyphs` | §5 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
 | `diagrams` | §2 visuals | `ascii`, or `obsidian` for a reader who would rather have real diagrams and follow links |
 | `language` | the walkthrough's prose | code identifiers, paths and error strings stay verbatim regardless |
-| `starting_level` | §1 opening assumption | `zero-context` or `experienced`; §5 recalibrates from there either way |
+| `starting_level` | §1 opening assumption | `zero-context` or `experienced`; §6 recalibrates from there either way |
 | `repeat_complex_times` | §2 re-explanation budget | how many times a genuinely complex point is restated before it is assumed landed |
 
 An unknown key is left alone rather than deleted — a newer version of this skill may own it. A malformed file is reported in one line and the defaults are used; never fail a walkthrough over its config.
@@ -60,7 +60,7 @@ Then, before any teaching content:
 3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
 4. Immediately follow with chunk 1 in the same message — don't stop to ask permission to begin.
 
-Start assuming **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §5 is the actual instrument for measuring it.
+Start assuming **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §6 is the actual instrument for measuring it.
 
 ## 2. Each chunk
 
@@ -81,10 +81,10 @@ Start assuming **zero context and junior-or-below technical competence**, regard
 What these questions are for: confirming the reader understands the problem this chunk covers, from more than one angle, and understands why the proposed solution was built the way it was — not confirming they can recall what the chunk just said. They are not memory-recall quizzes, not gotcha or trick questions, and not hypothetical-imagination exercises ("what if X changed instead"). A good question is one that narrows the reader — and the walkthrough — down to the one or two points in the chunk that actually matter, and confirms specifically those landed.
 
 - Ask 1-3 such questions per chunk, aimed at the problem and the reasoning behind the solution, never at wording recall or trivia.
-- **Design test: a correct answer should be possible only two ways — the reader read and understood this chunk, or they already knew the material.** If a question can be answered by skimming, by general programming knowledge, by common sense, or by guessing from how the question itself is worded, it is testing nothing — rewrite it. And when a reader does answer correctly without having read the chunk, that isn't the check failing; it's the signal §5 acts on, that the level was pitched too low for them.
+- **Design test: a correct answer should be possible only two ways — the reader read and understood this chunk, or they already knew the material.** If a question can be answered by skimming, by general programming knowledge, by common sense, or by guessing from how the question itself is worded, it is testing nothing — rewrite it. And when a reader does answer correctly without having read the chunk, that isn't the check failing; it's the signal §6 acts on, that the level was pitched too low for them.
 - **One reliable question type: ask for a restatement in the reader's own words** — the mechanism, or the sequence of what happens in what order. This is not the recall quiz banned above, and the difference is the entire point: echoing the chunk's wording back takes no understanding, while re-expressing the same thing in different words cannot be done without it. If the answer can only come out in the chunk's original phrasing, that is itself the signal it hasn't landed. Keep it short — a sentence or two, or the steps in order. It is a quick grasp check, not a writing exercise.
 - **Cover each crucial point, not the gist.** Reading a chunk, following 90% of it, and missing the one part that actually carries the weight is the common failure — and a question aimed at the overall shape of the chunk waves that reader straight through. Aim each question at a specific load-bearing point, and aim it where someone who skimmed *that particular part* would go wrong: the exact column, the exact ordering, the exact failure mode — not the headline the chunk was about.
-- That design test does not conflict with the refresher §4 attaches to every restated question. The refresher repeats the *setup* — which entity, which field, which mechanism is in play — so the reader isn't hunting for context they already read once. The question asks for the *connection between those facts*, which no two-line refresher can hand over. Facts can be restated; understanding can't.
+- That design test does not conflict with the refresher §5 attaches to every restated question. The refresher repeats the *setup* — which entity, which field, which mechanism is in play — so the reader isn't hunting for context they already read once. The question asks for the *connection between those facts*, which no two-line refresher can hand over. Facts can be restated; understanding can't.
 - Wait for an answer before moving on. Don't advance the walkthrough in the same message as the questions.
 - Grade generously on wording, strictly on substance — and substance means the reasoning, not just the conclusion. A right-sounding answer can still be a guess; a guess and real understanding produce the same words. If the first answer states the conclusion without the reasoning behind it, ask one quick follow-up ("why") before deciding pass or fail — that follow-up is what tells a guess from a grasp, and it's a single quick check, not the re-explanation round below.
 - A broadly-right answer that is silent on, or wrong about, the crucial part is a miss, not a pass. "Generous on wording" never means filling the missing piece in on the reader's behalf because everything around it sounded right — probe exactly the part they skipped. When that confirms the gap, the re-explanation (🔁) targets only the missing piece, not the whole chunk: someone who had 90% doesn't need the 90% again, and re-teaching it reads as not having listened to their answer.
@@ -93,13 +93,34 @@ What these questions are for: confirming the reader understands the problem this
 
 **The questions are a gate, not a suggestion — once asked, they stay open regardless of what happens next in the conversation.** If the reader goes on a tangent, asks something unrelated, or asks about something else entirely, that does not clear the open questions: answer what they actually asked, then return to the still-open questions before advancing. Never let the walkthrough drift into the next chunk just because the conversation moved elsewhere. The only way past an open question, besides answering it, is the reader explicitly or clearly-implicitly asking to skip it ("skip this", "let's just move on") — absent that, there is no other path forward.
 
-## 4. Status recap and visual markers
+## 4. Branching on a clarifying question
+
+A clarifying question mid-walkthrough is not an interruption to be answered and waved away. It is **one more thing the reader needs to understand**, so it gets taught properly, like any other step. Getting this right is most of what makes a walkthrough worth doing at all.
+
+- **Teach the branch, don't just answer it.** It follows every rule a normal chunk follows — the length from `chunk_read_minutes` (§0), precision, a real example, ASCII over Mermaid (§2) — and it gets its own check questions per §3. A branch delivered as a loose aside with no check teaches nothing and quietly leaves the gate open.
+- **The branch inherits the reader's settings; it does not get its own.** If `chunk_read_minutes` is `[0.5, 1]`, the branch is a 30-60 second read too. Being a tangent is not a licence to run long.
+- **The suspended question survives.** Opening a branch puts the main step's last asked-but-unanswered question on hold. When the branch's own checks pass — or are explicitly skipped — return to exactly that question and re-ask it, restated with the facts needed to answer it per §5, because the reader has been somewhere else in between.
+- **Branches nest, and unwind innermost first.** A clarifying question asked inside a branch opens another level. Resolve the deepest one, then its parent, then the main line. The status block (§5) carries the whole stack, so the reader can always see how deep they are and what is still waiting above them.
+
+### When the branch would go too deep
+
+Sometimes a proper answer needs a dive that pulls the walkthrough well off its goal. Don't quietly take that detour, and don't quietly refuse it — **say so, then let the reader choose**:
+
+1. Name what a full answer actually requires, and how far off-goal it goes, concretely: "answering this properly needs transaction isolation levels first, which is three or four steps of its own."
+2. Put the options up: **take the full branch now**; **drop it for now**; **a high-level answer only**, enough to carry on toward the goal; or **split it into its own walkthrough for later**.
+3. Offer a fifth option when the situation suggests one — those four are the common cases, not a closed list.
+4. If the reader doesn't choose, the high-level answer is the default: it unblocks the goal without silently committing them to a long detour.
+
+A dropped branch and a deferred separate walkthrough are both things the reader will want to find again. Record either in the agenda per §7, so the decision is visible rather than lost in scrollback.
+
+## 5. Status recap and visual markers
 
 Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are — a walkthrough can sit open for hours while they're pulled onto other work, and this block is what lets them resume cold — and so a walkthrough response is distinguishable from ordinary chat at a glance:
 
 ````
 🎓 Walkthrough · Step 2 of 5 — <step name> · answered 1/3
 🎯 Goal: <goal, one short line>
+↳ Branch: <the clarifying question being taught>  ·  waiting above: step 2 Q2
 
 ──────────────────────────────────────────────
 
@@ -137,6 +158,7 @@ Every response while a walkthrough is running — not only the ones delivering a
 - Never answer anything blindly: name which question this response is addressing — the reader's side question, or which of the open check questions their answer landed on — re-posed in cleaner words than it was asked in, before answering it. The block shows what's *open*; this shows what's being *dealt with right now*. A reader who has been away, or who fired off three things at once, must never have to work out which one just got answered.
 - **Every restatement of an open question carries the information needed to answer it** — the relevant mechanism, the entity and field names in play, the setup the question is about — so the reader can answer from the block alone without scrolling back to the chunk. Not the answer itself, and not the chunk re-pasted: the general facts that lead to the answer, one or two lines. Repeating the conclusion the question is testing makes the check worthless; repeating nothing makes the reader hunt for context they already paid attention for once.
 - An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
+- **While a branch (§4) is open, the block shows the stack**: one `↳` line per level, innermost last, each naming what is being taught and what question is waiting above it. Drop the `↳` lines as each level resolves. Without this the reader cannot tell a branch from the main line, and "where was I?" becomes unanswerable without scrolling — the exact failure this block exists to prevent.
 - When a step's questions are all answered or explicitly skipped (§3) and the next chunk starts, the block resets to that chunk's own questions — a resolved step's questions don't get carried forward.
 - This is exactly why chunks in §2 stay small: the block repeats on every message for as long as a step's questions are open, so a bigger step means paying for its recap more times and for longer. Small steps keep the recap a small fraction of each response instead of the bulk of it.
 
@@ -149,24 +171,25 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 | 📍 | the current step |
 | ✅ | question answered and accepted |
 | ❓ | question still open |
+| ↳ | an open branch from a clarifying question (§4) — one line per nesting level |
 | 🔁 | re-explaining after a missed check (§3) |
-| ⚠️ | agenda or pacing change (§5, §6) |
-| 🏁 | walkthrough complete (§7) |
+| ⚠️ | agenda or pacing change (§6, §7) |
+| 🏁 | walkthrough complete (§8) |
 
 - They are status signals, not decoration. The teaching prose in each chunk stays plain, precise text per §2 — a walkthrough that sprinkles emoji through its explanations is worse than one with none.
 - Keep the set fixed. Inventing a new glyph mid-walkthrough defeats the point: the reader learns these eight once and can then parse any response without reading it closely.
 - This is scoped to walkthrough mode. Outside it, the normal no-emoji default applies.
 
-## 5. Recalibrating the level as you go
+## 6. Recalibrating the level as you go
 
 - Read each answer for more than correct/wrong: precise unprompted vocabulary, a caught edge case, a question that skips ahead — all of that means the assumed level was too low. A vague or only-partially-right answer that just echoes the words just given back means the level is about right, or still too high.
 - Adjust the next chunk's depth and pace, not just its content: skip re-deriving fundamentals the reader has already shown they have, use denser language, or fold two planned chunks into one — or the reverse, smaller chunks and more repetition, if answers are struggling.
-- Say so once, briefly, the first time a real shift happens ("you clearly already know X, so I'll skip re-deriving Y and move faster from here") — the same no-silent-deviation principle as §6, applied to pacing instead of content. Don't narrate a running commentary on every question's grade.
+- Say so once, briefly, the first time a real shift happens ("you clearly already know X, so I'll skip re-deriving Y and move faster from here") — the same no-silent-deviation principle as §7, applied to pacing instead of content. Don't narrate a running commentary on every question's grade.
 
-## 6. Changing the agenda mid-walkthrough
+## 7. Changing the agenda mid-walkthrough
 
 Finding out partway through that a step is missing, needs splitting, or needs reordering is normal, not a failure — the agenda from §1 is a plan, not a contract. When it happens: say so explicitly before delivering the changed content ("this needs one more step than planned, because X"), update the visible agenda, then continue. Never insert or reorder a step silently — that's the mental-model-reversal `Rules` already bans, applied here to the walkthrough's own shape.
 
-## 7. Ending
+## 8. Ending
 
 Close by answering the goal from §1 directly: state what the reader can now explain that they couldn't at the start, and name anything in the goal that wasn't reached rather than letting it pass silently. Then a short recap: the central problem from §1, the one or two central conclusions (`Teaching`'s rule on calling out the central problem(s) first), and the general principle this was an instance of. Write this recap as if it might get pasted somewhere and stand alone — that's the same bar `The opening paragraph is a triage test` sets for what a future revisit of this material should find.
