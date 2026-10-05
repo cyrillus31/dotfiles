@@ -141,6 +141,25 @@ The first statement of every new concept is a definition precise enough to be re
 
 Precise is not the same as dense: plain words stay plain (`Tone`). The test is whether a second reading is possible, not whether the sentence sounds formal. At the default step size, the definition with its conditions and the mapping are usually two steps, not one.
 
+### Structure
+
+A chunk is read in a terminal, often cold, often questions-first (§3). Its structure has to be visible before a word of it is read:
+
+- **One notion per paragraph.** A paragraph introducing two notions hides the second.
+- **Several of anything is a list, one item per line** — options, cases, steps, failure modes; never a comma-chain inside a sentence. Numbered when order matters or an item will be referred back to ("option 2"); bullets otherwise.
+- **The crucial notion is bold where it is first introduced**, and defined in that same sentence. One or two per chunk at most: when everything is bold, nothing is. Unrendered, `**x**` still reads as emphasis, so this survives the terminal (§5).
+- Code, queries and sequences of statements past a few tokens get their own indented block, not a place inside a sentence.
+
+### When a chunk runs long
+
+Splitting is the first fix (length, above). When a chunk still runs past the upper bound of `chunk_read_minutes` — one idea that does not split, a branch (§4), a re-explanation (🔁) — end the body, right before the questions, with:
+
+```
+If nothing else: <the one or two facts that carry the step>
+```
+
+It is for the reader who got lost partway: what they must hold to follow the next step even if the rest did not land. Questions are read first (§3), so the takeaway is seen first too — it states the conclusion, and the questions ask for the reasoning behind it. If the takeaway already answers a question, rewrite the question.
+
 ## 3. Comprehension check
 
 What these questions are for: confirming the reader understands the problem this chunk covers, from more than one angle, and understands why the proposed solution was built the way it was — not confirming they can recall what the chunk just said. They are not memory-recall quizzes, not gotcha or trick questions, and not hypothetical-imagination exercises ("what if X changed instead"). A good question is one that narrows the reader — and the walkthrough — down to the one or two points in the chunk that actually matter, and confirms specifically those landed.
