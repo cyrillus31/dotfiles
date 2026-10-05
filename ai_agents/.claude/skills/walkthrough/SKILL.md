@@ -31,6 +31,24 @@ What follows from this:
 - A question the reader explicitly skips (§3) is a hole in the goal; the ending (§8) names it as not reached.
 - An answer counts toward the goal only once it passes §3's guess-versus-grasp probe.
 
+## Top down: the concept before any code
+
+The walkthrough descends one level at a time and never starts below the top. The default ladder:
+
+1. **Problem** — what goes wrong, for whom, and why it cannot simply be removed.
+2. **Concept** — the general mechanism, defined precisely (§2, new concepts), illustrated with a real-world example that contains no code.
+3. **Interactions** — how the parts of the system talk and store: which services, which network requests and API endpoints (method, path, the fields that matter), which database reads and writes (which table and columns, read or write, in what order). Words and ASCII diagrams only. A request's shape is a wire format, not code; "replica A reads `owner` of row 7 in `jobs`, then writes it" is an interaction; the SQL statement that does it is code.
+4. **Code** — the implementation: statements, functions, `file:line`.
+
+Other levels go in between when the goal needs them — a library's own model between concept and interactions, say. The order is fixed: nothing from a lower level appears before the level above it is done.
+
+- **No code until the concept is learned.** A concept is never explained through a code example. Its concrete example at level 2 comes from outside software — the last seat on a flight, two cashiers and one till — with real values all the same.
+- **Descend only when the level above is solid:** every question at that level has passed (§3). A skipped one is offered again before descending.
+- **The goal sets how deep to go.** A goal whose questions are all answerable at level 2 never reaches code; lower levels exist only when the goal's questions require them (core rule).
+- **Top down across the whole walkthrough**, not per concept: every concept the goal needs at the upper levels first, then the lower ones. The agenda (§1) is grouped by level.
+- Precision at levels 1-2 means the definition and its conditions; naming rows, columns and request fields (§2) applies from level 3 down. Concreteness applies at every level: the real-world example carries specific values.
+- A question stays at its step's level: a level-2 question contains no code, and no table or endpoint names either.
+
 ## 0. Per-user settings — read this first
 
 Every reader tunes a walkthrough differently: one wants 30-second steps, another is fine with three-minute ones. Those preferences live in a local JSON file, **per user, not per project**:
@@ -91,7 +109,7 @@ Then, before any teaching content:
 
 1. **The goal, restated.** One or two lines in your own words, so the reader can correct the target before any effort is spent aiming at the wrong one.
 2. **The problem, precisely.** State what the problem actually is, why it exists at all (a real constraint or a real failure mode, not an invented one), and why the obvious/naive fix doesn't work. This is `Teaching`'s "answer the first objection" and "teach by failure first" rules, applied as the walkthrough's frame before any step begins.
-3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
+3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, grouped under the levels it belongs to (top down, above), so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
 4. Immediately follow with chunk 1 in the same message — don't stop to ask permission to begin.
 
 Start assuming **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §6 is the actual instrument for measuring it.
