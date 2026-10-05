@@ -131,6 +131,16 @@ Start assuming **zero context and junior-or-below technical competence**, regard
 - Assume zero context for each new concept the first time it appears, regardless of how technical the reader has seemed on other topics. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, three to five times across the walkthrough — including whenever it resurfaces in a later chunk, not only within the chunk that first defined it — before assuming it's actually landed. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything. The categories `Repeat yourself, on purpose` marks as automatically complex — non-trivial SQL, transactions, and anything async/concurrent/parallel — always qualify here, no judgement call.
 - **End every chunk with its check questions** — `questions_per_chunk` (§0), see §3.
 
+### Introducing a new concept
+
+The first statement of every new concept is a definition precise enough to be read only one way — the standard a definition in a textbook, a spec, or a statute has to meet. In order:
+
+1. **The definition**: what kind of thing it is, then the property that sets it apart from everything else of that kind. Every word in it is already known or defined first.
+2. **Its conditions**, as a numbered list — what must hold for something to count. Each one necessary, together sufficient. If a borderline case would be misclassified, a condition is missing or wrong.
+3. **The mapping**: each term of the definition paired with the concrete thing it refers to in the step's example — the real-world example at the concept level, rows, requests and statements only from the interactions level down (top down, above).
+
+Precise is not the same as dense: plain words stay plain (`Tone`). The test is whether a second reading is possible, not whether the sentence sounds formal. At the default step size, the definition with its conditions and the mapping are usually two steps, not one.
+
 ## 3. Comprehension check
 
 What these questions are for: confirming the reader understands the problem this chunk covers, from more than one angle, and understands why the proposed solution was built the way it was — not confirming they can recall what the chunk just said. They are not memory-recall quizzes, not gotcha or trick questions, and not hypothetical-imagination exercises ("what if X changed instead"). A good question is one that narrows the reader — and the walkthrough — down to the one or two points in the chunk that actually matter, and confirms specifically those landed.
