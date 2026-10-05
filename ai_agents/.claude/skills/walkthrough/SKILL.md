@@ -1,13 +1,35 @@
 ---
 name: walkthrough
 argument-hint: "<goal: what you should understand by the end>"
-description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Checks can be answered as freeform text (the default, better for retention) or as quick 3-4 option multiple choice, switchable at any point. Requires a goal argument: what the reader should understand and still remember when it ends.
+description: Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, each carrying the bare minimum needed to answer its check questions, while the questions together cover the whole goal; states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Checks can be answered as freeform text (the default, better for retention) or as quick 3-4 option multiple choice, switchable at any point. Requires a goal argument: what the reader should understand and still remember when it ends.
 when_to_use: The user asks to be walked through, taught, or onboarded to a topic interactively, asks for a step-by-step/guided explanation, or invokes `/walkthrough <goal>`.
 ---
 
 # Interactive walkthrough
 
 This is the explicit, packaged form of the "one step at a time" mode CLAUDE.md's `Complex topics: lay it all out` section allows as an opt-in — here it's the default for the whole session, not a one-off request. Apply CLAUDE.md's `Teaching`, `Tone`, `Repeat yourself, on purpose`, `Decode the names`, and the precision-over-abstraction bullet at the top of `Rules` to every chunk below; this skill only adds the structure around them.
+
+## The core rule: the bare minimum per step, and the questions decide what that is
+
+**Every step carries the bare minimum of information** — not a short summary of a bigger explanation, but the smallest body from which the step's questions can be answered. This is the goal the rest of the skill exists to reach: nearly every rule below either removes something from a step or moves it into a step of its own. When any rule, here or in CLAUDE.md, would add to a step, this one wins.
+
+What counts as the minimum is decided by the questions, through two conditions:
+
+1. **The questions cover the goal.** Someone who read no step body at all, but answered every question correctly, knows everything the goal (§1) requires. And every question is needed by the goal: one testing something the goal does not require is cut, with its step.
+2. **Each step is exactly what its questions need.**
+   - **Not less.** For each question, point to the sentences the answer is built from. If an ingredient was introduced in an earlier step, restate it here — the reader never scrolls back to answer. These restatements are where `Repeat yourself, on purpose` happens in a walkthrough: across steps, each time an earlier fact becomes an ingredient again.
+   - **Not more.** For each sentence, name the question that needs it. A sentence no question needs is cut, or moved to a step whose question does — however true, relevant, or interesting it is.
+   - **Not the answer itself.** The body holds the ingredients; the question asks how they connect (§3). A sentence that can be copied out as the answer turns the check into a search.
+   - **Without confusion.** Every ingredient is stated precisely, and nothing in the body competes with it for attention.
+
+Plan in this order: goal → the pieces of knowledge it requires → one narrow question per piece → the body that answers exactly those questions. Before chunk 1, check condition 1 against the list of questions alone: if every one were answered correctly, could the reader explain the goal? Whatever they could not is a missing question.
+
+What follows from this:
+
+- How the pieces connect is part of the goal, so it gets questions too: later steps ask questions joining earlier ones, and the last question is the goal itself, put to the reader (§8).
+- Skipping content never skips a question. When §6 finds the reader ahead, a step's questions are asked without its body; only a correct answer lets the body go.
+- A question the reader explicitly skips (§3) is a hole in the goal; the ending (§8) names it as not reached.
+- An answer counts toward the goal only once it passes §3's guess-versus-grasp probe.
 
 ## 0. Per-user settings — read this first
 
@@ -210,7 +232,7 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 ## 6. Recalibrating the level as you go
 
 - Read each answer for more than correct/wrong: precise unprompted vocabulary, a caught edge case, a question that skips ahead — all of that means the assumed level was too low. A vague or only-partially-right answer that just echoes the words just given back means the level is about right, or still too high.
-- Adjust the next chunk's depth and pace, not just its content: skip re-deriving fundamentals the reader has already shown they have, use denser language, or fold two planned chunks into one — or the reverse, smaller chunks and more repetition, if answers are struggling.
+- Adjust what comes next, never the set of questions (core rule). Reader ahead of the material: deliver the next step's questions without its body, and send the body only if an answer misses. Reader struggling: add a step that teaches the missing ingredient, with its own question, rather than lengthening the current one.
 - Say so once, briefly, the first time a real shift happens ("you clearly already know X, so I'll skip re-deriving Y and move faster from here") — the same no-silent-deviation principle as §7, applied to pacing instead of content. Don't narrate a running commentary on every question's grade.
 
 ## 7. Changing the agenda mid-walkthrough
@@ -219,4 +241,4 @@ Finding out partway through that a step is missing, needs splitting, or needs re
 
 ## 8. Ending
 
-Close by answering the goal from §1 directly: state what the reader can now explain that they couldn't at the start, and name anything in the goal that wasn't reached rather than letting it pass silently. Then a short recap: the central problem from §1, the one or two central conclusions (`Teaching`'s rule on calling out the central problem(s) first), and the general principle this was an instance of. Write this recap as if it might get pasted somewhere and stand alone — that's the same bar `The opening paragraph is a triage test` sets for what a future revisit of this material should find.
+The last question puts the goal itself to the reader (core rule). Once it passes, close by confirming what their answer established — what they can now explain that they couldn't at the start — and list every skipped question as a part of the goal not reached, rather than letting it pass silently. Then a short recap: the central problem from §1, the one or two central conclusions (`Teaching`'s rule on calling out the central problem(s) first), and the general principle this was an instance of. Write this recap as if it might get pasted somewhere and stand alone — that's the same bar `The opening paragraph is a triage test` sets for what a future revisit of this material should find.
