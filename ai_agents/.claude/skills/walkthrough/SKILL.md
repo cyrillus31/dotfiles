@@ -63,8 +63,8 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 
 ```json
 {
-  "chunk_read_minutes": [1, 3],
-  "questions_per_chunk": [1, 3],
+  "chunk_read_minutes": [0.4, 0.6],
+  "questions_per_chunk": [1, 2],
   "answer_mode": "ask",
   "gate_on_answers": true,
   "recap_every_response": true,
@@ -78,7 +78,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 
 | Key | Governs | Notes |
 |---|---|---|
-| `chunk_read_minutes` | §2 chunk length | `[0.5, 1]` gives 30-60 second steps, roughly 75-150 words; 1 minute ≈ 150 words of technical prose |
+| `chunk_read_minutes` | §2 chunk length | default ≈30 seconds, roughly 60-90 words (1 minute ≈ 150 words of technical prose). Measures the chunk body, including any takeaway line; not the status block or the questions. Changing it re-divides the content into more or fewer steps, never trims it (§2) |
 | `questions_per_chunk` | §3 how many checks | lower bound 0 disables checks for a reader who only wants the material |
 | `answer_mode` | §3 how checks are answered | `ask` asks once at the start; `freeform` or `test` skips that question for a reader who already knows which they want |
 | `gate_on_answers` | §3 the gate | `false` delivers chunks back to back without waiting; the questions still get asked |
@@ -116,7 +116,10 @@ Start assuming **zero context and junior-or-below technical competence**, regard
 
 ## 2. Each chunk
 
-- **Length:** roughly 150-400 words — a 1-3 minute read. If a step genuinely needs more, split it into two chunks rather than stretch the read.
+- **Length:** set by `chunk_read_minutes` (§0) — about 30 seconds by default. Length decides how the material is divided into steps, never how much of it there is or how precise it is: smaller chunks mean more steps, larger chunks mean fewer. Never meet a length by dropping a definition, a condition, an example mapping, or a check — those are exactly what shortening cuts first. Level (§6) is the only thing that may remove content, and even it never removes a question (core rule).
+  - Cut at the seam between notions, so every step keeps one crucial point of its own for its questions to aim at (§3). A step left without one was cut in the wrong place.
+  - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
+  - A resize requested mid-walkthrough re-divides the remaining steps and is announced as an agenda change (§7); the step count in the status block changes with it.
 - **No Mermaid in plain chat.** Claude Code's terminal doesn't render Mermaid — assume that's the medium unless the walkthrough is explicitly landing in something that renders it (an Obsidian note, a claude.ai Artifact). Use an ASCII diagram instead when a diagram earns its place.
 - Every sentence describing a mechanism must be precise, never abstract: name the actual database row/column, network request/response field, or code-level construct involved — never a metaphor or an anthropomorphized stand-in for the literal fact (`Rules`, top bullet). Short is not an exemption from this.
 - Never mention an entity ("the user", "the run", "the ticket") without saying which representation of it is meant — the row and which columns, the in-code object and which fields, or the identifier used as a foreign key elsewhere. This is the bare entity reference `Rules` bans, and a walkthrough introducing a new entity is exactly where it's most tempting to skip.
@@ -126,13 +129,13 @@ Start assuming **zero context and junior-or-below technical competence**, regard
 - When a chunk covers something that changed, or something that should change, show both states side by side — было/стало, or "сейчас / как должно быть" — with everything but the difference held identical. In plain chat that's two short blocks, not a diagram (§2's Mermaid rule still applies).
 - The reader is not a native English speaker. Any idiom or colourful word gets glossed on the spot, together with whether it's a term of art with a precise meaning or just figurative English — that ambiguity is what actually trips them up, not the word itself. Keep using such words; a walkthrough is a good place to pick them up, as long as each one is explained.
 - Assume zero context for each new concept the first time it appears, regardless of how technical the reader has seemed on other topics. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, three to five times across the walkthrough — including whenever it resurfaces in a later chunk, not only within the chunk that first defined it — before assuming it's actually landed. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything. The categories `Repeat yourself, on purpose` marks as automatically complex — non-trivial SQL, transactions, and anything async/concurrent/parallel — always qualify here, no judgement call.
-- **End every chunk with 1-3 check questions** — see §3.
+- **End every chunk with its check questions** — `questions_per_chunk` (§0), see §3.
 
 ## 3. Comprehension check
 
 What these questions are for: confirming the reader understands the problem this chunk covers, from more than one angle, and understands why the proposed solution was built the way it was — not confirming they can recall what the chunk just said. They are not memory-recall quizzes, not gotcha or trick questions, and not hypothetical-imagination exercises ("what if X changed instead"). A good question is one that narrows the reader — and the walkthrough — down to the one or two points in the chunk that actually matter, and confirms specifically those landed.
 
-- Ask 1-3 such questions per chunk, aimed at the problem and the reasoning behind the solution, never at wording recall or trivia.
+- Ask `questions_per_chunk` (§0) such questions per chunk, aimed at the problem and the reasoning behind the solution, never at wording recall or trivia.
 - **Design test: a correct answer should be possible only two ways — the reader read and understood this chunk, or they already knew the material.** If a question can be answered by skimming, by general programming knowledge, by common sense, or by guessing from how the question itself is worded, it is testing nothing — rewrite it. And when a reader does answer correctly without having read the chunk, that isn't the check failing; it's the signal §6 acts on, that the level was pitched too low for them.
 - **One reliable question type: ask for a restatement in the reader's own words** — the mechanism, or the sequence of what happens in what order. This is not the recall quiz banned above, and the difference is the entire point: echoing the chunk's wording back takes no understanding, while re-expressing the same thing in different words cannot be done without it. If the answer can only come out in the chunk's original phrasing, that is itself the signal it hasn't landed. Keep it short — a sentence or two, or the steps in order. It is a quick grasp check, not a writing exercise.
 - **Cover each crucial point, not the gist.** Reading a chunk, following 90% of it, and missing the one part that actually carries the weight is the common failure — and a question aimed at the overall shape of the chunk waves that reader straight through. Aim each question at a specific load-bearing point, and aim it where someone who skimmed *that particular part* would go wrong: the exact column, the exact ordering, the exact failure mode — not the headline the chunk was about.
@@ -165,7 +168,7 @@ Checks come in two shapes, and the reader picks (§1). **Freeform is the default
 A clarifying question mid-walkthrough is not an interruption to be answered and waved away. It is **one more thing the reader needs to understand**, so it gets taught properly, like any other step. Getting this right is most of what makes a walkthrough worth doing at all.
 
 - **Teach the branch, don't just answer it.** It follows every rule a normal chunk follows — the length from `chunk_read_minutes` (§0), precision, a real example, ASCII over Mermaid (§2) — and it gets its own check questions per §3. A branch delivered as a loose aside with no check teaches nothing and quietly leaves the gate open.
-- **The branch inherits the reader's settings; it does not get its own.** If `chunk_read_minutes` is `[0.5, 1]`, the branch is a 30-60 second read too. Being a tangent is not a licence to run long.
+- **The branch inherits the reader's settings; it does not get its own.** At the default `chunk_read_minutes` of about 30 seconds, the branch is a 30-second read too. Being a tangent is not a licence to run long.
 - **The suspended question survives.** Opening a branch puts the main step's last asked-but-unanswered question on hold. When the branch's own checks pass — or are explicitly skipped — return to exactly that question and re-ask it, restated with the facts needed to answer it per §5, because the reader has been somewhere else in between.
 - **Branches nest, and unwind innermost first.** A clarifying question asked inside a branch opens another level. Resolve the deepest one, then its parent, then the main line. The status block (§5) carries the whole stack, so the reader can always see how deep they are and what is still waiting above them.
 
