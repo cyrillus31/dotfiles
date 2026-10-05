@@ -10,14 +10,14 @@ Plain markdown under the agent's own config directory — **no Obsidian, no vaul
 
 ```
 ~/.claude/knowledge_map/
-  knowledge.md              index: what is tracked and where, plus the scoring rules. No scores.
+  knowledge.md              index: what is tracked and where. No scores, no rules.
   theory/<subject>.md       one file per transferable subject — go.md, python.md, sql.md, kubernetes.md
   projects/<project>.md     one file per project
 ```
 
-- **`knowledge.md` is the index and the rulebook.** It lists every subject and project with a one-line description and a link, and carries the scoring rules once. Read it first; it is cheap and it tells you which file to open.
+- **`knowledge.md` is the index.** It lists every subject and project with a one-line description and a link. Read it first; it is cheap and it tells you which file to open.
 - **One subject or one project per file.** `theory/` holds what would still be true at another company; `projects/` holds what is true only here. Create a file the first time a subject or project comes up substantively, and add it to the index in the same edit.
-- **Subject files carry a pointer to the rules, not a copy of them.** Repeating the rulebook in a dozen files guarantees twelve drifting versions.
+- **The rules live in this skill (§1-§5), and no file in the map copies them** — at most a one-line pointer here. The map is per-user data and the skill is shared and versioned; a copy in both drifts.
 - A file that has grown past comfortable reading gets split, with the index updated.
 
 Everything is ordinary markdown tables — readable with `cat`, editable by hand, and portable to any machine that has the skill.
@@ -128,4 +128,4 @@ A `walkthrough` skill, if one is installed, is the single richest source of evid
 
 ## 8. Reading the map
 
-Before explaining anything substantial, the relevant topic's band (§3) sets the depth. When the map and the evidence in front of you disagree — the reader asks something that a 90 wouldn't ask — trust the evidence, explain accordingly, and move the score in the same turn. The map is a record of past evidence, never a reason to ignore present evidence.
+Before explaining anything substantial, the relevant topic's band (§4) sets the depth. When the map and the evidence in front of you disagree — the reader asks something that a 90 wouldn't ask — trust the evidence, explain accordingly, and move the score in the same turn. The map is a record of past evidence, never a reason to ignore present evidence.

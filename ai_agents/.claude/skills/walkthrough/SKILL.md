@@ -119,7 +119,7 @@ Then, before any teaching content:
 3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, grouped under the levels it belongs to (top down, above), so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
 4. Immediately follow with chunk 1 in the same message — don't stop to ask permission to begin.
 
-Start assuming **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §6 is the actual instrument for measuring it.
+Take the opening depth from the knowledge map's band for this topic when one exists (§0). Otherwise start from `starting_level`, which defaults to **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §6 is the actual instrument for measuring it.
 
 ## 2. Each chunk
 
@@ -128,7 +128,7 @@ Start assuming **zero context and junior-or-below technical competence**, regard
   - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
   - A resize requested mid-walkthrough re-divides the remaining steps and is announced as an agenda change (§7); the step count in the status block changes with it.
 - **No Mermaid in plain chat.** Claude Code's terminal doesn't render Mermaid — assume that's the medium unless the walkthrough is explicitly landing in something that renders it (an Obsidian note, a claude.ai Artifact). Use an ASCII diagram instead when a diagram earns its place.
-- Every sentence describing a mechanism must be precise, never abstract: name the actual database row/column, network request/response field, or code-level construct involved — never a metaphor or an anthropomorphized stand-in for the literal fact (`Rules`, top bullet). Short is not an exemption from this.
+- From the interactions level down (top down), every sentence describing a mechanism must be precise, never abstract: name the actual database row/column, network request/response field, or code-level construct involved — never a metaphor or an anthropomorphized stand-in for the literal fact (`Rules`, top bullet). Short is not an exemption from this.
 - Never mention an entity ("the user", "the run", "the ticket") without saying which representation of it is meant — the row and which columns, the in-code object and which fields, or the identifier used as a foreign key elsewhere. This is the bare entity reference `Rules` bans, and a walkthrough introducing a new entity is exactly where it's most tempting to skip.
 - Give every entity its address too — which database and table, which service, which repo or file — and restate that address in each later step whose questions need the entity, not only the first. A walkthrough is where an entity is met for the very first time, so the address has to land here or it never will.
 - Every chunk still gets a concrete, real-valued example — an abstract statement of the rule alone never counts as the explanation. It is the walkthrough's **running example**, the same one across steps (one flight and seat 12A at the concept level; one job and two replicas further down), so no step spends words setting up a new one.
@@ -173,7 +173,7 @@ What these questions are for: confirming the reader understands the problem this
 
 - Ask `questions_per_chunk` (§0) such questions per chunk, aimed at the problem and the reasoning behind the solution, never at wording recall or trivia.
 - **Design test: a correct answer should be possible only two ways — the reader read and understood this chunk, or they already knew the material.** If a question can be answered by skimming, by general programming knowledge, by common sense, or by guessing from how the question itself is worded, it is testing nothing — rewrite it. And when a reader does answer correctly without having read the chunk, that isn't the check failing; it's the signal §6 acts on, that the level was pitched too low for them.
-- **One reliable question type: ask for a restatement in the reader's own words** — the mechanism, or the sequence of what happens in what order. This is not the recall quiz banned above, and the difference is the entire point: echoing the chunk's wording back takes no understanding, while re-expressing the same thing in different words cannot be done without it. If the answer can only come out in the chunk's original phrasing, that is itself the signal it hasn't landed. Keep it short — a sentence or two, or the steps in order. It is a quick grasp check, not a writing exercise.
+- **One reliable question type: ask for a restatement in the reader's own words** — the mechanism, or the sequence of what happens in what order, named in the question itself rather than pointed at (questions read first, below). This is not the recall quiz banned above, and the difference is the entire point: echoing the chunk's wording back takes no understanding, while re-expressing the same thing in different words cannot be done without it. If the answer can only come out in the chunk's original phrasing, that is itself the signal it hasn't landed. Keep it short — a sentence or two, or the steps in order. It is a quick grasp check, not a writing exercise.
 - **Cover each crucial point, not the gist.** Reading a chunk, following 90% of it, and missing the one part that actually carries the weight is the common failure — and a question aimed at the overall shape of the chunk waves that reader straight through. Aim each question at a specific load-bearing point, and aim it where someone who skimmed *that particular part* would go wrong: the exact column, the exact ordering, the exact failure mode — not the headline the chunk was about.
 - That design test does not conflict with the refresher §5 attaches to every restated question. The refresher repeats the *setup* — which entity, which field, which mechanism is in play — so the reader isn't hunting for context they already read once. The question asks for the *connection between those facts*, which no two-line refresher can hand over. Facts can be restated; understanding can't.
 - Wait for an answer before moving on. Don't advance the walkthrough in the same message as the questions.
@@ -286,7 +286,6 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 |---|---|
 | 🎓 | walkthrough mode is active — opens the status block |
 | 🎯 | the goal (§1) |
-| 📍 | the current step |
 | ✅ | question answered and accepted |
 | ❓ | question still open |
 | ↳ | an open branch from a clarifying question (§4) — one line per nesting level |
@@ -295,7 +294,7 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 | 🏁 | walkthrough complete (§8) |
 
 - They are status signals, not decoration. The teaching prose in each chunk stays plain, precise text per §2 — a walkthrough that sprinkles emoji through its explanations is worse than one with none.
-- Keep the set fixed. Inventing a new glyph mid-walkthrough defeats the point: the reader learns these eight once and can then parse any response without reading it closely.
+- Keep the set fixed. Inventing a new glyph mid-walkthrough defeats the point: the reader learns them once and can then parse any response without reading it closely.
 - This is scoped to walkthrough mode. Outside it, the normal no-emoji default applies.
 
 ## 6. Recalibrating the level as you go
