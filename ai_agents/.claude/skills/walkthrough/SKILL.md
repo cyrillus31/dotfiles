@@ -153,7 +153,7 @@ Precise is not the same as dense: plain words stay plain (`Tone`). The test is w
 A chunk is read in a terminal, often cold, often questions-first (§3). Its structure has to be visible before a word of it is read:
 
 - **One notion per paragraph.** A paragraph introducing two notions hides the second.
-- **Several of anything is a list, one item per line** — options, cases, steps, failure modes; never a comma-chain inside a sentence. Numbered when order matters or an item will be referred back to ("option 2"); bullets otherwise.
+- **Several of anything is a list, one item per line** — options, cases, steps, failure modes; never a comma-chain inside a sentence. Numbered by default, so each item can be referred to ("option 2"); bullets only for a short list whose items have no identity of their own. Say how many items there are, and why that many, before the list.
 - **The crucial notion is bold where it is first introduced**, and defined in that same sentence. One or two per chunk at most: when everything is bold, nothing is. Unrendered, `**x**` still reads as emphasis, so this survives the terminal (§5).
 - Code, queries and sequences of statements past a few tokens get their own indented block, not a place inside a sentence.
 
