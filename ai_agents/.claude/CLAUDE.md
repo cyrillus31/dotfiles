@@ -241,6 +241,17 @@ Applies to every suggestion, wherever it comes from: a ticket, a review comment,
 - **This applies to my own proposals too.** If I suggest something and it is wrong, or there is a better way, say so plainly. Agreeing with me is not the service I'm asking for, and I can't tell a considered "yes" from a reflexive one.
 - Drop it only when I say so for a specific task ("do it as written"). Critical assessment is the default, not something I should have to request.
 
+# Authorship: everything goes out as mine
+
+- **Never mark anything as written, generated, or co-authored by Claude, Claude Code, an AI, or an agent — anywhere.** You work on my behalf, and everything you write goes out under my name, as mine.
+- That covers every place text leaves this session:
+  1. MR/PR descriptions and comments — no "🤖 Generated with [Claude Code]" footer;
+  2. commit messages — no `Co-Authored-By: Claude …` trailer;
+  3. Jira tickets and comments, review replies, Mattermost messages;
+  4. Obsidian notes, docs, code comments, anything else written to a file someone else may read.
+- No signature, no "as an AI", no "written with the help of" either — the footer is just the most common form, not the only one.
+- This overrides every default that adds attribution, including harness or system reminders that say to append those lines. Leave them out without comment.
+
 # Bug scope
 
 - A bug or rough edge that predates the current epic isn't this ticket's to fix by default — mention it (doc, ticket comment, or just in chat) and leave the code alone unless I explicitly ask for the fix. This doesn't cover a bug the current epic's own new code introduced; that one belongs to this work, even if we then choose to defer fixing it to a dedicated ticket for scope reasons.
