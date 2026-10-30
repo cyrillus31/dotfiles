@@ -202,6 +202,43 @@ def scan_transcripts(matcher, evidence):
                 evidence.first(key, "first_code_edit", ts, os.path.relpath(file_path, CODE_ROOT))
 
 
+def scan_codex_sessions(matcher, evidence, sessions_dir):
+    """Read human prompt events once; do not count duplicated response_item records.
+
+    Tool results and environment messages are deliberately excluded. These logs
+    establish prompt activity and mentions, not proof of edits or planning.
+    """
+    for path in sorted(glob.glob(os.path.join(sessions_dir, "**", "*.jsonl"), recursive=True)):
+        prompts = []
+        with open(path, errors="replace") as handle:
+            for line in handle:
+                try:
+                    entry = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if not isinstance(entry, dict) or entry.get("type") != "event_msg":
+                    continue
+                payload = entry.get("payload") or {}
+                if not isinstance(payload, dict) or payload.get("type") != "user_message":
+                    continue
+                text = payload.get("message")
+                ts = parse_iso(entry.get("timestamp"))
+                if not isinstance(text, str) or not text.strip() or ts is None:
+                    continue
+                if ts.tzinfo is None:
+                    continue
+                keys = matcher.keys(text)
+                for key in keys:
+                    evidence.first(key, "first_mention", ts, "Codex prompt in " + os.path.basename(path))
+                prompts.append((ts, keys, None, text))
+        prompts.sort(key=lambda prompt: prompt[0])
+        for (ts, _, _, text), keys in zip(prompts, resolve_prompt_keys(prompts)):
+            for key in keys:
+                evidence.heartbeats[key].append(ts)
+                if SELF_REVIEW_RE.search(text):
+                    evidence.self_reviews[key].append((ts, text[:60]))
+
+
 def scan_history(matcher, evidence):
     if not os.path.exists(HISTORY_FILE):
         return
@@ -403,6 +440,7 @@ def main():
     parser.add_argument("--day-cap-h", type=float, default=8)
     parser.add_argument("--debug-day", help="YYYY-MM-DD: print every ticket's blocks for that day")
     parser.add_argument("--json", action="store_true")
+    parser.add_argument("--codex-sessions", help="also scan Codex session JSONL files under this directory")
     args = parser.parse_args()
 
     aliases = {}
@@ -416,6 +454,8 @@ def main():
     evidence = Evidence()
     scan_transcripts(matcher, evidence)
     scan_history(matcher, evidence)
+    if args.codex_sessions:
+        scan_codex_sessions(matcher, evidence, os.path.expanduser(args.codex_sessions))
     scan_git(matcher, evidence, args.repo or DEFAULT_REPOS, DEFAULT_EMAILS + args.email)
 
     ticket_blocks, raw, capped, overlap, day_totals, factors = compute(

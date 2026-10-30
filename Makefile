@@ -12,6 +12,9 @@ MACBOOK_TARGETS := common shell_zsh aerospace
 YANDEX_MACBOOK_TARGETS := macbook shell_yandex
 CLOUD_RU_TARGETS := common shell_cloud_ru
 CURRENT_PROFILE := .current-profile
+# Preserve the historical parent-directory destination; allow explicit overrides.
+STOW_TARGET ?= $(abspath ..)
+STOW_FLAGS ?= --ignore='(^|/)(README[^/]*|\.DS_Store|[^/]*\.example)$$'
 
 
 # Default target when running just 'make'
@@ -30,12 +33,18 @@ update_fail:
 .PHONY: $(STOW_DIRS) common fedora macbook yandex_macbook cloud_ru backup all
 
 # Rule for all stow directories - automatically generated
-$(STOW_DIRS):
-	stow -R $@
+$(filter-out ai_agents,$(STOW_DIRS)):
+	stow $(STOW_FLAGS) --target="$(STOW_TARGET)" -R $@
+
+
+# Keep writable Codex runtime config outside the checkout on fresh installs.
+ai_agents:
+	@mkdir -p "$(STOW_TARGET)/.codex"
+	stow $(STOW_FLAGS) --target="$(STOW_TARGET)" -R $@
 
 # Rule for unstowing all directories
 unstow:
-	stow -D $(STOW_DIRS)
+	stow $(STOW_FLAGS) --target="$(STOW_TARGET)" -D $(STOW_DIRS)
 
 # Special case for backup which uses a script
 backup:
@@ -61,7 +70,7 @@ cloud_ru: $(CLOUD_RU_TARGETS)
 all: $(STOW_DIRS)
 
 # Show help
-.PHONY: help
+.PHONY: help update update_fail unstow dry-run check backup-copy reconcile
 help:
 	@echo "Available targets:"
 	@echo "  update          - Re-stow files as per last target picked (stored in $(CURRENT_PROFILE))"
@@ -72,4 +81,39 @@ help:
 	@echo "  common          - Common configurations ($(COMMON_TARGETS))"
 	@echo "  all             - Install everything"
 	@echo "  backup          - Run backup script"
+	@echo "  dry-run PROFILE=common - Preview a profile without writing state"
+	@echo "  reconcile PROFILE=... - Explicitly remove obsolete profile links"
+	@echo "  backup-copy     - Copy configs without moving them"
+	@echo "  codex-setup     - Install instructions/skills and merge Codex defaults"
+	@echo "  codex-mcp       - Import local Claude HTTP MCP server declarations"
+	@echo "  codex-doctor    - Show Codex version and MCP configuration"
+	@echo "  check           - Run isolated regression checks"
 	@echo "Individual configs: $(STOW_DIRS)"
+
+# Simulate a profile without changing symlinks or saved profile state.
+PROFILE ?= common
+dry-run:
+	python3 scripts/reconcile-profile.py "$(PROFILE)" "$(STOW_TARGET)" "$(CURRENT_PROFILE)" --dry-run
+
+backup-copy:
+	./backup.sh --copy
+
+check:
+	python3 -m unittest discover -s tests -v
+
+# Explicitly remove packages from the saved profile that the next one excludes.
+reconcile:
+	python3 scripts/reconcile-profile.py "$(PROFILE)" "$(STOW_TARGET)" "$(CURRENT_PROFILE)"
+
+# Configuration is merged only when explicitly requested, never during plain stow.
+.PHONY: codex-setup codex-mcp codex-doctor
+codex-setup: ai_agents
+	python3 scripts/setup-codex.py --codex-home "$(STOW_TARGET)/.codex"
+
+codex-mcp:
+	python3 scripts/setup-codex.py --codex-home "$(STOW_TARGET)/.codex" --import-claude-mcp
+
+codex-doctor:
+	@command -v codex >/dev/null || { echo "Install the Codex CLI first"; exit 1; }
+	codex --version
+	codex mcp list

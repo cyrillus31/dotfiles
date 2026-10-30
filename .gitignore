@@ -23,3 +23,15 @@ herdr/.config/herdr/*.sock
 herdr/.config/herdr/session.json
 herdr/.config/herdr/release-notes.json
 
+
+# macOS metadata
+.DS_Store
+
+# Codex runtime data must never be committed if an old Stow tree was folded.
+ai_agents/.codex/config.toml
+ai_agents/.codex/config.toml.*.bak
+ai_agents/.codex/auth.json
+ai_agents/.codex/knowledge_map/
+ai_agents/.codex/walkthrough.json
+ai_agents/.codex/sessions/
+ai_agents/.codex/*.sqlite*

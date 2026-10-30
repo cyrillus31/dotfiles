@@ -1,4 +1,7 @@
 .gitkeep
 .keep
 .dotfiles-current-porfile
-*.example
+.*\.example
+
+README.*
+\.DS_Store

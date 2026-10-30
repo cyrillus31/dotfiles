@@ -48,7 +48,7 @@ select_theme() {
         --preview-window=right:50% \
         --header "Current theme: $current" \
         --height=50% \
-        --reverse)
+        --reverse) || return 1
     
     if [[ -z "$selected" ]]; then
         echo "No theme selected."
@@ -88,7 +88,7 @@ apply_theme() {
 # Main execution
 main() {
     local selected_theme
-    selected_theme=$(select_theme)
+    selected_theme=$(select_theme) || return 0
     apply_theme "$selected_theme"
 }
 

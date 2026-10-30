@@ -1,0 +1,1 @@
+../../../../.claude/skills/ticket-log/scripts/ticket_effort.py

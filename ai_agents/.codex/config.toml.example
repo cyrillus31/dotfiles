@@ -1,0 +1,12 @@
+# Used by scripts/setup-codex.py: existing values always take precedence.
+model_reasoning_effort = "xhigh"
+project_doc_max_bytes = 131072
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
+
+[profiles.dotfiles-research]
+web_search = "live"
+
+[profiles.dotfiles-review]
+model_reasoning_effort = "high"

@@ -28,10 +28,8 @@ fi
 # Common setup
 SHRC_DIR="$HOME/.shellrc.d"
 if [[ -d $SHRC_DIR ]]; then
-	# '-L' for recursive search of symlinced directories
-	# '-type f' and '-type l' for searching fils respectively
-	# '-o' works as logical OR 
-	for file in $(find -L "$SHRC_DIR" -name "*.sh" -type f -o -type l); do
-		source "$file"
-	done
+    # Bash and Zsh both support NUL-delimited reads and process substitution.
+    while IFS= read -r -d '' file; do
+        source "$file"
+    done < <(find -L "$SHRC_DIR" -type f -name '*.sh' -print0)
 fi
