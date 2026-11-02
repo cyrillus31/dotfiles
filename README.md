@@ -65,8 +65,8 @@ the tools used by your chosen profile before expecting their integrations to wor
 The `ai_agents` package now installs Codex alongside Claude and OpenCode:
 
 - `~/.agents/skills/`: 24 skills covering the locally available Claude workflows.
-- `~/.codex/AGENTS.md`: the existing teaching, writing, ticket, and knowledge-map
-  instructions adapted for Codex.
+- `~/.codex/AGENTS.md`: a link to the original `CLAUDE.md`, shared verbatim
+  with Claude, including its original paths and examples.
 - `~/.codex/hooks/herdr-session.py`: optional Herdr session identification.
 
 ```sh
@@ -107,8 +107,9 @@ The ticket effort implementation is shared through a relative symlink. Add
 `--codex-sessions "${CODEX_HOME:-$HOME/.codex}/sessions"` to include Codex human
 prompt events without counting duplicate message representations or tool output.
 Codex logs supply prompt activity and first mentions; they do not prove code edits
-or planning transitions. Knowledge-map and walkthrough state are separate under
-`~/.codex`; existing Claude state is not moved.
+or planning transitions. Skill-specific Codex state defaults remain under
+`~/.codex`; the shared global instructions retain their original Claude paths
+verbatim. Existing Claude state is not moved.
 
 The supplied Make targets use the standard `~/.codex` layout. For a custom
 `CODEX_HOME`, install the instruction/hook files there and run
