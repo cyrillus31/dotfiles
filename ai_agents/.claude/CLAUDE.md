@@ -281,6 +281,7 @@ Applies to every suggestion, wherever it comes from: a ticket, a review comment,
 
 # Language
 
+- When discussing vector databases or retrieval-augmented generation (RAG), never use "indexing" on its own. Name the exact operation: "vector indexing" for building a vector search index, "embedding generation" for computing vectors, or "document ingestion" for importing documents. Use the term that matches the operation rather than calling the entire pipeline "vector indexing".
 - Never translate Russian to English or English to Russian. I know both well; translation can drop crucial meaning.
 - Technical and domain terms stay in English, written in Latin script, even mid-sentence in Russian — `superstep`, not a transliteration or invented calque like "суперштаг". I know English; a real English term beats a made-up Russian one every time. This applies to any term with an established English name: library and framework names, algorithm and pattern names, protocol and format names, error and status names.
 - If you don't know the established English term, say so instead of coining a Russian-sounding substitute.
