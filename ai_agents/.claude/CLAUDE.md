@@ -269,6 +269,9 @@ Applies to every suggestion, wherever it comes from: a ticket, a review comment,
 
 # Branching
 
+- As soon as an MR is ready for human review, remove its Draft status without asking for confirmation. Never report an MR as ready while leaving it Draft.
+- Before handing a branch back for review, fetch and merge current `main`, resolve conflicts, and verify migration continuity against that target. The branch must end in one final Alembic migration descending from both its own history and current `main`; never leave multiple heads. Fix continuity failures as part of delivery.
+
 - Every feature branch starts from an up-to-date `main`. Never branch off another feature branch that isn't merged yet, unless I say so explicitly in that message — a standing "we usually stack" doesn't count.
 - Several tickets in one request (1, 2, 3) means several branches off `main`, one per ticket. Never a chain where ticket 2 sits on ticket 1 because its code was convenient to have.
 - When the tickets look too coupled to separate, stop and say so before creating anything: name what they share, what breaks if they're split, and what stacking costs. The decision to stack is mine, never yours.
