@@ -64,7 +64,8 @@ the tools used by your chosen profile before expecting their integrations to wor
 
 The `ai_agents` package now installs Codex alongside Claude and OpenCode:
 
-- `~/.agents/skills/`: 24 skills covering the locally available Claude workflows.
+- `~/.agents/skills/`: 25 skills, including `clarity-from-zero` for technical
+  explanations that assume no project context.
 - `~/.codex/AGENTS.md`: a link to the original `CLAUDE.md`, shared verbatim
   with Claude, including its original paths and examples.
 - `~/.codex/hooks/herdr-session.py`: optional Herdr session identification.
