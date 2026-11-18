@@ -164,8 +164,8 @@ Verify a replacement's mechanism against the target system before using it.
 | --- | --- | --- |
 | "Removing the Copilot connection must preserve the GitLab files." | Leaves the configured relationship and file location undefined; implies an unexplained remote-deletion risk | "Removing the GitLab group from a Copilot product's source list changes Copilot's configuration. The original repositories remain on the GitLab server." |
 | "Removal refuses." | Names neither the rejecting program nor the condition | "Management rejects the group-removal request while that product has a synchronization job recorded as pending or running." |
-| "A's identity protects B." | An identifier cannot explain a storage boundary by itself | "Old attempt A and replacement B use different vector-record identifiers, so A's delayed deletion addresses A's records rather than B's." |
-| "The service confirms membership." | Hides what is transmitted and what confirmation establishes | "Management sends the search service the complete repository list for the product and checks the returned acknowledgement." |
+| "A's identity protects B." | An identifier cannot explain a storage boundary by itself | "In Qdrant, the database storing text for searches, a key identifies one stored record. Old synchronization attempt A and replacement B use different keys. A's delayed deletion specifies A's keys, so it selects A's records rather than B's." |
+| "The service confirms membership." | Hides what is transmitted and what confirmation establishes | "Management sends the search service the complete list of repositories to search for a Copilot product. The search service returns a response stating whether it applied that list. Management checks the response before treating the update as complete." |
 | "The heartbeat expired, so execution stopped." | Turns absent monitoring evidence into proof of termination | "The job's heartbeat timestamp is older than the recovery threshold. That observation does not establish that the executing process stopped." |
 
 ## Verification and handoff
