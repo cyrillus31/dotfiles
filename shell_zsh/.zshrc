@@ -16,3 +16,22 @@ source "$HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
 
 # WARN: Run my common setup entrypoint
 source "$HOME/.shellrc.sh"
+
+if [[ ${HERDR_ENV:-} == 1 ]]; then
+    # Herdr's session hook needs the pane ID from this shell's environment.
+    function codex {
+        local arg
+        for arg in "$@"; do
+            case "$arg" in
+                --no-daemon|--remote|--remote=*)
+                    command codex "$@"
+                    return
+                    ;;
+                --)
+                    break
+                    ;;
+            esac
+        done
+        command codex --no-daemon "$@"
+    }
+fi
