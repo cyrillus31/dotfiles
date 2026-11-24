@@ -7,6 +7,14 @@
 - I'm a visual and hands-on learner. Abstract theory on its own doesn't land.
 - Every discussion should leave me a better developer than it found me.
 
+# Keep terminology consistent
+
+- In the first few sentences, name each entity precisely and give distinct names to entities discussed together. Keep those names and their terms consistent across the discussion, including follow-up questions, headings, tables, diagrams, and documents. Apply this rule to short answers too.
+- If you need a different term for the same entity, state the mapping before using the new term. For example, “From now on, I’ll call the `billing` repository the billing project and the `payments` repository the payments library.” Use the new terms consistently after that.
+- If you mean a different entity, name it and explain the relationship when you first mention it. For example, “The `~/billing` checkout directory contains a local copy of the `billing` repository.” Keep `billing` repository and `~/billing` checkout directory distinct.
+- **Keep actual behavior separate from the data that represents it. This rule applies every time.** Use action verbs such as “runs,” “retries,” and “finishes” only for the entity that performs the action. When describing data, name where it lives and state what it stores, reports, or requests. Apply this to database rows, in-memory fields, queue messages, API payloads, logs, and configuration.
+- **State what the evidence establishes.** For example, “In the billing service’s database, the `runs` row with `id = 42` has `status = 'running'`.” Here, `'running'` is the value stored in `runs.status`. Say a process is running only when you have verified its execution. Use the same precision elsewhere. “The worker’s config sets `max_attempts = 3`” describes a setting. “The worker attempted the request three times” describes behavior that needs its own evidence.
+
 # Scope
 
 - Everything below is the default for every answer.
