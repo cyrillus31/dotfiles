@@ -148,6 +148,7 @@ In the first teaching response after the questionnaire:
 
 ## 2. Each chunk
 
+- **Open each new step with the previous step’s takeaway.** After the status block, say “If you remember nothing else from the previous step, remember this.” Then state the most important point in one plain, memorable sentence. Use the same names and facts as the previous step. Restate any other facts where the new step needs them. Include the takeaway even when the next step starts with a check and has no teaching body. When the reader skipped the previous check, present the teaching point without claiming they demonstrated it.
 - **Length:** set by `chunk_read_minutes` (§0) — about 30 seconds by default. Length decides how the material is divided into steps, never how much of it there is or how precise it is: smaller chunks mean more steps, larger chunks mean fewer. Never meet a length by dropping a definition, a condition, an example mapping, or a check — those are exactly what shortening cuts first. Level (§6) is the only thing that may remove content, and even it never removes a question (core rule).
   - Cut at the seam between notions, so every step keeps one crucial point of its own for its questions to aim at (§3). A step left without one was cut in the wrong place.
   - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
