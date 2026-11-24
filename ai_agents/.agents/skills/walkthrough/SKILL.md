@@ -129,9 +129,11 @@ For example, if the final goal is to explain why retrying a payment request can 
 In the first teaching response after the questionnaire:
 
 1. **The goal, restated.** One or two lines in your own words, so the reader can correct the target before any effort is spent aiming at the wrong one.
-2. **The problem, in one or two lines** — enough to show why the walkthrough exists. The problem itself (what goes wrong, why it can't simply be removed, why the naive fix fails) is taught by the steps of the first level (top down), with questions like any other step.
-3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, grouped under the levels it belongs to (top down, above), so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
-4. Immediately follow with chunk 1 in the same message — don't stop to ask permission to begin.
+2. **The original problem.** State what happens, who or what it affects, and what outcome is needed. Save the detailed causes and failure cases for the teaching steps.
+3. **A bird’s-eye overview of the players.** Name every concept, system, service, and participant relevant to the goal. Give each a short description of its role in the original problem. Use the questionnaire ratings to define unfamiliar terms in plain language on first mention. Show how the players relate at a high level. Leave implementation details for the appropriate teaching level.
+4. **Comparison tables.** Whenever understanding depends on distinguishing services or concepts, compare them in a table, both in the overview and when a new distinction comes up in a later step. Use the same comparison criteria for every item. Include only the differences that matter to the goal. Use aligned plain-text columns in a terminal and a Markdown table when the interface renders it.
+5. **The full agenda.** List every planned step, one line each, grouped by teaching level. Name what each step contributes to the goal, including any subgoals.
+6. Deliver chunk 1 immediately after the agenda in the same response.
 
 
 ## 2. Each chunk
@@ -141,6 +143,7 @@ In the first teaching response after the questionnaire:
   - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
   - A resize requested mid-walkthrough re-divides the remaining steps and is announced as an agenda change (§7); the step count in the status block changes with it.
 - **No Mermaid in plain chat.** The Codex terminal doesn't render Mermaid — assume that's the medium unless the walkthrough is explicitly landing in something that renders it (an Obsidian note, a rendered document). Use an ASCII diagram instead when a diagram earns its place.
+- Use a comparison table when a step requires the reader to distinguish services or concepts (§1).
 - From the interactions level down (top down), every sentence describing a mechanism must be precise, never abstract: name the actual database row/column, network request/response field, or code-level construct involved — never a metaphor or an anthropomorphized stand-in for the literal fact (`Rules`, top bullet). Short is not an exemption from this.
 - Never mention an entity ("the user", "the run", "the ticket") without saying which representation of it is meant — the row and which columns, the in-code object and which fields, or the identifier used as a foreign key elsewhere. This is the bare entity reference `Rules` bans, and a walkthrough introducing a new entity is exactly where it's most tempting to skip.
 - Give every entity its address too — which database and table, which service, which repo or file — and restate that address in each later step whose questions need the entity, not only the first. A walkthrough is where an entity is met for the very first time, so the address has to land here or it never will.
@@ -268,7 +271,7 @@ Every response while a walkthrough is running — not only the ones delivering a
 - Facts needed are a **list, one per line** — never folded into the question's sentence.
 - A horizontal rule of `─` between questions, blank lines within each.
 
-**Do not lean on Markdown to carry any of this.** The reader usually runs walkthroughs in a terminal, so assume the raw characters are what they see: structure has to survive unrendered. That means explicit word labels (`You said:`, `Verdict:`, `Facts needed:`) rather than `**bold**` or `>` doing the work; indentation and blank lines rather than nesting syntax; `─` runs rather than `---`; and never a Markdown table, which wraps into mush at terminal width. Emphasis markers are fine as a bonus when they do render — they must never be the only thing marking a boundary.
+**Keep the status block readable as plain text.** Use explicit labels such as `You said:`, `Verdict:`, and `Facts needed:`, with indentation, blank lines, and `─` separators. Put comparison tables in the teaching content and format them for the interface (§1).
 
 **Anything visual is ASCII by default.** Box-drawing characters, arrows, indented trees, aligned columns padded with spaces — these look right in a terminal and cost nothing. Mermaid never renders there, so it is not an option in chat.
 
