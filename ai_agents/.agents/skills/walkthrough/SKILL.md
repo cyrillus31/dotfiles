@@ -84,6 +84,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
   "answer_mode": "ask",
   "gate_on_answers": true,
   "recap_every_response": true,
+  "recap_style": "cumulative",
   "glyphs": true,
   "diagrams": "ascii",
   "language": "en",
@@ -98,6 +99,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 | `answer_mode` | §3 how checks are answered | `ask` asks once at the start; `freeform` or `test` skips that question for a reader who already knows which they want |
 | `gate_on_answers` | §3 the gate | `false` delivers chunks back to back without waiting; the questions still get asked |
 | `recap_every_response` | §5 status block | `false` shows it only when the step changes |
+| `recap_style` | §2 recap between steps | `cumulative` shows “Picture so far” by default. `previous_step` shows only the previous step’s takeaway |
 | `glyphs` | §5 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
 | `diagrams` | §2 visuals | `ascii`, or `obsidian` for a reader who would rather have real diagrams and follow links |
 | `language` | the walkthrough's prose | code identifiers, paths and error strings stay verbatim regardless |
@@ -136,6 +138,8 @@ For example, if the final goal is to explain why retrying a payment request can 
 
 **Settle the answer mode before chunk 1.** Use the mode stated in the goal message or set to `freeform` or `test` in `~/.codex/walkthrough.json`, in that order. Otherwise add one optional answer-mode choice to the questionnaire using the trade-off in §3. Use freeform if the reader leaves the choice blank.
 
+Offer both recap styles in one line with the opening questionnaire. Use the configured style (default `cumulative`) if the reader leaves the choice blank. Apply any requested switch from the next step and keep that choice in this walkthrough’s checkpoint.
+
 In the first teaching response after the questionnaire:
 
 1. **The goal, restated.** One or two lines in your own words, so the reader can correct the target before any effort is spent aiming at the wrong one.
@@ -148,7 +152,9 @@ In the first teaching response after the questionnaire:
 
 ## 2. Each chunk
 
-- **Open each new step with the previous step’s takeaway.** After the status block, say “If you remember nothing else from the previous step, remember this.” Then state the most important point in one plain, memorable sentence. Use the same names and facts as the previous step. Restate any other facts where the new step needs them. Include the takeaway even when the next step starts with a check and has no teaching body. When the reader skipped the previous check, present the teaching point without claiming they demonstrated it.
+- **Show the selected recap after the status block, starting with step 2.** Give it a plain-text label and leave a blank line after it so the reader can skip directly to the new lesson or question. Include the recap when a step starts with a check and keep that check’s answer out of the recap. Use the same names as the lesson. When a previous check was skipped, present its teaching point without claiming the reader demonstrated it.
+  - **Picture so far (`cumulative`, default).** Carry forward the essential points and add the preceding step’s main contribution. Order the points so the reader can see how they fit together. Keep it to a few short lines by combining related points. A precise word, phrase, or distinction is enough when it carries the meaning.
+  - **Previous step only (`previous_step`).** Say “If you remember nothing else from the previous step, remember this.” Follow with the previous step’s most important point in one short sentence or phrase.
 - **Length:** set by `chunk_read_minutes` (§0) — about 30 seconds by default. Length decides how the material is divided into steps, never how much of it there is or how precise it is: smaller chunks mean more steps, larger chunks mean fewer. Never meet a length by dropping a definition, a condition, an example mapping, or a check — those are exactly what shortening cuts first. Level (§6) is the only thing that may remove content, and even it never removes a question (core rule).
   - Cut at the seam between notions, so every step keeps one crucial point of its own for its questions to aim at (§3). A step left without one was cut in the wrong place.
   - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
@@ -326,13 +332,13 @@ Finding out partway through that a step is missing, needs splitting, or needs re
 
 ## 8. Ending
 
-The last question puts the goal itself to the reader (core rule). Once it passes, close by confirming what their answer established — what they can now explain that they couldn't at the start — and list every skipped question as a part of the goal not reached, rather than letting it pass silently. Then a short recap: the central problem from §1, the one or two central conclusions (`Teaching`'s rule on calling out the central problem(s) first), and the general principle this was an instance of. Write this recap as if it might get pasted somewhere and stand alone — that's the same bar `The opening paragraph is a triage test` sets for what a future revisit of this material should find.
+The last question puts the goal itself to the reader (core rule). Once it passes, confirm what the reader can now explain and list any skipped questions as parts of the goal the walkthrough did not verify. Close with a recap that connects the original problem, the main conclusions, and the general principle in a few short lines. In `cumulative` mode, use the final “Picture so far” (§2), updated with the last step’s essential point.
 
 ## 9. Pausing and resuming walkthroughs in the same session
 
 Maintain a list of unfinished walkthroughs in the current chat session. Give each one a short, distinct name based on its goal. Keep at most one walkthrough active at a time. Update the cross-session list in §10 when a walkthrough starts, changes progress or status, or finishes.
 
-- **Maintain a checkpoint for each walkthrough.** Update it when progress changes. Save the goal, proposed subgoals, questionnaire ratings, settings, current agenda, exact stopping point, open questions and their setup, completed or skipped checks, the subgoal stack, and which crucial facts still need repetition. Carry the list and checkpoints forward in any summary used to continue this chat session. Keep them separate from the per-user settings file in §0.
+- **Maintain a checkpoint for each walkthrough.** Update it when progress changes. Save the goal, proposed subgoals, questionnaire ratings, settings including the selected recap style, current agenda, exact stopping point, open questions and their setup, completed or skipped checks, the subgoal stack, the essential points learned so far, and which crucial facts still need repetition. Carry the list and checkpoints forward in any summary used to continue this chat session. Keep them separate from the per-user settings file in §0.
 - **List on request.** For “list walkthroughs,” show each unfinished walkthrough’s name, goal, active or paused status, and current step or pending questionnaire. Remove completed walkthroughs from the list.
 - **Pause on request.** For “pause this walkthrough,” save the checkpoint, mark the walkthrough paused, and confirm the name and stopping point. Continue ordinary chat while no walkthrough is active. Leave the paused walkthrough’s questions for when the reader resumes it.
 - **Resume on request.** For “resume <walkthrough name>,” save and pause any other active walkthrough, then restore the selected checkpoint. Give a short refresher and re-ask the open question with its setup, or pick up the next pending action if no question is open. Keep the same agenda and progress. Starting a new walkthrough also pauses any active walkthrough and keeps it in the list. If “resume the walkthrough” could refer to more than one paused walkthrough, show their names and ask which one.
