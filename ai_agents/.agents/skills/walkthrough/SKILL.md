@@ -173,7 +173,7 @@ A chunk is read in a terminal, often cold, often questions-first (§3). Its stru
 
 ### When a chunk runs long
 
-Splitting is the first fix (length, above). When a chunk still runs past the upper bound of `chunk_read_minutes` — one idea that does not split, a branch (§4), a re-explanation (🔁) — end the body, right before the questions, with:
+Splitting is the first fix (length, above). When a chunk still runs past the upper bound of `chunk_read_minutes` — one idea that does not split, an active subgoal (§4), a re-explanation (🔁) — end the body, right before the questions, with:
 
 ```
 If nothing else: <the one or two facts that carry the step>
@@ -226,25 +226,13 @@ Checks come in two shapes, and the reader picks (§1). **Freeform is the default
 
 **The questions are a gate, not a suggestion — once asked, they stay open regardless of what happens next in the conversation.** If the reader goes on a tangent, asks something unrelated, or asks about something else entirely, that does not clear the open questions: answer what they actually asked, then return to the still-open questions before advancing. Never let the walkthrough drift into the next chunk just because the conversation moved elsewhere. The only way past an open question, besides answering it, is the reader explicitly or clearly-implicitly asking to skip it ("skip this", "let's just move on") — absent that, there is no other path forward.
 
-## 4. Branching on a clarifying question
+## 4. Adding a subgoal during a walkthrough
 
-A clarifying question mid-walkthrough is not an interruption to be answered and waved away. It is **one more thing the reader needs to understand**, so it gets taught properly, like any other step. Getting this right is most of what makes a walkthrough worth doing at all.
+A reader’s clarifying question can reveal a topic that needs its own teaching. If a short clarification resolves the question, answer it and return the reader to the point where they stopped.
 
-- **Teach the branch, don't just answer it.** It follows every rule a normal chunk follows — the length from `chunk_read_minutes` (§0), precision, a real example, ASCII over Mermaid (§2) — and it gets its own check questions per §3. A branch delivered as a loose aside with no check teaches nothing and quietly leaves the gate open.
-- **The branch inherits the reader's settings; it does not get its own.** At the default `chunk_read_minutes` of about 30 seconds, the branch is a 30-second read too. Being a tangent is not a licence to run long.
-- **The suspended question survives.** Opening a branch puts the main step's last asked-but-unanswered question on hold. When the branch's own checks pass — or are explicitly skipped — return to exactly that question and re-ask it, restated with the facts needed to answer it per §5, because the reader has been somewhere else in between.
-- **Branches nest, and unwind innermost first.** A clarifying question asked inside a branch opens another level. Resolve the deepest one, then its parent, then the main line. The status block (§5) carries the whole stack, so the reader can always see how deep they are and what is still waiting above them.
-
-### When the branch would go too deep
-
-Sometimes a proper answer needs a dive that pulls the walkthrough well off its goal. Don't quietly take that detour, and don't quietly refuse it — **say so, then let the reader choose**:
-
-1. Name what a full answer actually requires, and how far off-goal it goes, concretely: "answering this properly needs transaction isolation levels first, which is three or four steps of its own."
-2. Put the options up: **take the full branch now**; **drop it for now**; **a high-level answer only**, enough to carry on toward the goal; or **split it into its own walkthrough for later**.
-3. Offer a fifth option when the situation suggests one — those four are the common cases, not a closed list.
-4. If the reader doesn't choose, the high-level answer is the default: it unblocks the goal without silently committing them to a long detour.
-
-A dropped branch and a deferred separate walkthrough are both things the reader will want to find again. Record either in the agenda per §7, so the decision is visible rather than lost in scrollback.
+1. **Ask before adding a subgoal.** Name what the reader would be able to explain and ask, “Do you want to add this as a subgoal?” Wait for the reader’s approval before adding the subgoal to the agenda (§7). If the reader declines, give a short clarification if they want one and return to the paused point. For a topic that would take the walkthrough far from the final goal, say what the extra teaching would cover and offer to defer it to a separate walkthrough.
+2. **Put the approved subgoal on top of the subgoal stack.** Record the exact point you’re pausing, including the current step and its open questions. Teach the approved subgoal first, using the same chunk settings and comprehension checks (§2–3). If the reader approves another subgoal while working through this one, put the newer subgoal on top and pause the current subgoal at its exact point.
+3. **Resume the discussion that the completed subgoal interrupted.** When the active subgoal’s checks pass or the reader explicitly skips them, remove that subgoal from the top of the stack. Give a short refresher on the step or subgoal directly underneath and pick up where you paused. If a question was open, restate it with the facts needed to answer it (§5). The refresher is enough to continue from that point. The original check remains open until the reader answers or skips it.
 
 ## 5. Status recap and visual markers
 
@@ -253,7 +241,7 @@ Every response while a walkthrough is running — not only the ones delivering a
 ````
 🎓 Walkthrough · Step 2 of 5 — <step name> · answered 1/3
 🎯 Goal: <goal, one short line>
-↳ Branch: <the clarifying question being taught>  ·  waiting above: step 2 Q2
+↳ Subgoal: <what the reader should be able to explain>  ·  paused at: step 2 Q2
 
 ──────────────────────────────────────────────
 
@@ -287,11 +275,11 @@ Every response while a walkthrough is running — not only the ones delivering a
 **The Obsidian escape hatch is an exception, not the routine.** When a diagram genuinely cannot be done in ASCII — a real graph, a layered schema, something with crossing edges — write it into a vault note per `Obsidian` and give the link. Reaching for that on every step defeats the point of an interactive walkthrough: the reader is in the terminal, and sending them to a file breaks the flow. Ask whether ASCII can carry it first; it usually can.
 
 - Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
-- A clarifying question about the current chunk means the reader stopped reading at that point — the rest of that chunk is probably still unread. Answer it, then hand them back to the exact spot they stopped at. A clarification never counts as having cleared the chunk, and never advances the walkthrough to the next step.
+- For a clarifying question about the current chunk, answer it or ask whether to add a subgoal (§4). Preserve the reader’s place and all open checks when returning to the current chunk.
 - Never answer anything blindly: name which question this response is addressing — the reader's side question, or which of the open check questions their answer landed on — re-posed in cleaner words than it was asked in, before answering it. The block shows what's *open*; this shows what's being *dealt with right now*. A reader who has been away, or who fired off three things at once, must never have to work out which one just got answered.
 - **Every restatement of an open question carries the information needed to answer it** — its `Setup:` stem (§3) if it has one, the relevant mechanism, the entity and field names in play, the setup the question is about — so the reader can answer from the block alone without scrolling back to the chunk. Not the answer itself, and not the chunk re-pasted: the general facts that lead to the answer, one or two lines. Repeating the conclusion the question is testing makes the check worthless; repeating nothing makes the reader hunt for context they already paid attention for once.
 - An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
-- **While a branch (§4) is open, the block shows the stack**: one `↳` line per level, innermost last, each naming what is being taught and what question is waiting above it. Drop the `↳` lines as each level resolves. Without this the reader cannot tell a branch from the main line, and "where was I?" becomes unanswerable without scrolling — the exact failure this block exists to prevent.
+- **Show the subgoal stack while a subgoal is active (§4).** Use one `↳` line per subgoal, with the newest active subgoal last. Each line names the subgoal and the point it paused. Remove the last line as each subgoal ends, then refresh the paused discussion.
 - When a step's questions are all answered or explicitly skipped (§3) and the next chunk starts, the block resets to that chunk's own questions — a resolved step's questions don't get carried forward.
 - This is exactly why chunks in §2 stay small: the block repeats on every message for as long as a step's questions are open, so a bigger step means paying for its recap more times and for longer. Small steps keep the recap a small fraction of each response instead of the bulk of it.
 
@@ -303,7 +291,7 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 | 🎯 | the goal (§1) |
 | ✅ | question answered and accepted |
 | ❓ | question still open |
-| ↳ | an open branch from a clarifying question (§4) — one line per nesting level |
+| ↳ | an approved subgoal and the point it paused (§4) |
 | 🔁 | re-explaining after a missed check (§3) |
 | ⚠️ | agenda or pacing change (§6, §7) |
 | 🏁 | walkthrough complete (§8) |
