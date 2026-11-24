@@ -10,7 +10,7 @@ Use `$walkthrough` to invoke this skill. Resolve tools from those actually avail
 
 # Interactive walkthrough
 
-This is the explicit, packaged form of the "one step at a time" mode CLAUDE.md's `Complex topics: lay it all out` section allows as an opt-in — here it's the default for the whole session, not a one-off request. CLAUDE.md's `Teaching`, `Tone`, `Repeat yourself, on purpose`, `Decode the names`, and the precision-over-abstraction bullet at the top of `Rules` all still apply — but through the core rule below: none of them adds to a step anything its questions do not need. Where one would, the material moves instead:
+This is the "one step at a time" mode described in CLAUDE.md's `Complex topics: lay it all out` section. It stays active until the walkthrough is paused, switched, or completed (§9). CLAUDE.md's `Teaching`, `Tone`, `Repeat yourself, on purpose`, `Decode the names`, and the precision-over-abstraction bullet at the top of `Rules` all still apply — but through the core rule below: none of them adds to a step anything its questions do not need. Where one would, the material moves instead:
 
 - `Teaching`'s naive attempts become steps of their own, each with a question about exactly where it breaks.
 - `Teaching`'s general principle, its parallels from outside the project, and the durable takeaway go to the ending (§8), or into a step whose question asks the reader to spot the same shape.
@@ -233,7 +233,7 @@ Checks come in two shapes, and the reader picks (§1). **Freeform is the default
   - **Ask for the reason, not the label**: "which of these is *why* the second replica kills the run" beats "what does `owner` store".
   - **A correct pick is weaker evidence than a correct freeform answer** — one in four lands by luck. So §3's guess-versus-grasp probe matters *more* here, not less: after a correct pick on anything load-bearing, ask for a one-line why before counting it.
 
-**The questions are a gate, not a suggestion — once asked, they stay open regardless of what happens next in the conversation.** If the reader goes on a tangent, asks something unrelated, or asks about something else entirely, that does not clear the open questions: answer what they actually asked, then return to the still-open questions before advancing. Never let the walkthrough drift into the next chunk just because the conversation moved elsewhere. The only way past an open question, besides answering it, is the reader explicitly or clearly-implicitly asking to skip it ("skip this", "let's just move on") — absent that, there is no other path forward.
+**Open questions stay attached to their walkthrough.** While the walkthrough is active, answer tangents and then return to the open questions before advancing. Advance past an open question once the reader passes the check or asks to skip it. If the reader pauses or switches walkthroughs, save the open questions and return to them when that walkthrough resumes (§9).
 
 ## 4. Adding a subgoal during a walkthrough
 
@@ -245,7 +245,7 @@ A reader’s clarifying question can reveal a topic that needs its own teaching.
 
 ## 5. Status recap and visual markers
 
-Every response while a walkthrough is running — not only the ones delivering a new chunk — opens with a short status block, so the reader never has to scroll up to work out where they are — a walkthrough can sit open for hours while they're pulled onto other work, and this block is what lets them resume cold — and so a walkthrough response is distinguishable from ordinary chat at a glance:
+Every response while a walkthrough is active opens with a short status block. Include it when answering a side question and when resuming a walkthrough. Ordinary chat while all walkthroughs are paused follows §9.
 
 ````
 🎓 Walkthrough · Step 2 of 5 — <step name> · answered 1/3
@@ -322,3 +322,12 @@ Finding out partway through that a step is missing, needs splitting, or needs re
 ## 8. Ending
 
 The last question puts the goal itself to the reader (core rule). Once it passes, close by confirming what their answer established — what they can now explain that they couldn't at the start — and list every skipped question as a part of the goal not reached, rather than letting it pass silently. Then a short recap: the central problem from §1, the one or two central conclusions (`Teaching`'s rule on calling out the central problem(s) first), and the general principle this was an instance of. Write this recap as if it might get pasted somewhere and stand alone — that's the same bar `The opening paragraph is a triage test` sets for what a future revisit of this material should find.
+
+## 9. Pausing and resuming walkthroughs in the same session
+
+Maintain a list of unfinished walkthroughs in the current chat session. Give each one a short, distinct name based on its goal. Keep at most one walkthrough active at a time.
+
+- **Maintain a checkpoint for each walkthrough.** Update it when progress changes. Save the goal, questionnaire ratings, settings, current agenda, exact stopping point, open questions and their setup, completed or skipped checks, the subgoal stack, and which crucial facts still need repetition. Carry the list and checkpoints forward in any summary used to continue this chat session. Keep them separate from the per-user settings file in §0.
+- **List on request.** For “list walkthroughs,” show each unfinished walkthrough’s name, goal, active or paused status, and current step or pending questionnaire. Remove completed walkthroughs from the list.
+- **Pause on request.** For “pause this walkthrough,” save the checkpoint, mark the walkthrough paused, and confirm the name and stopping point. Continue ordinary chat while no walkthrough is active. Leave the paused walkthrough’s questions for when the reader resumes it.
+- **Resume on request.** For “resume <walkthrough name>,” save and pause any other active walkthrough, then restore the selected checkpoint. Give a short refresher and re-ask the open question with its setup, or pick up the next pending action if no question is open. Keep the same agenda and progress. Starting a new walkthrough also pauses any active walkthrough and keeps it in the list. If “resume the walkthrough” could refer to more than one paused walkthrough, show their names and ask which one.
