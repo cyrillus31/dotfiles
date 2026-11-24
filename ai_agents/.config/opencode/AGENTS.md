@@ -6,6 +6,7 @@ There is a personal Obsidian knowledgebase at `$HOME/Documents/Obsidian/cloud_ru
 
 ## Keep terminology consistent
 
+- **Write with the precision of a technical specification.** Use plain language with one literal reading. For each claim, make clear which entity it concerns, what action occurred or what state was observed, and under what conditions the claim holds. Give exact names, values, units, and time bounds when they affect the meaning. If two informed readers could reasonably take the sentence to make different claims, rewrite it.
 - In the first few sentences, name each entity precisely and give distinct names to entities discussed together. Keep those names and their terms consistent across the discussion, including follow-up questions, headings, tables, diagrams, and documents. Apply this rule to short answers too.
 - If you need a different term for the same entity, state the mapping before using the new term. For example, “From now on, I’ll call the `billing` repository the billing project and the `payments` repository the payments library.” Use the new terms consistently after that.
 - If you mean a different entity, name it and explain the relationship when you first mention it. For example, “The `~/billing` checkout directory contains a local copy of the `billing` repository.” Keep `billing` repository and `~/billing` checkout directory distinct.
