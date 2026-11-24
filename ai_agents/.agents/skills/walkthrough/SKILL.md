@@ -14,7 +14,7 @@ This is the explicit, packaged form of the "one step at a time" mode CLAUDE.md's
 
 - `Teaching`'s naive attempts become steps of their own, each with a question about exactly where it breaks.
 - `Teaching`'s general principle, its parallels from outside the project, and the durable takeaway go to the ending (§8), or into a step whose question asks the reader to spot the same shape.
-- `Repeat yourself, on purpose` happens across steps, as restated ingredients — never as several phrasings inside one step.
+- `Repeat yourself, on purpose` happens across steps. Plan repeated practice for the facts the final goal depends on.
 - `Context means the trace` belongs to the interactions and code levels (top down), and only the hops the goal's questions need.
 - `Decode the names`: a name is decoded in the step it first enters, in a few words.
 - `Tone` lives in the phrasing, never in an added sentence.
@@ -22,6 +22,10 @@ This is the explicit, packaged form of the "one step at a time" mode CLAUDE.md's
 ## The core rule: the bare minimum per step, and the questions decide what that is
 
 **Every step carries the bare minimum of information** — not a short summary of a bigger explanation, but the smallest body from which the step's questions can be answered. This is the goal the rest of the skill exists to reach: nearly every rule below either removes something from a step or moves it into a step of its own. When any rule, here or in CLAUDE.md, would add to a step, this one wins.
+
+**Assume the reader has forgotten most of the previous step when the next one starts.** Restate any earlier fact where the next step needs it. Identify the sequences, distinctions, and other facts the reader must retain to achieve the final goal. Plan **three to five additional restatements after the first explanation**, spread across later steps. For a sequence, restate the ordered actions. For a distinction, restate the exact meaning of each term. Vary how the reader uses the same example while keeping names and facts consistent.
+
+Make each restatement serve a question or a short retention step. At a later step, ask the reader to reconstruct or apply the information without putting the conclusion in the question. A successful answer immediately after the first explanation establishes understanding at that point. Use a later answer to check retention, and keep revisiting the information if the reader still needs help.
 
 What counts as the minimum is decided by the questions, through two conditions:
 
@@ -95,7 +99,7 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 | `glyphs` | §5 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
 | `diagrams` | §2 visuals | `ascii`, or `obsidian` for a reader who would rather have real diagrams and follow links |
 | `language` | the walkthrough's prose | code identifiers, paths and error strings stay verbatim regardless |
-| `repeat_complex_times` | §2 re-explanation budget | how many times a genuinely complex point is restated before it is assumed landed |
+| `repeat_complex_times` | §2 repetition for other complex material | number of restatements after the first explanation. For facts the final goal depends on, follow the core retention rule |
 
 An unknown key is left alone rather than deleted — a newer version of this skill may own it. A malformed file is reported in one line and the defaults are used; never fail a walkthrough over its config.
 
@@ -152,7 +156,7 @@ In the first teaching response after the questionnaire:
 - When the goal includes a decision that was already made — in a ticket, in merged code, in a review — whether it was the right call gets its own step and question, not a paragraph appended to the step explaining what it was. Presenting a past decision as self-evidently correct teaches the reader to recite it; `Doubt the proposal` applies to explaining work just as much as to doing it, and being able to say what was wrong with a design is most of being able to defend it.
 - When a chunk covers something that changed, or something that should change, show both states side by side — было/стало, or "сейчас / как должно быть" — with everything but the difference held identical. In plain chat that's two short blocks, not a diagram (§2's Mermaid rule still applies).
 - The reader is not a native English speaker. Any idiom or colourful word gets glossed on the spot, together with whether it's a term of art with a precise meaning or just figurative English — that ambiguity is what actually trips them up, not the word itself. Keep using such words; a walkthrough is a good place to pick them up, as long as each one is explained.
-- Set the depth for each new concept from its questionnaire rating (§1) and any comprehension checks on that concept (§6). Use the junior, zero-context baseline for unrated concepts. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, `repeat_complex_times` (§0) across the walkthrough before assuming it's actually landed — each restatement as an ingredient of a later step's questions (core rule), never as several phrasings inside one step. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything. The categories `Repeat yourself, on purpose` marks as automatically complex — non-trivial SQL, transactions, and anything async/concurrent/parallel — always qualify here, no judgement call.
+- Set the depth for each new concept from its questionnaire rating (§1) and any comprehension checks on that concept (§6). Use the junior, zero-context baseline for unrated concepts. For facts the final goal depends on, apply the core retention rule. For other genuinely complex facts, use `repeat_complex_times` (§0) across steps. Non-trivial SQL, transactions, and asynchronous, concurrent, or parallel execution always qualify as complex.
 - **End every chunk with its check questions** — `questions_per_chunk` (§0), see §3.
 
 ### Introducing a new concept
