@@ -120,6 +120,10 @@ Optional, and the walkthrough works identically without it. There is no declared
 - Present all items together. Use one interactive form if the harness can collect a 0–5 rating for every item in one submission. Otherwise show a numbered list and ask for a series of numbers in order, for example `0, 4, 2, 5, 1`.
 - Wait for the ratings or an explicit request to skip the questionnaire. Use the junior, zero-context baseline for any unrated concept. For ratings of 0–1, teach from first principles. For 2–3, define the essentials and connect them to the goal. For 4–5, start with a short check or the part specific to the system. The ratings guide depth. The comprehension checks in §3 establish understanding.
 
+**Turn important knowledge gaps into subgoals before writing the agenda.** A subgoal states what the reader must be able to explain or do to achieve the final goal. Add a subgoal when the ratings indicate a knowledge gap, a later step or question depends on that knowledge, and the gap needs separate teaching. For a gap that a brief definition can close, give the definition in the step that uses it. Name each subgoal in the agenda and give it one or more short steps with a comprehension check. Place those steps before the first step that depends on the subgoal, keeping the walkthrough’s top-down order.
+
+For example, if the final goal is to explain why retrying a payment request can charge a customer twice, and the reader rates client timeouts at 1, add a subgoal to explain what the client can infer about the payment server’s state after a timeout. Check that subgoal before teaching the duplicate-charge mechanism.
+
 **Settle the answer mode before chunk 1.** Use the mode stated in the goal message or set to `freeform` or `test` in `~/.codex/walkthrough.json`, in that order. Otherwise add one optional answer-mode choice to the questionnaire using the trade-off in §3. Use freeform if the reader leaves the choice blank.
 
 In the first teaching response after the questionnaire:
@@ -311,7 +315,7 @@ These glyphs carry fixed meanings and are used consistently for the whole walkth
 ## 6. Recalibrating the level as you go
 
 - Read each answer for more than correct/wrong: precise unprompted vocabulary, a caught edge case, a question that skips ahead — all of that means the assumed level was too low. A vague or only-partially-right answer that just echoes the words just given back means the level is about right, or still too high.
-- Adjust what comes next, never the set of questions (core rule). Reader ahead of the material: deliver the next step's questions without its body, and send the body only if an answer misses. Reader struggling: add a step that teaches the missing ingredient, with its own question, rather than lengthening the current one.
+- Keep the existing comprehension checks (core rule). Reader ahead of the material: deliver the next step's questions without its body, and send the body only if an answer misses. If a check exposes a missing prerequisite, apply the subgoal rule in §1 and update the agenda under §7. Give the missing prerequisite its own short step and check when it needs separate teaching.
 - Say so once, briefly, the first time a real shift happens ("you clearly already know X, so I'll skip re-deriving Y and move faster from here") — the same no-silent-deviation principle as §7, applied to pacing instead of content. Don't narrate a running commentary on every question's grade.
 
 ## 7. Changing the agenda mid-walkthrough
