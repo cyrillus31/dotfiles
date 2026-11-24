@@ -1,6 +1,6 @@
 ---
 name: walkthrough
-description: "Run a chat-based, step-by-step walkthrough toward a stated learning goal — teaches any amount of new material in small comprehension-gated chunks, each carrying the bare minimum needed to answer its check questions, while the questions together cover the whole goal; states the whole plan up front, delivers one short chunk at a time, checks understanding before advancing, and recalibrates depth as the reader's real level shows itself. Checks can be answered as freeform text (the default, better for retention) or as quick 3-4 option multiple choice, switchable at any point. Requires a goal argument: what the reader should understand and still remember when it ends."
+description: "Teach a stated learning goal in short, comprehension-gated steps. Start with a single 0–5 knowledge questionnaire to set the depth for each concept. Show the agenda before teaching, check understanding after each step, and adjust depth as the reader answers. Checks can be freeform or multiple choice. Requires a goal that states what the reader should be able to explain at the end."
 ---
 
 ## Codex compatibility
@@ -81,7 +81,6 @@ It sits outside this skill's own directory deliberately. The skill directory is 
   "glyphs": true,
   "diagrams": "ascii",
   "language": "en",
-  "starting_level": "zero-context",
   "repeat_complex_times": [3, 5]
 }
 ```
@@ -96,33 +95,40 @@ It sits outside this skill's own directory deliberately. The skill directory is 
 | `glyphs` | §5 glyph vocabulary | `false` for a terminal that renders emoji badly — fall back to `[x]`, `[ ]`, `>>` |
 | `diagrams` | §2 visuals | `ascii`, or `obsidian` for a reader who would rather have real diagrams and follow links |
 | `language` | the walkthrough's prose | code identifiers, paths and error strings stay verbatim regardless |
-| `starting_level` | §1 opening assumption | `zero-context` or `experienced`; §6 recalibrates from there either way |
 | `repeat_complex_times` | §2 re-explanation budget | how many times a genuinely complex point is restated before it is assumed landed |
 
 An unknown key is left alone rather than deleted — a newer version of this skill may own it. A malformed file is reported in one line and the defaults are used; never fail a walkthrough over its config.
+
+An existing `starting_level` key is preserved on disk. The opening assessment in §1 determines the starting depth.
 
 ### If a knowledge-map skill is installed
 
 Optional, and the walkthrough works identically without it. There is no declared dependency between skills — a standalone `SKILL.md` has no `dependencies` field — so the link is just this: check whether a `knowledge-map` skill is listed, and if it is, invoke it and use what it knows.
 
-- **At the start**, read the relevant subject or project file and take the opening depth from the recorded band rather than defaulting to zero context (§1). A topic already scored 75 does not get taught from scratch.
+- **At the start**, read the relevant subject or project file to identify concepts worth including in the questionnaire. Use the reader’s current ratings to set the starting depth (§1).
 - **At the end, or at a natural pause**, hand back what the checks revealed: each graded question, the answer, and whether the reasoning held. That is exactly the evidence the map scores on, and a walkthrough generates more of it than anything else. Batch it — one write, not one per question.
 - If no such skill is listed, skip all of this silently. Never mention a missing skill to the reader, and never ask them to install one.
 
-## 1. Opening message
+## 1. Opening assessment and first chunk
 
 **The goal is a required argument.** A walkthrough is defined by what the reader should be able to explain, and still remember, when it ends — not by which topic gets covered. If the invocation carried no goal (`/walkthrough` with nothing after it, or a bare topic name like "langgraph"), ask for it and start nothing until it's answered: what should the reader walk away knowing? Inventing a goal from a bare topic is a guess, and every later decision is derived from it — which steps exist, what each chunk covers, which questions gate it, and what the ending checks.
 
-**Settle the answer mode before chunk 1**, resolving in this order: stated in the goal message → use it silently; set to `freeform` or `test` in `~/.codex/walkthrough.json` → use it silently; otherwise ask, in one short question, with the trade-off of each named (§3). Freeform wins if the reader doesn't pick.
+**Assume zero prior context and junior-level experience.** Once the goal is known, restate it briefly and ask one questionnaire before teaching. Use the ratings to decide how much time and detail each concept needs.
 
-Then, before any teaching content:
+- Ask about **5–10 concepts**, up to **15** if the goal or system is complex. Ask about one concept per item. Cover the prerequisites the goal actually needs, from general computer science, AI agents, or web concepts to business rules and specific parts of the system. Use plain language so the reader can recognize each concept.
+- Use the same **0–5 scale** for every concept. **0** means “I know nothing about this.” **1** means “I recognize the term.” **2** means “I can follow an explanation with help.” **3** means “I can explain the basics on my own.” **4** means “I can apply it in common cases.” **5** means “I need no clarification.”
+- Present all items together. Use one interactive form if the harness can collect a 0–5 rating for every item in one submission. Otherwise show a numbered list and ask for a series of numbers in order, for example `0, 4, 2, 5, 1`.
+- Wait for the ratings or an explicit request to skip the questionnaire. Use the junior, zero-context baseline for any unrated concept. For ratings of 0–1, teach from first principles. For 2–3, define the essentials and connect them to the goal. For 4–5, start with a short check or the part specific to the system. The ratings guide depth. The comprehension checks in §3 establish understanding.
+
+**Settle the answer mode before chunk 1.** Use the mode stated in the goal message or set to `freeform` or `test` in `~/.codex/walkthrough.json`, in that order. Otherwise add one optional answer-mode choice to the questionnaire using the trade-off in §3. Use freeform if the reader leaves the choice blank.
+
+In the first teaching response after the questionnaire:
 
 1. **The goal, restated.** One or two lines in your own words, so the reader can correct the target before any effort is spent aiming at the wrong one.
 2. **The problem, in one or two lines** — enough to show why the walkthrough exists. The problem itself (what goes wrong, why it can't simply be removed, why the naive fix fails) is taught by the steps of the first level (top down), with questions like any other step.
 3. **The full agenda.** List every planned step, one line each, each named for what it contributes to the goal, grouped under the levels it belongs to (top down, above), so the shape of the whole walkthrough is visible before starting — same reasoning as `Complex topics: lay it all out`'s "say up front how many parts there are," delivered as a table of contents instead of inline steps.
 4. Immediately follow with chunk 1 in the same message — don't stop to ask permission to begin.
 
-Take the opening depth from the knowledge map's band for this topic when one exists (§0). Otherwise start from `starting_level`, which defaults to **zero context and junior-or-below technical competence**, regardless of how the reader has come across earlier in the session — a specific topic can be one they've never touched even if others weren't. Don't ask "what's your level?" up front; §6 is the actual instrument for measuring it.
 
 ## 2. Each chunk
 
@@ -139,7 +145,7 @@ Take the opening depth from the knowledge map's band for this topic when one exi
 - When the goal includes a decision that was already made — in a ticket, in merged code, in a review — whether it was the right call gets its own step and question, not a paragraph appended to the step explaining what it was. Presenting a past decision as self-evidently correct teaches the reader to recite it; `Doubt the proposal` applies to explaining work just as much as to doing it, and being able to say what was wrong with a design is most of being able to defend it.
 - When a chunk covers something that changed, or something that should change, show both states side by side — было/стало, or "сейчас / как должно быть" — with everything but the difference held identical. In plain chat that's two short blocks, not a diagram (§2's Mermaid rule still applies).
 - The reader is not a native English speaker. Any idiom or colourful word gets glossed on the spot, together with whether it's a term of art with a precise meaning or just figurative English — that ambiguity is what actually trips them up, not the word itself. Keep using such words; a walkthrough is a good place to pick them up, as long as each one is explained.
-- Assume zero context for each new concept the first time it appears, regardless of how technical the reader has seemed on other topics. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, `repeat_complex_times` (§0) across the walkthrough before assuming it's actually landed — each restatement as an ingredient of a later step's questions (core rule), never as several phrasings inside one step. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything. The categories `Repeat yourself, on purpose` marks as automatically complex — non-trivial SQL, transactions, and anything async/concurrent/parallel — always qualify here, no judgement call.
+- Set the depth for each new concept from its questionnaire rating (§1) and any comprehension checks on that concept (§6). Use the junior, zero-context baseline for unrated concepts. Once introduced, anything genuinely complex or non-self-evident gets restated, in different phrasing, `repeat_complex_times` (§0) across the walkthrough before assuming it's actually landed — each restatement as an ingredient of a later step's questions (core rule), never as several phrasings inside one step. An already-obvious fact still gets one sentence; this is for what's actually hard, not everything. The categories `Repeat yourself, on purpose` marks as automatically complex — non-trivial SQL, transactions, and anything async/concurrent/parallel — always qualify here, no judgement call.
 - **End every chunk with its check questions** — `questions_per_chunk` (§0), see §3.
 
 ### Introducing a new concept
