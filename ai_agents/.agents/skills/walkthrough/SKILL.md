@@ -56,6 +56,8 @@ The walkthrough descends one level at a time and never starts below the top. The
 
 Other levels go in between when the goal needs them — a library's own model between concept and interactions, say. The order is fixed: nothing from a lower level appears before the level above it is done.
 
+- **Teach the user-facing sequence at the problem level.** Follow one person using the system, from the problem they need to solve through each action they take and each response they see, up to the result the system provides. Use one concrete example and check that the reader can explain the sequence in order and say how the result addresses the problem.
+- **Add one layer of detail at a time after that check.** Reuse the same user-facing sequence as a reference. Introduce the simplest concept needed to explain an action or result, then build on it with more complex concepts and, when the goal requires them, system interactions and code. Tie each new layer back to the action or result it explains.
 - **No code until the concept is learned.** A concept is never explained through a code example. Its concrete example at level 2 comes from outside software — the last seat on a flight, two cashiers and one till — with real values all the same.
 - **Descend only when the level above is solid:** every question at that level has passed (§3). A skipped one is offered again before descending.
 - **The goal sets how deep to go.** A goal whose questions are all answerable at level 2 never reaches code; lower levels exist only when the goal's questions require them (core rule).
@@ -133,7 +135,7 @@ For example, if the final goal is to explain why retrying a payment request can 
 In the first teaching response after the questionnaire:
 
 1. **The goal, restated.** One or two lines in your own words, so the reader can correct the target before any effort is spent aiming at the wrong one.
-2. **The original problem.** State what happens, who or what it affects, and what outcome is needed. Save the detailed causes and failure cases for the teaching steps.
+2. **The original problem.** State what the system’s user needs to accomplish and what outcome the system provides. Preview the user-facing sequence from the problem to the result. Save detailed causes and failure cases for the teaching steps.
 3. **A bird’s-eye overview of the players.** Name every concept, system, service, and participant relevant to the goal. Give each a short description of its role in the original problem. Use the questionnaire ratings to define unfamiliar terms in plain language on first mention. Show how the players relate at a high level. Leave implementation details for the appropriate teaching level.
 4. **Comparison tables.** Whenever understanding depends on distinguishing services or concepts, compare them in a table, both in the overview and when a new distinction comes up in a later step. Use the same comparison criteria for every item. Include only the differences that matter to the goal. Use aligned plain-text columns in a terminal and a Markdown table when the interface renders it.
 5. **The full agenda.** List every planned step, one line each, grouped by teaching level. Name what each step contributes to the goal, including any subgoals.
