@@ -153,6 +153,7 @@ In the first teaching response after the questionnaire:
 
 ## 2. Each chunk
 
+- **Use the fixed step template in §5.** Put the recap, lesson, and checks in their assigned sections.
 - **Show the selected recap after the status block.** Give it a plain-text label and leave a blank line after it so the reader can skip directly to the new lesson or question. Include the recap when a step starts with a check and keep that check’s answer out of the recap. Use the same names as the lesson. When a previous check was skipped, present its teaching point without claiming the reader demonstrated it.
   - **Picture so far (`cumulative`, default).** At step 1, show the label with an empty body. Add the first takeaway when step 1 is complete. Build the picture from completed steps only, including any prerequisite steps. Carry forward the essential points and add the preceding step’s main contribution. Order the points so the reader can see how they fit together. Keep it to a few short lines by combining related points. A precise word, phrase, or distinction is enough when it carries the meaning. Reuse the reader’s terminology and short phrases from their answers as closely as possible while preserving the exact meaning. If a phrase needs correction or disambiguation, give the precise wording and connect it to the reader’s phrasing once.
   - **Previous step only (`previous_step`).** Starting with step 2, say “If you remember nothing else from the previous step, remember this.” Follow with the previous step’s most important point in one short sentence or phrase.
@@ -258,17 +259,22 @@ A reader’s clarifying question can reveal a topic that needs its own teaching.
 2. **Put the approved subgoal on top of the subgoal stack.** Record the exact point you’re pausing, including the current step and its open questions. Teach the approved subgoal first, using the same chunk settings and comprehension checks (§2–3). If the reader approves another subgoal while working through this one, put the newer subgoal on top and pause the current subgoal at its exact point.
 3. **Resume the discussion that the completed subgoal interrupted.** When the active subgoal’s checks pass or the reader explicitly skips them, remove that subgoal from the top of the stack. Give a short refresher on the step or subgoal directly underneath and pick up where you paused. If a question was open, restate it with the facts needed to answer it (§5). The refresher is enough to continue from that point. The original check remains open until the reader answers or skips it.
 
-## 5. Status recap and visual markers
+## 5. Fixed step template and visual markers
 
-Every response while a walkthrough is active opens with a short status block. Include it when answering a side question and when resuming a walkthrough. Ordinary chat while all walkthroughs are paused follows §9.
+**Use the following layout for every step.** Keep the section labels and order fixed. Fill in the placeholders with the current step’s content. The opening overview and agenda (§1) go before the first step’s template. When replying within a step, use the same layout. If `recap_every_response` is false, omit the status header on replies that stay in the same step. Show the header when resuming. Ordinary chat while all walkthroughs are paused follows §9.
 
 ````
-🎓 Walkthrough · Step 2 of 5 — <step name> · answered 1/3
+🎓 Walkthrough · Step 2 of 5 — <step name> · answered 1/2
 🎯 Goal: <goal, one short line>
 ↳ Subgoal: <what the reader should be able to explain>  ·  paused at: step 2 Q2
 
-──────────────────────────────────────────────
+Recap — <Picture so far or Previous step only>
+<recap>
 
+Lesson
+<explanation, example, comparison table, or answer to a clarification>
+
+Checks
 ✅ Q1 — <the question, one line>
 
   You said: <the reader's answer, in their own words>
@@ -284,6 +290,8 @@ Every response while a walkthrough is active opens with a short status block. In
     · <one fact per line>
 ````
 
+Keep the three section labels even when a body is empty. At step 1, leave the recap body empty. For a check-only step, leave the lesson body empty. With checks disabled, leave the checks body empty. Show subgoal lines only while subgoals are active. Before sending, check the order and that each question appears once, under **Checks**.
+
 **One kind of information per block — this is what breaks first.** A single line carrying the question, the reader's answer, your verdict on it, and the supporting facts is unreadable even when every word is correct: there is no seam to find. So:
 
 - The question sits **alone on its own line**, prefixed `Q<n> —`, so it can be found without reading around it.
@@ -292,19 +300,18 @@ Every response while a walkthrough is active opens with a short status block. In
 - Facts needed are a **list, one per line** — never folded into the question's sentence.
 - A horizontal rule of `─` between questions, blank lines within each.
 
-**Keep the status block readable as plain text.** Use explicit labels such as `You said:`, `Verdict:`, and `Facts needed:`, with indentation, blank lines, and `─` separators. Put comparison tables in the teaching content and format them for the interface (§1).
+**Keep the template readable as plain text.** Use indentation, blank lines, and `─` separators. Put comparison tables under **Lesson** and format them for the interface (§1).
 
 **Anything visual is ASCII by default.** Box-drawing characters, arrows, indented trees, aligned columns padded with spaces — these look right in a terminal and cost nothing. Mermaid never renders there, so it is not an option in chat.
 
 **The Obsidian escape hatch is an exception, not the routine.** When a diagram genuinely cannot be done in ASCII — a real graph, a layered schema, something with crossing edges — write it into a vault note per `Obsidian` and give the link. Reaching for that on every step defeats the point of an interactive walkthrough: the reader is in the terminal, and sending them to a file breaks the flow. Ask whether ASCII can carry it first; it usually can.
 
-- Include it even when the response is answering a side question, clarifying a term, or handling a tangent — not only when the walkthrough itself advances.
 - For a clarifying question about the current chunk, answer it or ask whether to add a subgoal (§4). Preserve the reader’s place and all open checks when returning to the current chunk.
 - Never answer anything blindly: name which question this response is addressing — the reader's side question, or which of the open check questions their answer landed on — re-posed in cleaner words than it was asked in, before answering it. The block shows what's *open*; this shows what's being *dealt with right now*. A reader who has been away, or who fired off three things at once, must never have to work out which one just got answered.
 - **Every restatement of an open question carries the information needed to answer it** — its `Setup:` stem (§3) if it has one, the relevant mechanism, the entity and field names in play, the setup the question is about — so the reader can answer from the block alone without scrolling back to the chunk. Not the answer itself, and not the chunk re-pasted: the general facts that lead to the answer, one or two lines. Repeating the conclusion the question is testing makes the check worthless; repeating nothing makes the reader hunt for context they already paid attention for once.
 - An answered question's line is not just a checkmark: restate in one line what the reader's answer actually established. That does double duty as the repeated confirmation `Repeat yourself, on purpose` already asks for, rather than costing anything extra.
 - **Show the subgoal stack while a subgoal is active (§4).** Use one `↳` line per subgoal, with the newest active subgoal last. Each line names the subgoal and the point it paused. Remove the last line as each subgoal ends, then refresh the paused discussion.
-- When a step's questions are all answered or explicitly skipped (§3) and the next chunk starts, the block resets to that chunk's own questions — a resolved step's questions don't get carried forward.
+- When the next step starts, **Checks** lists that step’s questions. The previous step’s takeaways belong under **Recap**.
 - This is exactly why chunks in §2 stay small: the block repeats on every message for as long as a step's questions are open, so a bigger step means paying for its recap more times and for longer. Small steps keep the recap a small fraction of each response instead of the bulk of it.
 
 These glyphs carry fixed meanings and are used consistently for the whole walkthrough:
