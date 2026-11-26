@@ -3,14 +3,16 @@ name: walkthrough
 description: "Teach a stated learning goal in short, comprehension-gated steps. Break complex goals into achievable subgoals, then use a single 0–5 knowledge questionnaire to set the depth for each concept. Show the agenda before teaching and adjust depth as the reader answers. Checks can be freeform or multiple choice. Requires a goal that states what the reader should be able to explain at the end."
 ---
 
-## Codex compatibility
+## Invocation
 
-Use `$walkthrough` to invoke this skill. Resolve tools from those actually available in the current session; never assume Claude plugins or tools exist. Preserve user authorization boundaries.
+Invoke the walkthrough skill using the current agent interface. Use the tools available in that session.
 
 
 # Interactive walkthrough
 
-This is the "one step at a time" mode described in CLAUDE.md's `Complex topics: lay it all out` section. It stays active until the walkthrough is paused, switched, or completed (§9). CLAUDE.md's `Teaching`, `Tone`, `Repeat yourself, on purpose`, `Decode the names`, and the precision-over-abstraction bullet at the top of `Rules` all still apply — but through the core rule below: none of them adds to a step anything its questions do not need. Where one would, the material moves instead:
+Use the terminal workflow by default. If the reader asks for the optional local browser view, follow [Browser mode](references/browser.md). Start the browser walkthrough with enough private context to apply the same teaching rules. The browser walkthrough agent assesses answers and advances from the browser.
+
+The walkthrough stays active until it is paused, switched, or completed (§9). Apply the active teaching and writing instructions through the core rule below. Move material the current questions do not need to the step where it matters:
 
 - `Teaching`'s naive attempts become steps of their own, each with a question about exactly where it breaks.
 - `Teaching`'s general principle, its parallels from outside the project, and the durable takeaway go to the ending (§8), or into a step whose question asks the reader to spot the same shape.
@@ -21,7 +23,7 @@ This is the "one step at a time" mode described in CLAUDE.md's `Complex topics: 
 
 ## The core rule: the bare minimum per step, and the questions decide what that is
 
-**Every step carries the bare minimum of information** — not a short summary of a bigger explanation, but the smallest body from which the step's questions can be answered. This is the goal the rest of the skill exists to reach: nearly every rule below either removes something from a step or moves it into a step of its own. When any rule, here or in CLAUDE.md, would add to a step, this one wins.
+**Every step carries the bare minimum of information** — not a short summary of a bigger explanation, but the smallest body from which the step's questions can be answered. This is the goal the rest of the skill exists to reach: nearly every rule below either removes something from a step or moves it into a step of its own. Move additional material into the step where its question needs it.
 
 **Assume the reader has forgotten most of the previous step when the next one starts.** Restate any earlier fact where the next step needs it. Identify the sequences, distinctions, and other facts the reader must retain to achieve the final goal. Plan **three to five additional restatements after the first explanation**, spread across later steps. For a sequence, restate the ordered actions. For a distinction, restate the exact meaning of each term. Vary how the reader uses the same example while keeping names and facts consistent.
 
@@ -71,7 +73,7 @@ Other levels go in between when the goal needs them — a library's own model be
 Every reader tunes a walkthrough differently: one wants 30-second steps, another is fine with three-minute ones. Those preferences live in a local JSON file, **per user, not per project**:
 
 ```
-~/.codex/walkthrough.json
+~/.local/state/walkthrough/settings.json
 ```
 
 It sits outside this skill's own directory deliberately. The skill directory is version-controlled and shared between machines and people; a personal preference written in there would be committed and imposed on everyone else who installs the skill.
@@ -137,7 +139,7 @@ Optional, and the walkthrough works identically without it. There is no declared
 
 For example, if the final goal is to explain why retrying a payment request can charge a customer twice, and the reader rates client timeouts at 1, add a subgoal to explain what the client can infer about the payment server’s state after a timeout. Check that subgoal before teaching the duplicate-charge mechanism.
 
-**Settle the answer mode before chunk 1.** Use the mode stated in the goal message or set to `freeform` or `test` in `~/.codex/walkthrough.json`, in that order. Otherwise add one optional answer-mode choice to the questionnaire using the trade-off in §3. Use freeform if the reader leaves the choice blank.
+**Settle the answer mode before chunk 1.** Use the mode stated in the goal message or set to `freeform` or `test` in `~/.local/state/walkthrough/settings.json`, in that order. Otherwise add one optional answer-mode choice to the questionnaire using the trade-off in §3. If the reader leaves the choice blank, use test mode in the browser and freeform in plain chat.
 
 Offer both recap styles in one line with the opening questionnaire. Use the configured style (default `cumulative`) if the reader leaves the choice blank. Apply any requested switch from the next step and keep that choice in this walkthrough’s checkpoint.
 
@@ -161,7 +163,7 @@ In the first teaching response after the questionnaire:
   - Cut at the seam between notions, so every step keeps one crucial point of its own for its questions to aim at (§3). A step left without one was cut in the wrong place.
   - When steps merge, the merged step keeps a check for every crucial point it absorbed, even past `questions_per_chunk`.
   - A resize requested mid-walkthrough re-divides the remaining steps and is announced as an agenda change (§7); the step count in the status block changes with it.
-- **No Mermaid in plain chat.** The Codex terminal doesn't render Mermaid — assume that's the medium unless the walkthrough is explicitly landing in something that renders it (an Obsidian note, a rendered document). Use an ASCII diagram instead when a diagram earns its place.
+- Use ASCII diagrams in plain chat. For browser mode, use the structured graphs or illustrations in the browser reference whenever a visual helps the reader understand a lesson, question, or clarification.
 - Use a comparison table when a step requires the reader to distinguish services or concepts (§1).
 - **Define what a system entity is before explaining what it does.** At the first use of a term that the lesson or a check depends on, name the verified representation and where it lives. Terms such as “connection,” “setting,” and “record” need this definition even in the overview or the first step. Give the relevant columns, fields, or attributes and explain what each represents. Put the same facts in a check’s setup when the reader needs them to answer it.
 - **Define a database relationship at the table and row levels.** Verify the schema or model. Name the service and table, state what the table stores and what one row represents, and name the relevant columns that identify the row and the entities it relates. If a relationship is stored in a column on an existing row, identify that column and what it references. If different relationships matter to the example, such as a group link and a direct repository link, verify and define how each is represented. A phrase such as “a saved setting” can explain the role after this definition. If the representation is unverified, say so and limit the step to verified observations until you can establish it.
@@ -237,7 +239,7 @@ Questions sit at the end of a chunk, but a reader usually reads them first and t
 
 ### Answer mode: freeform or test
 
-Checks come in two shapes, and the reader picks (§1). **Freeform is the default** — producing an answer from nothing forces retrieval and articulation, which is what actually builds retention, and it exposes gaps the reader didn't know they had. Multiple choice is faster and lower-friction, which genuinely matters on dense material or late in a long session, and its wrong options can teach by showing the plausible-but-mistaken readings side by side. State that trade-off in one line whenever the choice comes up, so it's an informed pick rather than a coin flip.
+Checks come in two shapes, and the reader picks (§1). **Freeform is the default in plain chat. Test mode is the default in browser mode.** Freeform means producing an answer from scratch. It forces retrieval and articulation, which is what actually builds retention, and it exposes gaps the reader didn't know they had. Multiple choice is faster and lower-friction, which genuinely matters on dense material or late in a long session, and its wrong options can teach by showing the plausible-but-mistaken readings side by side. State that trade-off in one line whenever the choice comes up, so it's an informed pick rather than a coin flip.
 
 **The reader can switch at any point**, just by saying so. Honour it from the next question onward; never re-ask what has already been answered in the other mode.
 
@@ -358,7 +360,7 @@ Maintain a list of unfinished walkthroughs in the current chat session. Give eac
 
 ## 10. Global list and cleanup
 
-Keep a per-user list of unfinished walkthroughs across chat sessions on this machine in `~/.codex/walkthroughs/`. Use one JSON file per walkthrough, named with a stable unique ID that is also saved in the session checkpoint. Store the walkthrough name, goal, last known status, step or pending questionnaire, last progress time in UTC, and originating chat session ID when the harness exposes it. Update the progress time when the reader advances, pauses, or resumes. Listing and ordinary chat leave the progress time as recorded. Remove the entry when the walkthrough finishes. Keep teaching content and question answers in the chat session checkpoint (§9).
+Keep a per-user list of unfinished walkthroughs across chat sessions on this machine in `~/.local/state/walkthrough/unfinished/`. Use one JSON file per walkthrough, named with a stable unique ID that is also saved in the session checkpoint. Store the walkthrough name, goal, last known status, step or pending questionnaire, last progress time in UTC, and originating chat session ID when the harness exposes it. Update the progress time when the reader advances, pauses, or resumes. Listing and ordinary chat leave the progress time as recorded. Remove the entry when the walkthrough finishes. Keep teaching content and question answers in the chat session checkpoint (§9).
 
 - **List across sessions.** For “list all walkthroughs,” read the saved entries and show the name, goal, last known status, stopping point, last progress time, and originating session when available. Show newest progress first. Resume a walkthrough from its originating chat session.
 - **Clean up on request.** For “show walkthroughs older than a week,” preview entries whose last progress time is more than seven days before the current time. For “delete walkthroughs older than a week,” recheck that cutoff and delete only the matching saved entries. Report which entries were deleted. Cleanup applies to the global list. The originating chat retains its conversation history. If a session finds that a previously saved entry has been deleted, keep it off the global list until the reader explicitly resumes that walkthrough.

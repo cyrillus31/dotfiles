@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="htmx-config" content='{"allowEval":false,"includeIndicatorStyles":false,"historyCacheSize":0}'>
+  <title>$title · Walkthrough</title>
+  <link rel="stylesheet" href="$route/water-dark.min.css">
+  <link rel="stylesheet" href="$route/browser.css">
+  <script defer src="$route/htmx.min.js"></script>
+  <script defer src="$route/browser.js"></script>
+</head>
+<body>
+  <header class="pinned">
+    <div class="content">
+      <div class="status"><span>$step</span><span class="model">Model · $model</span></div>
+      <h1>$title</h1>
+    </div>
+  </header>
+  <section class="content question-shell $question_class" aria-labelledby="question-title" $question_hidden>
+    <h2 id="question-title">$question_title</h2>
+    <p class="question-intro">$question_intro</p>
+    <ol class="legacy-questions">$questions</ol>
+    <form id="answers" hx-post="$route/answer" hx-target="#answer-status"
+          hx-sync="this:drop" hx-disabled-elt="find button">
+      <input type="hidden" name="revision" value="$revision">
+      <div class="check-list">$checks</div>
+      <button type="submit">Submit answers</button>
+    </form>
+    <div id="answer-status" aria-live="polite" hx-get="$route/answer-status?revision=$revision"
+         hx-trigger="every 2s" hx-sync="#answers:drop">$answer_status</div>
+  </section>
+  <main class="content workspace">
+    <aside class="recap panel" aria-labelledby="recap-title">
+      <h2 id="recap-title">$recap_label</h2>
+      <ul>$recap</ul>
+    </aside>
+    <div class="columns">
+      <section class="panel lesson" aria-labelledby="lesson-title">
+        <h2 id="lesson-title">Lesson</h2>
+        $feedback
+        <p class="goal">$goal</p>
+        <p class="lesson-text">$lesson</p>
+        $visuals
+      </section>
+      <section class="panel clarifications" aria-labelledby="clarification-title">
+        <h2 id="clarification-title">Clarifications</h2>
+        <div id="chat" role="log" aria-live="polite">$chat</div>
+        <form id="clarification" hx-post="$route/clarify" hx-target="#chat"
+              hx-swap="beforeend" hx-sync="this:drop" hx-disabled-elt="find button, find textarea"
+              hx-indicator="#waiting">
+          <label for="clarification-question">What needs clarification?</label>
+          <input type="hidden" name="revision" value="$revision">
+          <textarea id="clarification-question" name="question" maxlength="2000" required rows="3"></textarea>
+          <div class="form-actions">
+            <button type="submit">Ask for clarification</button>
+            <span id="waiting" class="htmx-indicator" role="status">The agent is answering…</span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </main>
+  <div hidden hx-get="$route/refresh?revision=$revision" hx-trigger="every 2s"
+       hx-sync="#clarification:drop" hx-swap="none"></div>
+</body>
+</html>
